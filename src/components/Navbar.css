@@ -1,0 +1,30 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+.nav-bar{
+    background: linear-gradient(-90deg, #111111 0%, #222222 100%);
+    height: 56px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.nav-bar-txt-1{
+    font-family: RfDewi-Expanded;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.nav-bar-txt-2{
+    font-family: RfDewi-Expanded;
+    font-weight: 100;
+    font-size: 12px;
+    align-self: flex-end;
+    transform: translateY(-1px);
+}
+
+.outline-icon{
+    color: transparent;
+    border: white 1px solid;
+}

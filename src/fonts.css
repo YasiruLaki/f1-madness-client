@@ -1,0 +1,102 @@
+/* Expanded */
+
+@font-face {
+    font-family: 'RFDewi-Expanded';
+    src: url('../public/fonts/RFDewiExpanded-Ultralight.woff2') format('woff2');
+    font-weight: ultralight;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Expanded';
+    src: url('../public/fonts/RFDewiExpanded-Ultrabold.woff2') format('woff2');
+    font-weight: ultrabold;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Expanded';
+    src: url('../public/fonts/RFDewiExpanded-Thin.woff2') format('woff2');
+    font-weight: thin;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Expanded';
+    src: url('../public/fonts/RFDewiExpanded-Semibold.woff2') format('woff2');
+    font-weight: semibold;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Expanded';
+    src: url('../public/fonts/RFDewiExpanded-Regular.woff2') format('woff2');
+    font-weight: regular;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Expanded';
+    src: url('../public/fonts/RFDewiExpanded-Light.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Expanded';
+    src: url('../public/fonts/RFDewiExpanded-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Expanded';
+    src: url('../public/fonts/RFDewiExpanded-Black.woff2') format('woff2');
+    font-weight: black;
+    font-style: normal; 
+}
+
+
+/* Extended */
+
+@font-face {
+    font-family: 'RFDewi-Extended';
+    src: url('../public/fonts/RFDewiExtended-Ultralight.woff2') format('woff2');
+    font-weight: ultralight;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Extended';
+    src: url('../public/fonts/RFDewiExtended-Ultrabold.woff2') format('woff2');
+    font-weight: ultrabold;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Extended';
+    src: url('../public/fonts/RFDewiExtended-Thin.woff2') format('woff2');
+    font-weight: thin;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Extended';
+    src: url('../public/fonts/RFDewiExtended-Semibold.woff2') format('woff2');
+    font-weight: semibold;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Extended';
+    src: url('../public/fonts/RFDewiExtended-Regular.woff2') format('woff2');
+    font-weight: regular;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Extended';
+    src: url('../public/fonts/RFDewiExtended-Light.woff2') format('woff2');
+    font-weight: light;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Extended';
+    src: url('../public/fonts/RFDewiExtended-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal; 
+}
+@font-face {
+    font-family: 'RFDewi-Extended';
+    src: url('../public/fonts/RFDewiExtended-Black.woff2') format('woff2');
+    font-weight: black;
+    font-style: normal; 
+}
