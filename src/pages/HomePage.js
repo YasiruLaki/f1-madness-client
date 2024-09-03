@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./HomePage.css";
 import Navbar from "../components/Navbar";
+import Faq from "../components/Faq";
+
 import "../fonts.css";
 
 function HomePage() {
@@ -224,6 +226,9 @@ function HomePage() {
                     ))}
                 </div>
             </div>
+
+            {/* FAQ */}
+            <Faq />
 
             {/* Footer */}
             <footer class="footer text-white">

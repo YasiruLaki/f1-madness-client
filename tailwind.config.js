@@ -2,7 +2,8 @@
 module.exports = {
   content: [
     "./src/pages/HomePage.js",
-    "./src/components/Navbar.js"
+    "./src/components/Navbar.js",
+    "./src/components/Faq.js"
 
   ],
   theme: {
