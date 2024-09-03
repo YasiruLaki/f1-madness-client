@@ -30,7 +30,7 @@ function HomePage() {
 
             {/* Landing Announcement */}
             <div className="px-5 bg-red min-h-[34px] text-white flex items-center justify-center text-center">
-                <span className="text-[14px] font-['RfDewi-Expanded'] font-[700]">New Items have Arrived!  |  🚚 Free Shipping on Orders Over $50!</span>
+                <span className="lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] ms:text-[10px] font-['RfDewi-Expanded'] font-[700]">New Items have Arrived!  |  🚚 Free Shipping on Orders Over $50!</span>
             </div>
 
             {/* Hero Section */}
@@ -89,26 +89,26 @@ function HomePage() {
             </div>
 
             {/* About */}
-            <div className="hero-section-about min-h-[170px] bg-gray-100 flex justify-content text-center px-[142px] py-[30px] text-white">
-                <div>
-                    <i className="bi bi-award"></i>
-                    <p className="font-['RfDewi-Expanded'] text-[16px] font-[800]">Official Products</p>
-                    <p className="font-['RfDewi-Extended'] text-[13px] font-[500] text-[#A5A5A5]">The Official Destination for Silver Arrows Merchandise</p>
+            <div className="hero-section-about 950:max-h-[170px] bg-gray-100 flex flex-wrap justify-center justify-between text-center 2xl:px-[142px] xl:px-[80px] lg:px-[20px] px-[10px] lg:py-[30px] md:py-[20px] py-[10px] md:flex-nowrap text-white">
+                <div className="md:mx-5 md:px-[0px] px-[5px] w-6/12">
+                    <i className="bi bi-award lg:text-[34px] text-[25px]"></i>
+                    <p className="font-['RfDewi-Expanded'] xl:text-[16px] text-[14px] font-[800]">Official Products</p>
+                    <p className="font-['RfDewi-Extended'] xl:text-[13px] text-[11px] font-[500] text-[#A5A5A5]">The Official Destination for Silver Arrows Merchandise</p>
                 </div>
-                <div>
-                    <i className="bi bi-globe"></i>
-                    <p className="font-['RfDewi-Expanded'] text-[16px] font-[800]">Worldwide Delivery</p>
-                    <p className="font-['RfDewi-Extended'] text-[13px] font-[500] text-[#A5A5A5]">Racing to your door with DPD express worldwide delivery</p>
+                <div className="md:mx-5 md:px-[0px] px-[5px] w-6/12">
+                    <i className="bi bi-globe lg:text-[34px] text-[25px]"></i>
+                    <p className="font-['RfDewi-Expanded'] xl:text-[16px] text-[14px] font-[800]">Worldwide Delivery</p>
+                    <p className="font-['RfDewi-Extended'] xl:text-[13px] text-[11px] font-[500] text-[#A5A5A5]">Racing to your door with DPD express worldwide delivery</p>
                 </div>
-                <div className="mx-[10px]">
-                    <i className="bi bi-star"></i>
-                    <p className="font-['RfDewi-Expanded'] text-[16px] font-[800]">Exclusive Products</p>
-                    <p className="font-['RfDewi-Extended'] text-[13px] font-[500] text-[#A5A5A5]">Shop with the Team to get access to all Official Limited Edition merchandise</p>
+                <div className="md:mx-5 md:px-[0px] px-[5px] w-6/12">
+                    <i className="bi bi-star lg:text-[34px] text-[25px]"></i>
+                    <p className="font-['RfDewi-Expanded'] xl:text-[16px] text-[14px] font-[800]">Exclusive Products</p>
+                    <p className="font-['RfDewi-Extended'] xl:text-[13px] text-[11px] font-[500] text-[#A5A5A5]">Shop with the Team to get access to all Official Limited Edition merchandise</p>
                 </div>
-                <div>
-                    <i className="bi bi-geo-alt"></i>
-                    <p className="font-['RfDewi-Expanded'] text-[16px] font-[800]">Tracked Delivery</p>
-                    <p className="font-['RfDewi-Extended'] text-[13px] font-[500] text-[#A5A5A5]">Fast, tracked and secure DPD delivery straight to your door</p>
+                <div className="md:mx-5 md:px-[0px] px-[5px] w-6/12">
+                    <i className="bi bi-geo-alt lg:text-[34px] text-[25px]"></i>
+                    <p className="font-['RfDewi-Expanded'] xl:text-[16px] text-[14px] font-[800]">Tracked Delivery</p>
+                    <p className="font-['RfDewi-Extended'] xl:text-[13px] text-[11px] font-[500] text-[#A5A5A5]">Fast, tracked and secure DPD delivery straight to your door</p>
                 </div>
             </div>
 
