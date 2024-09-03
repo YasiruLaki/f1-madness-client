@@ -41,3 +41,12 @@
 .best-seller-item{
     background: linear-gradient(-90deg, #111111 0%, #222222 100%);
 }
+
+.collection-item{
+    background-position: center;
+   background-size: cover;
+}
+
+.footer{
+    background: linear-gradient(-90deg, #111111 0%, #222222 100%);
+}
