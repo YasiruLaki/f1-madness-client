@@ -1,0 +1,47 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Basic styles for carousel */
+.slider-box {
+    position: relative;
+  }
+  
+  .main-slide-carousel img {
+    display: block;
+    width: 100%;
+  }
+  
+  .nav-for-slider {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .swiper-slide {
+    cursor: pointer;
+    margin-right: 10px;
+    opacity: 50%;
+    transition: all 0.3s;
+  }
+  
+  .swiper-slide.active {
+    opacity: 100%;
+    transition: all 0.3s;
+  }
+  
+  .color-box {
+    cursor: pointer;
+  }
+  
+  .color-box img {
+    width: 100%;
+    height: auto;
+    opacity: 50%;
+  }
+  
+  .color-box:hover {
+    opacity: 100%;
+  }
+  
+  
+  
