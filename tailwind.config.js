@@ -6,7 +6,17 @@ module.exports = {
 
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        '950': '950px',
+      },
+      margin: {
+        '14px': '14px',
+      },
+      colors: {
+        'red': '#FF0000',
+      },
+    },
   },
   plugins: [],
 }

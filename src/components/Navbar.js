@@ -19,7 +19,7 @@ const Navbar = () => {
             </div>
 
 
-            <div className="md:flex space-x-20">
+            <div className="950:flex hidden space-x-20">
                 <div className="hidden md:flex space-x-6">
                     <a href="/" className="nav-bar-txt-1 hover:text-red-600">
                         HOME
@@ -53,7 +53,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden">
+            <div className="950:hidden">
                 <button onClick={toggleMobileMenu} className="focus:outline-none">
                     <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
                 </button>
@@ -61,7 +61,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="absolute top-16 left-0 w-full bg-black text-white flex flex-col items-center space-y-4 py-4 md:hidden">
+                <div className="z-50 absolute top-14 left-0 w-full bg-black text-white flex flex-col items-center space-y-4 py-4 950:hidden">
                     <a href="/" className="hover:text-red-600" onClick={toggleMobileMenu}>
                         HOME
                     </a>
