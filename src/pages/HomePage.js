@@ -34,7 +34,7 @@ function HomePage() {
             </div>
 
             {/* Hero Section */}
-            <div className="relative h-[800px] max-h-[800px] overflow-hidden">
+            <div className="relative md:h-[800px] sm:h-[600px] h-[450px]  max-h-[800px] overflow-hidden">
                 <div
                     className="carousel-wrapper"
                 >
@@ -60,17 +60,34 @@ function HomePage() {
                     />
                 </div>
 
-                <div className="absolute inset-0 flex items-end justify-start p-6">
+                <div className="absolute inset-0 items-end justify-start p-6 hidden ml:flex">
                     <div className="text-left text-white">
-                        <h1 className="font-['RfDewi-Expanded'] text-[64px] font-[800]">
-                            Gear Up For <span className="font-['F1'] text-[64px]">F1</span>.
+                        <h1 className="font-['RfDewi-Expanded'] text-[50px] md:text-[64px] font-[800]">
+                            Gear Up For <span className="font-['F1']  text-[50px] md:text-[64px]">F1</span>.
                         </h1>
-                        <p className="font-['RfDewi-Expanded'] text-[32px] font-[800] mt-[-10px]">
+                        <p className="font-['RfDewi-Expanded'] text-[22px] md:text-[32px] font-[800] mt-[-10px]">
                             Shop exclusive merchandise and collectibles.
                         </p>
                         <a
                             href="https://google.com"
-                            className="inline-block bg-red text-white py-3 px-6 rounded-[15px] font-['RfDewi-Expanded'] text-[24px] font-[800] transition duration-300 hover:bg-red-700 mt-[20px]"
+                            className="inline-block bg-red text-white py-2 px-3 rounded-[10px] md:py-3 md:px-6 md:rounded-[15px] font-['RfDewi-Expanded'] text-[17px] md:text-[24px] font-[800] transition duration-300 hover:bg-red-700 mt-[15px] md:mt-[20px]"
+                        >
+                            Visit Store
+                        </a>
+                    </div>
+                </div>
+
+                <div className="absolute inset-0 flex items-end justify-start p-6 ml:hidden">
+                    <div className="text-left text-white">
+                        <h1 className="font-['RfDewi-Expanded'] text-[40px] mm:text-[50px] font-[800] leading-[3rem]">
+                            Gear Up <br></br> For <span className="font-['F1'] text-[40px] mm:text-[50px]">F1</span>.
+                        </h1>
+                        <p className="font-['RfDewi-Expanded'] text-[15px] mm:text-[18px] font-[800]">
+                            Shop exclusive merchandise and collectibles.
+                        </p>
+                        <a
+                            href="https://google.com"
+                            className="inline-block bg-red text-white py-1 px-4 rounded-[7px] font-['RfDewi-Expanded'] text-[15px] font-[800] transition duration-300 hover:bg-red-700 my-[10px]"
                         >
                             Visit Store
                         </a>
@@ -117,11 +134,11 @@ function HomePage() {
                 <h2 className="font-['RfDewi-Expanded'] text-[36px] font-[800]">Best Sellers</h2>
 
                 <div className="flex justify-between flex-wrap mt-[30px] mx-[110px] items-center text-white text-left">
-                    <div className="best-seller-item w-[420px]">
+                    <div className="best-seller-item">
                         <img
                             src="../images/mercedesF1Tee.png"
                             alt="Best Seller 1"
-                            className="best-seller-image w-[420px] h-[418px]"
+                            className="best-seller-imagew-[333px] h-[333px]"
                         />
                         <div className="my-[5px] mx-[19px]">
                             <h3 className="font-['RfDewi-Expanded'] text-[19px] font-[700] ">Mercedes F1 TShirt</h3>
