@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/Product';
+import CollectionPage from './pages/Collections';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/product" element={<ProductPage />} />
+        <Route path="/collections" element={<CollectionPage />} />
       </Routes>
     </BrowserRouter>
   );

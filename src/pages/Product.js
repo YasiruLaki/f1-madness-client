@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Product.css';
 import Navbar from '../components/Navbar';
+import Announcement from '../components/Announcement';
+import Footer from '../components/Footer';
 
 const Product = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -20,9 +22,9 @@ const Product = () => {
         <div>
             <Navbar />
             {/* Landing Announcement */}
-            <div className="px-5 bg-red min-h-[34px] text-white flex items-center justify-center text-center">
-                <span className="lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] ms:text-[10px] font-['RfDewi-Expanded'] font-[700]">New Items have Arrived!  |  🚚 Free Shipping on Orders Over $50!</span>
-            </div>
+            <Announcement />
+
+            {/* Product Details */}
             <section className="py-[50px]">
                 <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                     <div>
@@ -117,7 +119,20 @@ const Product = () => {
                                         </button>
                                     ))}
                                 </div>
-                                <button className="w-full py-2.5 px-6 rounded-lg bg-[#111111] text-white font-semibold text-lg transition-all duration-500 hover:bg-red">
+
+                                {/* quantity */}
+                                <p className="font-['RfDewi-Extended'] font-[600] text-lg mb-2">Quantity:</p>
+                                <div className="flex items-center gap-3">
+                                    <button className="border rounded-lg py-2.5 px-4 text-center text-base font-medium leading-6 text-gray-900 hover:border-gray-900">
+                                        -
+                                    </button>
+                                    <span className="text-base font-medium leading-6 text-gray-900">1</span>
+                                    <button className="border rounded-lg py-2.5 px-4 text-center text-base font-medium leading-6 text-gray-900 hover:border-gray-900">
+                                        +
+                                    </button>
+                                </div>
+
+                                <button className="w-full py-2.5 px-6 rounded-lg bg-[#111111] text-white font-semibold text-lg transition-all duration-500 hover:bg-red mt-[15px]">
                                     Add to Cart
                                 </button>
 
@@ -129,6 +144,9 @@ const Product = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Footer */}
+            <Footer />
         </div>
     );
 };
