@@ -8,7 +8,7 @@ const Product = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const images = [
-        "../images/mercedesF1Tee.png",
+        "../images/verstappneTee.png",
         "../images/mercedesF1Tee.png",
         "../images/mercedesF1Tee.png",
         "../images/mercedesF1Tee.png",
@@ -17,6 +17,8 @@ const Product = () => {
     const handleThumbnailClick = (index) => {
         setActiveIndex(index);
     };
+
+
 
     return (
         <div>

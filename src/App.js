@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import "./fonts.css"
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/Product';
 import CollectionPage from './pages/Collections';

@@ -191,7 +191,6 @@ function HomePage() {
                 </div>
             </div>
 
-            {/* Categories */}
             <div className="p-4 md:mx-10">
                 <h2 className="font-['RfDewi-Expanded'] text-[36px] font-[800] text-center">Collections</h2>
 
@@ -202,15 +201,17 @@ function HomePage() {
                             className={`relative overflow-hidden shadow-lg flex justify-center items-center ${category.span ? 'col-span-2 md:col-span-2' : ''
                                 } h-40 md:h-60 bg-gray-200 group`}
                         >
-                            <img
-                                src={category.image}
-                                alt={category.name}
-                                className="object-cover w-full h-full"
-                            />
-                            <div className="best-seller-item absolute bottom-0 left-0 right-0 bg-black p-2 text-white text-center flex justify-between items-center font-['RfDewi-Expanded'] text-[19px] font-[700]">
-                                <span>{category.name}</span>
-                                <i className="bi bi-arrow-right ml-2"></i>
-                            </div>
+                            <a href={`/collections?collection=${category.name}`}>
+                                <img
+                                    src={category.image}
+                                    alt={category.name}
+                                    className="object-cover w-full h-full"
+                                />
+                                <div className="best-seller-item absolute bottom-0 left-0 right-0 bg-black p-2 text-white text-center flex justify-between items-center font-['RfDewi-Expanded'] text-[19px] font-[700]">
+                                    <span>{category.name}</span>
+                                    <i className="bi bi-arrow-right ml-2"></i>
+                                </div>
+                            </a>
                         </div>
                     ))}
                 </div>
@@ -220,8 +221,10 @@ function HomePage() {
                             key={index}
                             className="best-seller-item flex md:w-1/3 justify-between items-center bg-black text-white font-bold text-xl p-4 shadow-lg font-['RfDewi-Expanded'] text-[19px] font-[700]"
                         >
-                            <span>{category.name}</span>
-                            <i className="bi bi-arrow-right ml-2"></i>
+                            <a href={`/collections?collection=${category.name}`}>
+                                <span>{category.name}</span>
+                                <i className="bi bi-arrow-right ml-2"></i>
+                            </a>
                         </div>
                     ))}
                 </div>
