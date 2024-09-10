@@ -3,13 +3,16 @@ import "./Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faHeart, faShoppingCart, faUser, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import "../fonts.css"
+import { useCart } from '../contexts/CartContext';
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { cart } = useCart();
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
+      
 
     return (
         <nav className="bg-black text-white flex justify-between items-center nav-bar">
@@ -40,11 +43,11 @@ const Navbar = () => {
                     <button className="hover:text-red-600">
                         <FontAwesomeIcon icon={faHeart} />
                     </button>
-                    <button className="hover:text-red-600 relative">
+                    <a href="/cart" className="hover:text-red-600 relative">
                         <FontAwesomeIcon icon={faShoppingCart} />
                         <span className="nav-bar-txt-1 px-2">CART</span>
-                        <span className="nav-bar-txt-1 text-black bg-white rounded-full px-1">2</span>
-                    </button>
+                        <span className="nav-bar-txt-1 text-black bg-white rounded-full px-1">{cart.length}</span>
+                    </a>
                     <button className="hover:text-red-600">
                         <FontAwesomeIcon icon={faUser} />
                     </button>
@@ -78,11 +81,11 @@ const Navbar = () => {
                     <button className="hover:text-red-600">
                         <FontAwesomeIcon icon={faHeart} />
                     </button>
-                    <button className="hover:text-red-600 relative">
+                    <a href="/cart" className="hover:text-red-600 relative">
                         <FontAwesomeIcon icon={faShoppingCart} />
                         <span className="nav-bar-txt-1 px-2">CART</span>
-                        <span className="nav-bar-txt-1 text-black bg-white rounded-full px-1">2</span>
-                    </button>
+                        <span className="nav-bar-txt-1 text-black bg-white rounded-full px-1">{cart.length}</span>
+                    </a>
                     <button className="hover:text-red-600">
                         <FontAwesomeIcon icon={faUser} />
                     </button>

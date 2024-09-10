@@ -1,24 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './Product.css';
 import Navbar from '../components/Navbar';
 import Announcement from '../components/Announcement';
 import Footer from '../components/Footer';
+import { useCart } from '../contexts/CartContext';
 
 const Product = () => {
     const [activeIndex, setActiveIndex] = useState(0);
-
-    const images = [
-        "../images/verstappneTee.png",
-        "../images/mercedesF1Tee.png",
-        "../images/mercedesF1Tee.png",
-        "../images/mercedesF1Tee.png",
-    ];
+    const { search } = useLocation();
+    const quaryParams = new URLSearchParams(search);
+    const productID = quaryParams.get('productID');
+    const [product, setProduct] = useState([]);
+    const [selectedSize, setSelectedSize] = useState('');
+    const [selectedQuantity, setSelectedQuantity] = useState(1);
+    const { addToCart } = useCart();
 
     const handleThumbnailClick = (index) => {
         setActiveIndex(index);
     };
 
+    const handleIncrement = () => {
+        setSelectedQuantity(selectedQuantity + 1);
+    }
 
+    const handleDecrement = () => {
+        if (selectedQuantity > 1) {
+            setSelectedQuantity(selectedQuantity - 1);
+        }
+    }
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const formattedProductID = productID.split('#').join('%23');
+            try {
+                const res = await fetch(`https://f1-store-backend.netlify.app/.netlify/functions/fetchSingleProduct?productID=${formattedProductID}`);
+                const data = await res.json();
+                setProduct(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchProduct();
+    }, [productID]);
+
+    const handleSizeSelect = (size) => {
+        setSelectedSize(size); // Update selected size in state
+    };
+
+    const images = product?.images || [];
+
+    const handleAddToCart = () => {
+        if (product.sizes && product.sizes.length > 0 && !selectedSize) {
+            alert('Please select a size before adding to the cart.');
+            return;
+        }
+
+        // Retrieve cart from local storage
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Check if the product is already in the cart
+        const existingProductIndex = cart.findIndex(item => item.productID === product.productID && item.size === selectedSize);
+
+        if (existingProductIndex !== -1) {
+            alert('Product is already added to cart!');
+        } else {
+            // Add new product to the cart
+            const productToAdd = {
+                productID: product.productID,
+                quantity: selectedQuantity,
+                size: selectedSize,
+            };
+            cart.push(productToAdd);
+            alert('Product added to cart!');
+        }
+
+        // Save the updated cart back to local storage
+        localStorage.setItem('cart', JSON.stringify(cart));
+    };
 
     return (
         <div>
@@ -27,6 +86,7 @@ const Product = () => {
             <Announcement />
 
             {/* Product Details */}
+
             <section className="py-[50px]">
                 <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                     <div>
@@ -35,14 +95,17 @@ const Product = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                         <div className="slider-box w-full h-full max-lg:mx-auto mx-0">
                             <div className="main-slide-carousel">
-                                <img
-                                    alt="Product"
-                                    className="w-full h-auto rounded-2xl"
-                                    src={images[activeIndex]}
-                                />
+                                {/* Check if images array has items before rendering */}
+                                {images.length > 0 && (
+                                    <img
+                                        alt="Product"
+                                        className="w-full h-auto rounded-2xl"
+                                        src={images[activeIndex]}
+                                    />
+                                )}
                             </div>
-                            <div className="nav-for-slider">
-                                <div className="flex space-x-2">
+                            <div className="nav-for-slider mt-4">
+                                <div className="flex ">
                                     {images.map((image, index) => (
                                         <div
                                             key={index}
@@ -50,8 +113,8 @@ const Product = () => {
                                             onClick={() => handleThumbnailClick(index)}
                                         >
                                             <img
-                                                alt="Thumbnail"
-                                                className="cursor-pointer rounded-xl transition-all duration-500"
+                                                alt={`Thumbnail ${index + 1}`}
+                                                className={`cursor-pointer rounded-xl transition-all duration-500 ${activeIndex === index ? 'border-2 border-black' : ''}`}
                                                 src={image}
                                             />
                                         </div>
@@ -65,18 +128,22 @@ const Product = () => {
                                     <div className="text">
                                         <p className="font-['RfDewi-Extended'] text-base text-gray-500 ml-[2px]">MERCEDES</p>
                                         <h2 className="leading-10 text-gray-900 mb-2 font-['RfDewi-Expanded'] text-[35px] font-[800]">
-                                            Mercedes F1 Team TShirt
+                                            {product.name}
                                         </h2>
                                     </div>
                                 </div>
                                 <div className="flex flex-col min-[400px]:flex-row min-[400px]:items-center mb-8 gap-y-3">
-                                    <div className="flex items-center">
-                                        <span className="font-['RfDewi-Expanded'] text-[30px] font-[700] mt-[-5px] text-black">$35.6</span>
+                                    {product.salePrice > 0 ? (
+                                        <div className="flex items-center">
+                                            <span className="font-['RfDewi-Expanded'] text-[30px] font-[700] mt-[-5px] text-black">${product.salePrice}</span>
 
-                                        <span className="line-through text-red  ml-[10px] opacity-80 text-[18px]">
-                                            <span className="font-['RfDewi-Expanded'] text-[18px] font-[700] mt-[-5px] text-black">$45.6</span>
-                                        </span>
-                                    </div>
+                                            <span className="line-through text-red  ml-[10px] opacity-80 text-[18px]">
+                                                <span className="font-['RfDewi-Expanded'] text-[18px] font-[700] mt-[-5px] text-black">${product.price}</span>
+                                            </span>
+                                        </div>
+                                    ) : (
+                                        <span className="font-['RfDewi-Expanded'] text-[30px] font-[700] mt-[-5px] text-black">${product.price}</span>
+                                    )}
                                     <svg
                                         className="mx-5 max-[400px]:hidden"
                                         fill="none"
@@ -107,39 +174,55 @@ const Product = () => {
                                                 </clipPath>
                                             </defs>
                                         </svg>
-                                        <span className="text-base font-medium text-white">4.8</span>
+                                        <span className="text-base font-medium text-white">{product.rating}</span>
                                     </button>
                                 </div>
-                                <p className="font-['RfDewi-Extended'] font-[600] text-lg mb-2">Select Size: <span className='text-[15px] underline'>(Size Chart)</span></p>
+                                <p className="font-['RfDewi-Extended'] font-[600] text-lg mb-2">Select Size:
+                                    <span className='text-[15px] underline ml-[3px]'>
+                                        {product.category === 'Tshirt' || product.category === 'Hoodies' || product.category === 'Jackets' ? 'Size Chart' : ''}
+                                    </span>
+                                </p>
                                 <div className="grid grid-cols-2 min-[400px]:grid-cols-4 gap-3 mb-6">
-                                    {['S', 'M', 'L', 'XL'].map((size, index) => (
-                                        <button
-                                            key={index}
-                                            className="border rounded-lg py-2.5 text-center text-base font-medium leading-6 text-gray-900 hover:border-gray-900"
-                                        >
-                                            {size}
-                                        </button>
+                                    {product.sizes?.map((size, index) => (
+                                        <div key={index} className="flex items-center">
+                                            <input
+                                                type="checkbox"
+                                                id={`size-${size}`} // Unique ID for each input
+                                                className="hidden peer"
+                                                checked={selectedSize === size} // Make input controlled by state
+                                                onChange={() => handleSizeSelect(size)} // Handle size selection
+                                            />
+                                            <label
+                                                htmlFor={`size-${size}`} // Corresponding 'htmlFor' to link label and input
+                                                className={`cursor-pointer flex items-center justify-center w-full h-10 rounded-lg border border-gray-300 text-base font-medium leading-6 text-gray-900 hover:border-gray-900 ${selectedSize === size ? 'bg-[#111111] text-white' : ''}`}
+                                            >
+                                                {size}
+                                            </label>
+                                        </div>
                                     ))}
                                 </div>
 
                                 {/* quantity */}
                                 <p className="font-['RfDewi-Extended'] font-[600] text-lg mb-2">Quantity:</p>
                                 <div className="flex items-center gap-3">
-                                    <button className="border rounded-lg py-2.5 px-4 text-center text-base font-medium leading-6 text-gray-900 hover:border-gray-900">
+                                    <button className="border rounded-lg py-2.5 px-4 text-center text-base font-medium leading-6 text-gray-900 hover:border-gray-900" onClick={handleDecrement}>
                                         -
                                     </button>
-                                    <span className="text-base font-medium leading-6 text-gray-900">1</span>
-                                    <button className="border rounded-lg py-2.5 px-4 text-center text-base font-medium leading-6 text-gray-900 hover:border-gray-900">
+                                    <span className="text-base font-medium leading-6 text-gray-900">{selectedQuantity}</span>
+                                    <button className="border rounded-lg py-2.5 px-4 text-center text-base font-medium leading-6 text-gray-900 hover:border-gray-900" onClick={handleIncrement}>
                                         +
                                     </button>
                                 </div>
 
-                                <button className="w-full py-2.5 px-6 rounded-lg bg-[#111111] text-white font-semibold text-lg transition-all duration-500 hover:bg-red mt-[15px]">
+                                <button
+                                    className="w-full py-2.5 px-6 rounded-lg bg-[#111111] text-white font-semibold text-lg transition-all duration-500 hover:bg-red mt-[15px]"
+                                    onClick={handleAddToCart}
+                                >
                                     Add to Cart
                                 </button>
 
                                 <p className="font-['RfDewi-Extended'] font-[600] text-lg  mt-5">Product Description:</p>
-                                <span className="font-['RfDewi-Extended'] font-[400] opacity-80">Show your support for the Mercedes-AMG Petronas Formula One Team with this stylish T-shirt. Featuring the iconic team logo and colors, it's made from soft, breathable fabric for maximum comfort, whether you're at the track or watching from home. Perfect for any F1 fan!</span>
+                                <span className="font-['RfDewi-Extended'] font-[400] opacity-80">{product.description}</span>
 
                             </div>
                         </div>

@@ -4,6 +4,7 @@ import "./fonts.css"
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/Product';
 import CollectionPage from './pages/Collections';
+import CartPage from './pages/Cart';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/collections" element={<CollectionPage />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </BrowserRouter>
   );

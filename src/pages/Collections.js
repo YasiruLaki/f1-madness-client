@@ -20,10 +20,9 @@ function Collections() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch(`http://localhost:8888/.netlify/functions/fetchAdminProducts?filteredCategory=${collection}`);
+                const response = await fetch(`https://f1-store-backend.netlify.app/.netlify/functions/fetchAdminProducts?filteredCategory=${collection}`);
                 const data = await response.json();
                 setProductsByCategory(data);
-                console.log('Products:', data);
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
@@ -129,35 +128,39 @@ function Collections() {
 
                                 return salePrice > 0 ? (
                                     <div key={product.productID} className="best-seller-item h-full w-full">
-                                        <div className="h-70 w-full">
-                                            <span className="best-seller-badge absolute font-['RfDewi-Expanded'] font-[700] text-[16px] bg-red px-[8px] pt-[15px] rounded-[4px] rounded-t-none items-center ml-[10px] text-white">Sale</span>
-                                            <img
-                                                src={product.image || "../images/mercedesF1Tee.png"}
-                                                alt={product.name || "Best Seller"}
-                                                className="best-seller-image w-full h-full object-cover"
-                                            />
-                                        </div>
-                                        <div className="my-[5px] mx-[19px] text-white">
-                                            <h3 className="font-['RfDewi-Expanded'] text-[19px] font-[700]">{product.name || "Product Name"}</h3>
-                                            <span className="font-['RfDewi-Expanded'] text-[16px] font-[700] mt-[-5px] text-white">${salePrice}</span>
-                                            <span className="line-through text-red ml-[5px] opacity-80 text-[13px]">
-                                                <span className="font-['RfDewi-Expanded'] text-[13px] font-[700] mt-[-5px] text-white">${originalPrice}</span>
-                                            </span>
-                                        </div>
+                                        <a href={`/product?collection=${collection}&productID=${product.productID.split('#').join("%23")}`}>
+                                            <div className="h-70 w-full">
+                                                <span className="best-seller-badge absolute font-['RfDewi-Expanded'] font-[700] text-[16px] bg-red px-[8px] pt-[15px] rounded-[4px] rounded-t-none items-center ml-[10px] text-white">Sale</span>
+                                                <img
+                                                    src={product.images[0] || "../images/mercedesF1Tee.png"}
+                                                    alt={product.name || "Best Seller"}
+                                                    className="best-seller-image w-full h-full object-cover"
+                                                />
+                                            </div>
+                                            <div className="my-[5px] mx-[19px] text-white">
+                                                <h3 className="font-['RfDewi-Expanded'] text-[19px] font-[700]">{product.name || "Product Name"}</h3>
+                                                <span className="font-['RfDewi-Expanded'] text-[16px] font-[700] mt-[-5px] text-white">${salePrice}</span>
+                                                <span className="line-through text-red ml-[5px] opacity-80 text-[13px]">
+                                                    <span className="font-['RfDewi-Expanded'] text-[13px] font-[700] mt-[-5px] text-white">${originalPrice}</span>
+                                                </span>
+                                            </div>
+                                        </a>
                                     </div>
                                 ) : (
                                     <div key={product.productID} className="best-seller-item h-full w-full">
-                                        <div className="h-70 w-full">
-                                            <img
-                                                src={product.images[0] || "../images/mercedesF1Tee.png"}
-                                                alt={product.name || "Best Seller"}
-                                                className="best-seller-image w-full h-full object-cover"
-                                            />
-                                        </div>
-                                        <div className="my-[5px] mx-[19px] text-white">
-                                            <h3 className="font-['RfDewi-Expanded'] text-[19px] font-[700]">{product.name || "Product Name"}</h3>
-                                            <span className="font-['RfDewi-Expanded'] text-[16px] font-[700] mt-[-5px]">${originalPrice}</span>
-                                        </div>
+                                        <a href={`/product?collection=${collection}&productID=${product.productID.split('#').join("%23")}`}>
+                                            <div className="h-70 w-full">
+                                                <img
+                                                    src={product.images[0] || "../images/mercedesF1Tee.png"}
+                                                    alt={product.name || "Best Seller"}
+                                                    className="best-seller-image w-full h-full object-cover"
+                                                />
+                                            </div>
+                                            <div className="my-[5px] mx-[19px] text-white">
+                                                <h3 className="font-['RfDewi-Expanded'] text-[19px] font-[700]">{product.name || "Product Name"}</h3>
+                                                <span className="font-['RfDewi-Expanded'] text-[16px] font-[700] mt-[-5px]">${originalPrice}</span>
+                                            </div>
+                                        </a>
                                     </div>
                                 );
                             })}

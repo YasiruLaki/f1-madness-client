@@ -191,6 +191,7 @@ function HomePage() {
                 </div>
             </div>
 
+
             <div className="p-4 md:mx-10">
                 <h2 className="font-['RfDewi-Expanded'] text-[36px] font-[800] text-center">Collections</h2>
 
