@@ -5,6 +5,8 @@ import Navbar from '../components/Navbar';
 import Announcement from '../components/Announcement';
 import Footer from '../components/Footer';
 import { useCart } from '../contexts/CartContext';
+import LoadingScreen from '../components/loadingScreen';
+import Alert from '../components/Alert';
 
 const Product = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -14,7 +16,20 @@ const Product = () => {
     const [product, setProduct] = useState([]);
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedQuantity, setSelectedQuantity] = useState(1);
+    const [loading, setLoading] = useState(true);
+    const [alert, setAlert] = useState({ type: '', message: '' });
     const { addToCart } = useCart();
+
+
+    // Function to show alert
+    const showAlert = (type, message) => {
+        setAlert({ type, message });
+    };
+
+    // Function to hide alert
+    const hideAlert = () => {
+        setAlert({ type: '', message: '' });
+    };
 
     const handleThumbnailClick = (index) => {
         setActiveIndex(index);
@@ -31,6 +46,7 @@ const Product = () => {
     }
 
     useEffect(() => {
+        setLoading(true);
         const fetchProduct = async () => {
             const formattedProductID = productID.split('#').join('%23');
             try {
@@ -39,6 +55,11 @@ const Product = () => {
                 setProduct(data);
             } catch (error) {
                 console.log(error);
+            }
+            finally {
+                setTimeout(() => {
+                    setLoading(false);
+                }, 500);
             }
         };
         fetchProduct();
@@ -49,38 +70,52 @@ const Product = () => {
     };
 
     const images = product?.images || [];
-
+    
     const handleAddToCart = () => {
         if (product.sizes && product.sizes.length > 0 && !selectedSize) {
-            alert('Please select a size before adding to the cart.');
+            showAlert('info', 'Please select a size before adding to the cart.');
             return;
         }
-
+    
         // Retrieve cart from local storage
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+    
         // Check if the product is already in the cart
-        const existingProductIndex = cart.findIndex(item => item.productID === product.productID && item.size === selectedSize);
-
+        const existingProductIndex = cart.findIndex(item => item.productID === productID && item.size === selectedSize);
+    
         if (existingProductIndex !== -1) {
-            alert('Product is already added to cart!');
+            showAlert('info', 'Product in this size already exists in the cart.');
         } else {
-            // Add new product to the cart
+            setLoading(true);
             const productToAdd = {
-                productID: product.productID,
+                productID: productID,
                 quantity: selectedQuantity,
                 size: selectedSize,
             };
             cart.push(productToAdd);
-            alert('Product added to cart!');
+            addToCart(productToAdd);
+            setAlert({ type: 'success', message: 'Product added to cart!' });
+            
+            setLoading(false);
+            
         }
-
+    
         // Save the updated cart back to local storage
         localStorage.setItem('cart', JSON.stringify(cart));
     };
 
     return (
         <div>
+            {loading && <LoadingScreen />}
+
+            {/* Render the Alert component */}
+            {alert.message && (
+                <Alert
+                    type={alert.type}
+                    message={alert.message}
+                    onClose={hideAlert}
+                />
+            )}
             <Navbar />
             {/* Landing Announcement */}
             <Announcement />

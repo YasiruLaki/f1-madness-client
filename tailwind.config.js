@@ -6,10 +6,13 @@ module.exports = {
     "./src/pages/Product.js",
     "./src/pages/Collections.js",
     "./src/pages/Cart.js",
+    "./src/pages/OrderSuccess.js",
     "./src/components/Navbar.js",
     "./src/components/Faq.js",
     "./src/components/Footer.js",
     "./src/components/Announcement.js",
+    "./src/components/loadingScreen.js",
+    "./src/components/Alert.js",
     
 
   ],

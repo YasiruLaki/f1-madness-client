@@ -5,18 +5,23 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Announcement from '../components/Announcement';
 import { loadStripe } from '@stripe/stripe-js';
+import LoadingScreen from '../components/loadingScreen';
 
 function Cart() {
     const { cart, removeFromCart, incrementQuantity, decrementQuantity } = useCart();
     const [products, setProducts] = useState([]);
     const [total, setTotal] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     // Function to fetch product details
     const fetchProductDetails = async (productID) => {
+        console.log(`Fetching details for productID: ${productID}`); // Add this log
         try {
             const response = await fetch(`https://f1-store-backend.netlify.app/.netlify/functions/fetchSingleProduct?productID=${encodeURIComponent(productID)}`);
             if (!response.ok) throw new Error('Network response was not ok');
-            return await response.json();
+            const data = await response.json();
+            console.log('Fetched product details:', data); // Add this log
+            return data;
         } catch (error) {
             console.error('Error fetching product details:', error);
             return null;
@@ -25,17 +30,24 @@ function Cart() {
 
     // Fetch cart data and product details
     const fetchCartData = async () => {
+        setLoading(true);
         try {
+            console.log('Fetching cart data...');
             const productsWithDetails = await Promise.all(
                 cart.map(async (item) => {
                     const productDetails = await fetchProductDetails(item.productID);
+                    console.log(`Product details for ${item.productID}:`, productDetails);
                     return { ...item, ...productDetails };
                 })
             );
-            setProducts(productsWithDetails); // Set fetched products
-            calculateTotal(productsWithDetails); // Calculate total with fetched products
+            console.log('Products with details:', productsWithDetails);
+            setProducts(productsWithDetails);
+            calculateTotal(productsWithDetails);
         } catch (error) {
-            console.error('Error fetching product details:', error);
+            console.error('Error fetching cart data:', error);
+        }
+        finally {
+            setTimeout(() => setLoading(false), 200);
         }
     };
 
@@ -53,6 +65,7 @@ function Cart() {
     const stripePromise = loadStripe('pk_test_a2gjVvGfjx4XetUL46ZoIiZ100OaQS9olA'); // Replace with your Stripe publishable key
 
     const handleCheckout = async () => {
+        setLoading(true);
         try {
             // Fetch product details for the cart items
             const productsWithDetails = await Promise.all(
@@ -63,7 +76,7 @@ function Cart() {
             );
     
             // Prepare the data to send to your backend
-            const response = await fetch('http://localhost:8888/.netlify/functions/createCheckoutSession', {
+            const response = await fetch('https://f1-store-backend.netlify.app/.netlify/functions/createCheckoutSession', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ cart: productsWithDetails })
@@ -87,14 +100,18 @@ function Cart() {
         } catch (error) {
             console.error('Error during checkout:', error);
         }
+        finally {
+            setLoading(false);
+        }
     };
 
     return (
         <div className="cart">
+            {loading && <LoadingScreen />}
             <Navbar />
             <Announcement />
 
-            <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+            <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16 min-h-[calc(100vh-360px)]">
                 <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
                     <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Shopping Cart</h2>
 

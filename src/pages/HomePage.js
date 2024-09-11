@@ -4,11 +4,13 @@ import Navbar from "../components/Navbar";
 import Faq from "../components/Faq";
 import Footer from "../components/Footer";
 import Announcement from "../components/Announcement";
+import LoadingScreen from "../components/loadingScreen";
 
 import "../fonts.css";
 
 function HomePage() {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     const images = [
         '../images/image-1.png',
@@ -44,6 +46,9 @@ function HomePage() {
 
     return (
         <div className="HomePage">
+            {loading && <LoadingScreen />}
+
+            {/* Navbar */}
             <Navbar />
 
             {/* Landing Announcement */}

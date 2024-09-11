@@ -7,18 +7,38 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
 
+    // Function to update local storage
+    const updateLocalStorage = (updatedCart) => {
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+    };
+
     // Function to add a product to the cart
     const addToCart = (product) => {
-        const updatedCart = [...cart, product];
-        setCart(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        const existingProductIndex = cart.findIndex(item => item.productID === product.productID && item.size === product.size);
+
+        if (existingProductIndex !== -1) {
+            // If product exists, update quantity
+            const updatedCart = cart.map((item, index) => {
+                if (index === existingProductIndex) {
+                    return { ...item, quantity: item.quantity + product.quantity };
+                }
+                return item;
+            });
+            setCart(updatedCart);
+            updateLocalStorage(updatedCart);
+        } else {
+            // Otherwise, add new product
+            const updatedCart = [...cart, product];
+            setCart(updatedCart);
+            updateLocalStorage(updatedCart);
+        }
     };
 
     // Function to remove a product from the cart
     const removeFromCart = (productID, size) => {
         const updatedCart = cart.filter(item => !(item.productID === productID && item.size === size));
         setCart(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        updateLocalStorage(updatedCart);
     };
 
     // Function to increment product quantity
@@ -30,7 +50,7 @@ export const CartProvider = ({ children }) => {
             return item;
         });
         setCart(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        updateLocalStorage(updatedCart);
     };
 
     // Function to decrement product quantity
@@ -42,7 +62,7 @@ export const CartProvider = ({ children }) => {
             return item;
         });
         setCart(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        updateLocalStorage(updatedCart);
     };
 
     // Initialize cart from local storage when the component mounts

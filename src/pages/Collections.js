@@ -4,6 +4,7 @@ import './Collections.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Announcement from '../components/Announcement';
+import LoadingScreen from '../components/loadingScreen';
 
 function Collections() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -11,6 +12,7 @@ function Collections() {
     const quaryParams = new URLSearchParams(search);
     const collection = quaryParams.get('collection');
     const [productsByCategory, setProductsByCategory] = useState([]);
+    const [loading, setLoading] = useState(false);
 
 
     const toggleDropdown = () => {
@@ -19,6 +21,7 @@ function Collections() {
 
     useEffect(() => {
         const fetchProducts = async () => {
+            setLoading(true);
             try {
                 const response = await fetch(`https://f1-store-backend.netlify.app/.netlify/functions/fetchAdminProducts?filteredCategory=${collection}`);
                 const data = await response.json();
@@ -26,14 +29,20 @@ function Collections() {
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
+            finally {
+                setTimeout(() => {
+                    setLoading(false);
+                }, 500);
+            }
         };
-
         fetchProducts();
+
     }, [collection]);
 
 
     return (
         <div>
+            {loading && <LoadingScreen />}
             {/* Nav bar */}
             <Navbar />
             {/* Landing Announcement */}
