@@ -8,7 +8,6 @@ const Alert = ({ type, message, onClose }) => {
     useEffect(() => {
         if (message) {
             setVisible(true);
-            // Auto-hide alert after 3 seconds
             const timer = setTimeout(() => {
                 handleClose();
             }, 3000);
@@ -19,7 +18,7 @@ const Alert = ({ type, message, onClose }) => {
 
     const handleClose = () => {
         setVisible(false);
-        setTimeout(onClose, 300); // Delay onClose to allow transition
+        setTimeout(onClose, 300);
     };
 
     if (!message) return null;

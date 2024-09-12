@@ -151,42 +151,41 @@ function HomePage() {
             </div>
 
             {/* Best Sellers */}
-            <div className="best-sellers-section min-h-[500px] flex flex-col text-center mt-[20px]">
+            <div className="best-sellers-section min-h-[500px] text-center mt-[20px]">
                 <h2 className="font-['RfDewi-Expanded'] text-[36px] font-[800]">Best Sellers</h2>
 
-                <div className="flex justify-center justify-between flex-wrap mt-[30px] mx-[110px] items-center text-white text-left">
-                    <div className="best-seller-item ">
+                <div className=" grid ms:grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-14 mt-[30px] mx-auto max-w-screen-xl sm:px-14 px-4 text-left text-white">
+                    <div className="best-seller-item relative">
                         <img
                             src="../images/mercedesF1Tee.png"
                             alt="Best Seller 1"
-                            className="best-seller-imagew-[333px] h-[333px]"
+                            className="best-seller-image w-full h-auto"
                         />
                         <div className="my-[5px] mx-[19px]">
-                            <h3 className="font-['RfDewi-Expanded'] text-[19px] font-[700] ">Mercedes F1 TShirt</h3>
+                            <h3 className="font-['RfDewi-Expanded'] text-[19px] font-[700]">Mercedes F1 TShirt</h3>
                             <span className="font-['RfDewi-Expanded'] text-[16px] font-[700] mt-[-5px]">$35.8</span>
                         </div>
                     </div>
-                    <div className="best-seller-item w-[333px] max-h-[396px]">
+                    <div className="best-seller-item relative">
                         <span className="best-seller-badge absolute font-['RfDewi-Expanded'] font-[700] text-[16px] bg-red px-[8px] pt-[15px] rounded-[4px] rounded-t-none items-center ml-[10px]">Sale</span>
                         <img
                             src="../images/verstappneTee.png"
                             alt="Best Seller 2"
-                            className="best-seller-image w-[333px] h-[333px]"
+                            className="best-seller-image w-full h-auto"
                         />
                         <div className="my-[5px] mx-[19px]">
                             <h3 className="font-['RfDewi-Expanded'] text-[19px] font-[700]">Verstappen F1 TShirt</h3>
                             <span className="font-['RfDewi-Expanded'] text-[16px] font-[700] mt-[-5px] text-white">$35.6</span>
-
-                            <span className="line-through text-red  ml-[5px] opacity-80 text-[13px]">
+                            <span className="line-through text-red ml-[5px] opacity-80 text-[13px]">
                                 <span className="font-['RfDewi-Expanded'] text-[13px] font-[700] mt-[-5px] text-white">$45.6</span>
                             </span>
                         </div>
                     </div>
-                    <div className="best-seller-item w-[333px]">
+                    <div className="best-seller-item relative">
                         <img
                             src="../images/mclarenTee.png"
                             alt="Best Seller 3"
-                            className="best-seller-image w-[333px] h-[333px]"
+                            className="best-seller-image w-full h-auto"
                         />
                         <div className="my-[5px] mx-[19px]">
                             <h3 className="font-['RfDewi-Expanded'] text-[19px] font-[700]">Mclaren F1 TShirt</h3>
