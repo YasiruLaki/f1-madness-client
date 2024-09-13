@@ -2,29 +2,23 @@ import React, { useState } from 'react';
 import './Faq.css';
 
 // Accordion Item Component
-const AccordionItem = ({ title, content }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  // Toggle open/close state
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
-
+const AccordionItem = ({ index, title, content, isOpen, onClick }) => {
   return (
     <div
-      className={`accordion sm:py-6 py-3 sm:px-6 px-2 border-b border-solid border-[#1111113a] transition-all duration-100 ${
+      className={`accordion sm:py-6 py-3 sm:px-6 px-2 border-b border-solid border-[#1111113a] transition-in duration-50 ${
         isOpen ? 'bg-[#111111]' : 'hover:bg-[#111111] hover:text-white ease-in'
       }`}
+      onClick={() => onClick(index)}
+      aria-expanded={isOpen}
     >
       <button
-        className="accordion-toggle group inline-flex items-center justify-between leading-8 w-full transition duration-500 text-left hover:text-white font-['RfDewi-Expanded'] sm:text-[20px] text-[15px] font-[700] text-left"
-        onClick={toggleAccordion}
+        className={`accordion-toggle group inline-flex items-center justify-between leading-8 w-full text-left hover:text-white font-['RfDewi-Expanded'] sm:text-[20px] text-[15px] font-[700] text-left ${isOpen ? 'text-white' : ''}`}
         aria-expanded={isOpen}
       >
         <h5>{title}</h5>
         <svg
           className={`text-[#111111] transition duration-500 group-hover:text-white ${
-            isOpen ? 'rotate-180' : ''
+            isOpen ? 'rotate-180 text-white' : ''
           }`}
           width="22"
           height="22"
@@ -55,6 +49,8 @@ const AccordionItem = ({ title, content }) => {
 
 // Main Faq Component
 const Faq = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
   const faqItems = [
     {
       title: 'How do I update my billing information?',
@@ -78,6 +74,10 @@ const Faq = () => {
     },
   ];
 
+  const handleAccordionClick = (index) => {
+    setOpenIndex(index === openIndex ? null : index);
+  };
+
   return (
     <section className="py-[50px]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -94,8 +94,11 @@ const Faq = () => {
           {faqItems.map((item, index) => (
             <AccordionItem
               key={index}
+              index={index}
               title={item.title}
               content={item.content}
+              isOpen={index === openIndex}
+              onClick={handleAccordionClick}
             />
           ))}
         </div>

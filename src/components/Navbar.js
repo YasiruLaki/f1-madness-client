@@ -27,10 +27,10 @@ const Navbar = () => {
                     <a href="/" className="nav-bar-txt-1 hover:text-red-600">
                         HOME
                     </a>
-                    <a href="/hoodies" className="nav-bar-txt-1 hover:text-red-600">
+                    <a href="/collections?collection=Hoodies" className="nav-bar-txt-1 hover:text-red-600">
                         HOODIES
                     </a>
-                    <a href="/tshirts" className="nav-bar-txt-1 hover:text-red-600">
+                    <a href="/collections?collection=Tshirts" className="nav-bar-txt-1 hover:text-red-600">
                         TSHIRTS
                     </a>
                 </div>
@@ -48,9 +48,6 @@ const Navbar = () => {
                         <span className="nav-bar-txt-1 px-2">CART</span>
                         <span className="nav-bar-txt-1 text-black bg-white rounded-full px-1">{cart.length}</span>
                     </a>
-                    <button className="hover:text-red-600">
-                        <FontAwesomeIcon icon={faUser} />
-                    </button>
                 </div>
 
             </div>
@@ -86,9 +83,6 @@ const Navbar = () => {
                         <span className="nav-bar-txt-1 px-2">CART</span>
                         <span className="nav-bar-txt-1 text-black bg-white rounded-full px-1">{cart.length}</span>
                     </a>
-                    <button className="hover:text-red-600">
-                        <FontAwesomeIcon icon={faUser} />
-                    </button>
                     </div>
                 </div>
             )}

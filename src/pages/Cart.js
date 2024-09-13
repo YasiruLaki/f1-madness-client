@@ -11,7 +11,7 @@ function Cart() {
     const { cart, removeFromCart, incrementQuantity, decrementQuantity } = useCart();
     const [products, setProducts] = useState([]);
     const [total, setTotal] = useState(0);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     // Function to fetch product details
     const fetchProductDetails = async (productID) => {
@@ -30,7 +30,6 @@ function Cart() {
 
     // Fetch cart data and product details
     const fetchCartData = async () => {
-        setLoading(true);
         try {
             console.log('Fetching cart data...');
             const productsWithDetails = await Promise.all(
@@ -46,14 +45,12 @@ function Cart() {
         } catch (error) {
             console.error('Error fetching cart data:', error);
         }
-        finally {
-            setTimeout(() => setLoading(false), 200);
-        }
     };
 
 
     useEffect(() => {
-        fetchCartData();
+        setLoading(true);
+        fetchCartData().then(() => setTimeout(() => setLoading(false), 1000));
     }, [cart]); // Fetch cart data when cart changes
 
     // Calculate total price
@@ -111,18 +108,18 @@ function Cart() {
             <Navbar />
             <Announcement />
 
-            <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16 min-h-[calc(100vh-360px)]">
+            <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16 min-h-[calc(100vh-360px)] font-['RfDewi-Extended']">
                 <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-                    <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Shopping Cart</h2>
+                    <h2 className="text-[xl] font-[800] text-gray-900 dark:text-white sm:text-[30px] font-['RfDewi-Expanded']">Shopping Cart</h2>
 
-                    <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
+                    <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8 ">
                         <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
                             <div className="space-y-6">
                                 {products.length === 0 ? (
                                     <p>Your cart is empty</p>
                                 ) : (
                                     products.map((item) => (
-                                        <div key={item.productID} className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+                                        <div key={item.productID} className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6 ">
                                             <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                                                 <a href="#" className="shrink-0 md:order-1">
                                                     <img className="h-20 w-20 dark:hidden" src={item.images[0]} alt={item.name} />
