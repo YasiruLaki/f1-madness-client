@@ -59,7 +59,7 @@ function Cart() {
         setTotal(totalAmount);
     };
 
-    const stripePromise = loadStripe('pk_test_a2gjVvGfjx4XetUL46ZoIiZ100OaQS9olA'); // Replace with your Stripe publishable key
+    const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
     const handleCheckout = async () => {
         setLoading(true);
