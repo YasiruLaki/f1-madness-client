@@ -4,12 +4,14 @@ import './Search.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Announcement from '../components/Announcement';
+import LoadingScreen from '../components/loadingScreen';
 
 const Search = () => {
     const { search } = useLocation();
     const queryParams = new URLSearchParams(search);
     const searchedQuery = queryParams.get('query');
     const [searchResults, setSearchResults] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -24,8 +26,12 @@ const Search = () => {
                 const flattened = Object.values(data).flat();
                 const filtered = flattened.filter(product => product.name.toLowerCase().includes(searchedQuery.toLowerCase()));
                 setSearchResults(filtered);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 500);
             } catch (error) {
                 console.error('Error fetching products:', error);
+                setLoading(false);
             }
         };
 
