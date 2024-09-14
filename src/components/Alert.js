@@ -1,25 +1,25 @@
 // Alert.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import "./Alert.css";
 
 const Alert = ({ type, message, onClose }) => {
     const [visible, setVisible] = useState(false);
 
+    const handleClose = useCallback(() => {
+        setVisible(false);
+        setTimeout(onClose, 300);
+    }, [onClose]);
+    
     useEffect(() => {
         if (message) {
             setVisible(true);
             const timer = setTimeout(() => {
                 handleClose();
             }, 3000);
-
+    
             return () => clearTimeout(timer);
         }
-    }, [message]);
-
-    const handleClose = () => {
-        setVisible(false);
-        setTimeout(onClose, 300);
-    };
+    }, [message, handleClose]);
 
     if (!message) return null;
 

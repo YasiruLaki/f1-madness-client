@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import './Collections.css';
 import Navbar from '../components/Navbar';
@@ -7,39 +7,76 @@ import Announcement from '../components/Announcement';
 import LoadingScreen from '../components/loadingScreen';
 import { debounce } from 'lodash';
 
+const createDebouncedFetchProducts = () => {
+    return debounce(async (collection, setProductsByCategory, setLoading) => {
+        setLoading(true);
+        try {
+            const response = await fetch(`https://f1-store-backend.netlify.app/.netlify/functions/fetchAdminProducts?filteredCategory=${collection}`);
+            const data = await response.json();
+            setProductsByCategory(data);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        } finally {
+            setLoading(false);
+        }
+    }, 300); // Adjust debounce delay as needed
+};
+
 // Debounced function to fetch products
 const useDebouncedFetchProducts = (collection) => {
     const [productsByCategory, setProductsByCategory] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const fetchProducts = useCallback(
-        debounce(async (collection) => {
-            setLoading(true);
-            try {
-                const response = await fetch(`https://f1-store-backend.netlify.app/.netlify/functions/fetchAdminProducts?filteredCategory=${collection}`);
-                const data = await response.json();
-                setProductsByCategory(data);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            } finally {
-                setLoading(false);
-            }
-        }, 0),
-        []
-    );
+    // Create debounced function once
+    const debouncedFetchProducts = useMemo(() => createDebouncedFetchProducts(), []);
 
     useEffect(() => {
-        fetchProducts(collection);
-    }, [collection, fetchProducts]);
+        debouncedFetchProducts(collection, setProductsByCategory, setLoading);
+    }, [collection, debouncedFetchProducts]);
 
     return { productsByCategory, loading };
 };
 
 // Component to render product grid
-const ProductGrid = React.memo(({ productsByCategory, collection }) => {
+const ProductGrid = React.memo(({ productsByCategory, collection, sortType }) => {
+    const sortedProductsByCategory = useMemo(() => {
+        const sorted = { ...productsByCategory };
+
+        Object.keys(sorted).forEach((category) => {
+            let products = sorted[category];
+            switch (sortType) {
+                case 'best-selling':
+                    // Sort by `orderCount` in descending order
+                    products = products.sort((a, b) => b.orderCount - a.orderCount);
+                    break;
+                case 'price-low-high':
+                    // Sort by price (consider salePrice and price)
+                    products = products.sort((a, b) => {
+                        const priceA = a.salePrice > 0 ? a.salePrice : a.price;
+                        const priceB = b.salePrice > 0 ? b.salePrice : b.price;
+                        return priceA - priceB;
+                    });
+                    break;
+                case 'price-high-low':
+                    // Sort by price (consider salePrice and price) in descending order
+                    products = products.sort((a, b) => {
+                        const priceA = a.salePrice > 0 ? a.salePrice : a.price;
+                        const priceB = b.salePrice > 0 ? b.salePrice : b.price;
+                        return priceB - priceA;
+                    });
+                    break;
+                default:
+                    break;
+            }
+            sorted[category] = products;
+        });
+
+        return sorted;
+    }, [productsByCategory, sortType]);
+
     return (
         <>
-            {Object.entries(productsByCategory).map(([category, products]) => (
+            {Object.entries(sortedProductsByCategory).map(([category, products]) => (
                 <div key={category} className="mb-4 grid gap-4 grid-cols-2 md:mb-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
                     {products.map((product) => {
                         const salePrice = parseFloat(product.salePrice) || 0;
@@ -83,6 +120,7 @@ const ProductGrid = React.memo(({ productsByCategory, collection }) => {
 
 function Collections() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [sortType, setSortType] = useState('best-selling'); // Default sort type
     const { search } = useLocation();
     const quaryParams = new URLSearchParams(search);
     const collection = quaryParams.get('collection');
@@ -91,6 +129,11 @@ function Collections() {
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    const handleSortChange = (type) => {
+        setSortType(type);
+        setIsDropdownOpen(false);
     };
 
     return (
@@ -103,6 +146,7 @@ function Collections() {
                     <div className="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
                         <div>
                             <nav className="flex" aria-label="Breadcrumb">
+                                {/* Breadcrumb navigation */}
                                 <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse font-['RfDewi-Extended']">
                                     <li className="inline-flex items-center ">
                                         <a href="/" className="inline-flex items-center  text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white">
@@ -145,26 +189,38 @@ function Collections() {
                                 Sort
                             </button>
                             {isDropdownOpen && (
-                                <div className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-gray-900/5 dark:bg-gray-800 dark:ring-white/10">
+                                <div className="absolute right-0 top-10 z-10 mt-2 sm:w-56 w-[100%] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-gray-900/5 dark:bg-gray-800 dark:ring-white/10">
                                     <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="sortDropdownButton1">
                                         <li>
-                                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">Best Selling</a>
+                                            <button
+                                                onClick={() => handleSortChange('best-selling')}
+                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                                            >
+                                                Best Selling
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">Newest Arrivals</a>
+                                            <button
+                                                onClick={() => handleSortChange('price-low-high')}
+                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                                            >
+                                                Price: Low to High
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">Price: Low to High</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">Price: High to Low</a>
+                                            <button
+                                                onClick={() => handleSortChange('price-high-low')}
+                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                                            >
+                                                Price: High to Low
+                                            </button>
                                         </li>
                                     </ul>
                                 </div>
                             )}
                         </div>
                     </div>
-                    <ProductGrid productsByCategory={productsByCategory} collection={collection} />
+                    <ProductGrid productsByCategory={productsByCategory} collection={collection} sortType={sortType} />
                 </div>
             </section>
             <Footer />

@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import "./Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faHeart, faShoppingCart, faUser, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faHeart, faShoppingCart, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import "../fonts.css"
 import { useCart } from '../contexts/CartContext';
 

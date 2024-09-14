@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import './Cart.css';
 import { useCart } from '../contexts/CartContext';
 import Navbar from '../components/Navbar';
@@ -28,8 +28,7 @@ function Cart() {
         }
     };
 
-    // Fetch cart data and product details
-    const fetchCartData = async () => {
+    const fetchCartData = useCallback(async () => {
         try {
             console.log('Fetching cart data...');
             const productsWithDetails = await Promise.all(
@@ -45,14 +44,12 @@ function Cart() {
         } catch (error) {
             console.error('Error fetching cart data:', error);
         }
-    };
-
+    }, [cart]); // Dependency on cart
 
     useEffect(() => {
         setLoading(true);
         fetchCartData().then(() => setTimeout(() => setLoading(false), 1000));
-    }, [cart]); // Fetch cart data when cart changes
-
+    }, [fetchCartData]); // Include fetchCartData in the dependency array
     // Calculate total price
     const calculateTotal = (productList) => {
         const totalAmount = productList.reduce((sum, item) => sum + ((item.salePrice > 0 ? item.salePrice : item.price) * item.quantity), 0);
@@ -71,23 +68,23 @@ function Cart() {
                     return { ...item, ...productDetails };
                 })
             );
-    
+
             // Prepare the data to send to your backend
             const response = await fetch('https://f1-store-backend.netlify.app/.netlify/functions/createCheckoutSession', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ cart: productsWithDetails })
             });
-    
+
             const { sessionId } = await response.json();
-    
+
             if (sessionId) {
                 // Get Stripe instance
                 const stripe = await stripePromise;
-    
+
                 // Redirect to checkout
                 const { error } = await stripe.redirectToCheckout({ sessionId });
-    
+
                 if (error) {
                     console.error('Error redirecting to checkout:', error);
                 }
@@ -121,7 +118,7 @@ function Cart() {
                                     products.map((item) => (
                                         <div key={item.productID} className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6 ">
                                             <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-                                                <a href="#" className="shrink-0 md:order-1">
+                                                <a href={`/product?productID=${encodeURIComponent(item.productID)}`} className="shrink-0 md:order-1">
                                                     <img className="h-20 w-20 dark:hidden" src={item.images[0]} alt={item.name} />
                                                     <img className="hidden h-20 w-20 dark:block" src={item.images[0]} alt={item.name} />
                                                 </a>
@@ -158,7 +155,7 @@ function Cart() {
                                                 </div>
 
                                                 <div className="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
-                                                    <a href="#" className="text-base font-medium text-gray-900 hover:underline dark:text-white">{item.name}</a>
+                                                    <a href={`/product?productID=${encodeURIComponent(item.productID)}`} className="text-base font-medium text-gray-900 hover:underline dark:text-white">{item.name}</a>
 
                                                     <div className="flex items-center gap-10">
                                                         <p className="text-sm font-medium text-gray-900 dark:text-white">Size: {item.size}</p>

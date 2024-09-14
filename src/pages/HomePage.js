@@ -6,7 +6,6 @@ import Faq from "../components/Faq";
 import Footer from "../components/Footer";
 import Announcement from "../components/Announcement";
 import LoadingScreen from "../components/loadingScreen";
-import { set } from "lodash";
 
 const images = [
     '../images/image-1.png',
@@ -31,8 +30,6 @@ const categoriesWithoutImages = [
 const HomePage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [categorizedProducts, setCategorizedProducts] = useState([]);
-    const [flattenedProducts, setFlattenedProducts] = useState([]);
     const [bestSellingProducts, setBestSellingProducts] = useState({
         product1: null,
         product2: null,
@@ -55,9 +52,7 @@ const HomePage = () => {
                 },
             });
             const data = await response.json();
-            setCategorizedProducts(data);
             const flattened = Object.values(data).flat();
-            setFlattenedProducts(flattened);
             return flattened;
         } catch (error) {
             console.error('Error fetching products:', error);
