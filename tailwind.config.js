@@ -7,6 +7,7 @@ module.exports = {
     "./src/pages/Collections.js",
     "./src/pages/Cart.js",
     "./src/pages/OrderSuccess.js",
+    "./src/pages/Search.js",
     "./src/components/Navbar.js",
     "./src/components/Faq.js",
     "./src/components/Footer.js",
