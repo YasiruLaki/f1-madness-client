@@ -41,6 +41,8 @@ const Search = () => {
 
     return (
         <div className="search-container">
+            {loading && <LoadingScreen />}
+            
             <Navbar />
             <Announcement />
             <section className="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12 min-h-[calc(100vh-360px)]">
