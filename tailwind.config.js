@@ -14,6 +14,7 @@ module.exports = {
     "./src/components/Announcement.js",
     "./src/components/loadingScreen.js",
     "./src/components/Alert.js",
+    "./src/components/YtEmbed.js",
     
 
   ],

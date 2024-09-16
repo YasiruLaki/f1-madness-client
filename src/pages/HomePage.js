@@ -6,6 +6,7 @@ import Faq from "../components/Faq";
 import Footer from "../components/Footer";
 import Announcement from "../components/Announcement";
 import LoadingScreen from "../components/loadingScreen";
+import YtEmbed from "../components/YtEmbed";
 
 const images = [
     '../images/image-1.png',
@@ -292,6 +293,9 @@ const HomePage = () => {
                     ))}
                 </div>
             </div>
+
+            {/* YouTube Embed */}
+            <YtEmbed />
 
             {/* FAQ */}
             <Faq />
