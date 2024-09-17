@@ -29,8 +29,8 @@ const Navbar = () => {
         <div>
             <nav className="bg-black text-white flex justify-between items-center nav-bar">
                 <div className="flex items-center">
-                    <span className="nav-bar-txt-1">F1MADNESS</span>
-                    <span className="nav-bar-txt-2 px-1">Store</span>
+                    <span className="nav-bar-txt-1 text-[11px] mm:text-[15px]">PITLANE PERFORMANCE</span>
+                    <span className="nav-bar-txt-2 px-1 mm:block hidden">Store</span>
                 </div>
 
                 <div className="950:flex hidden space-x-20">
