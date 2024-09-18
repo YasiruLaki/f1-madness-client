@@ -58,7 +58,7 @@ const Navbar = () => {
 
                 {/* Mobile Menu Button */}
                 <div className="950:hidden">
-                    <button onClick={toggleMobileMenu} className="focus:outline-none">
+                    <button onClick={()=>{toggleMobileMenu(); setOpenSearch(false)}} className="focus:outline-none">
                         <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
                     </button>
                 </div>
@@ -70,7 +70,7 @@ const Navbar = () => {
                         <a href="/hoodies" className="hover:text-red-600" onClick={toggleMobileMenu}>HOODIES</a>
                         <a href="/tshirts" className="hover:text-red-600" onClick={toggleMobileMenu}>TSHIRTS</a>
                         <div className="flex space-x-6 items-center">
-                            <button className="hover:text-red-600" onClick={openSearchBar}>
+                            <button className="hover:text-red-600" onClick={()=>{openSearchBar(); setIsMobileMenuOpen(!isMobileMenuOpen)}}>
                                 <FontAwesomeIcon icon={faSearch} />
                             </button>
                             <button className="hover:text-red-600">
