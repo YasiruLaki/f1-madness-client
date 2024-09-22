@@ -120,6 +120,7 @@ const Product = () => {
             {/* Landing Announcement */}
             <Announcement />
 
+
             {/* Product Details */}
 
             <section className="py-[50px]">

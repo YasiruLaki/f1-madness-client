@@ -17,7 +17,7 @@ const images = [
 const categoriesWithImages = [
     { name: 'Hoodies', image: '../images/collection-tee.webp', span: 2 },
     { name: 'Tshirts', image: '../images/collection-tee.webp' },
-    { name: 'Jackets', image: '../images/collection-tee.webp' },
+    { name: 'Caps', image: '../images/collection-tee.webp' },
     { name: 'Posters', image: '../images/collection-tee.webp' },
     { name: 'Boxers', image: '../images/collection-tee.webp' }
 ];
@@ -25,7 +25,10 @@ const categoriesWithImages = [
 const categoriesWithoutImages = [
     { name: 'Socks' },
     { name: 'Phone Cases' },
-    { name: 'Lanyard & Keyrings' }
+    { name: 'Lanyard & Keyrings' },
+    { name: 'Blankets' },
+    { name: 'Bedroom Sets' },
+    { name: 'Gift Cards' }
 ];
 
 const HomePage = () => {
@@ -129,7 +132,7 @@ const HomePage = () => {
             <Announcement/>
 
             {/* Hero Section */}
-            <div className="relative md:h-[800px] sm:h-[600px] h-[450px] max-h-[800px] overflow-hidden">
+            <div className="relative md:h-[calc(100vh-90px)] sm:h-[600px] h-[450px] max-h-[800px] overflow-hidden">
                 <div className="carousel-wrapper">
                     <div
                         className="carousel-images"
@@ -153,7 +156,7 @@ const HomePage = () => {
                     />
                 </div>
 
-                <div className="absolute inset-0 items-end justify-start p-6 hidden ml:flex">
+                <div className="absolute inset-0 items-end justify-start p-6 hidden ml:flex bottom-16">
                     <div className="text-left text-white">
                         <h1 className="font-['RfDewi-Expanded'] text-[50px] md:text-[64px] font-[800]">
                             Gear Up For <span className="font-['F1'] text-[50px] md:text-[64px]">F1</span>.
@@ -165,7 +168,7 @@ const HomePage = () => {
                             onClick={scrollToCollections}
                             className="inline-block bg-red text-white py-2 px-3 rounded-[10px] md:py-3 md:px-6 md:rounded-[15px] font-['RfDewi-Expanded'] text-[17px] md:text-[24px] font-[800] transition duration-300 hover:bg-red-700 mt-[15px] md:mt-[20px]"
                         >
-                            Visit Store
+                            SHOP NOW
                         </button>
                     </div>
                 </div>
@@ -279,13 +282,13 @@ const HomePage = () => {
                         </div>
                     ))}
                 </div>
-                <div className="mt-4 flex sm:flex-row flex-col justify-between gap-4">
+                <div className="mt-4 grid ms:grid-cols-1 mm:grid-cols-2 md:grid-cols-3 gap-4">
                     {categoriesWithoutImages.map((category, index) => (
                         <div
                             key={index}
-                            className="best-seller-item flex md:w-1/3 justify-between items-center bg-black text-white font-bold text-xl p-4 shadow-lg font-['RfDewi-Expanded'] text-[19px] font-[700]"
+                            className="best-seller-item flex  justify-between items-center bg-black text-white font-bold text-xl p-4 shadow-lg font-['RfDewi-Expanded'] text-[19px] font-[700]"
                         >
-                            <a href={`/collections?collection=${category.name}`}>
+                            <a href={`/collections?collection=${encodeURIComponent(category.name)}`}>
                                 <span>{category.name}</span>
                                 <i className="bi bi-arrow-right ml-2"></i>
                             </a>

@@ -55,7 +55,7 @@ const YtEmbed = () => {
             )}
 
             {/* Grid to display videos */}
-            <div className="grid grid-cols-1 md:grid-cols-3 md:gap-6 gap-16 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 md:gap-6 gap-16 mb-8 md:min-h-[280px]">
                 {videos.map((video) => (
                     <div key={video.id.videoId} className="yt-video">
                         <iframe

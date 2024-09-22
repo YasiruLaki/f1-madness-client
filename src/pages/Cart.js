@@ -15,12 +15,10 @@ function Cart() {
 
     // Function to fetch product details
     const fetchProductDetails = async (productID) => {
-        console.log(`Fetching details for productID: ${productID}`); // Add this log
         try {
             const response = await fetch(`https://f1-store-backend.netlify.app/.netlify/functions/fetchSingleProduct?productID=${encodeURIComponent(productID)}`);
             if (!response.ok) throw new Error('Network response was not ok');
             const data = await response.json();
-            console.log('Fetched product details:', data); // Add this log
             return data;
         } catch (error) {
             console.error('Error fetching product details:', error);
@@ -30,7 +28,6 @@ function Cart() {
 
     const fetchCartData = useCallback(async () => {
         try {
-            console.log('Fetching cart data...');
             const productsWithDetails = await Promise.all(
                 cart.map(async (item) => {
                     const productDetails = await fetchProductDetails(item.productID);
@@ -38,7 +35,6 @@ function Cart() {
                     return { ...item, ...productDetails };
                 })
             );
-            console.log('Products with details:', productsWithDetails);
             setProducts(productsWithDetails);
             calculateTotal(productsWithDetails);
         } catch (error) {
