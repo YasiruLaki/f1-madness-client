@@ -145,7 +145,6 @@ function Collections() {
             <div
                 className="w-full bg-cover bg-center "
                 style={{
-                    backgroundImage: `linear-gradient(-90deg, #111111 0%, #222222 100%)`,
                     height: '25vh',
                     backgroundImage: `url('https://wallpapers.com/images/hd/1920x1080-black-ivgflkhu7bxomm84.jpg')`,
                     objectFit: 'cover',
