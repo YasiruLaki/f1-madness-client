@@ -7,6 +7,8 @@ import Footer from "../components/Footer";
 import Announcement from "../components/Announcement";
 import LoadingScreen from "../components/loadingScreen";
 import YtEmbed from "../components/YtEmbed";
+import Newsletter from "../components/Newsletter";
+import Feedback from "../components/Feedback";
 
 const images = [
     '../images/image-1.png',
@@ -300,8 +302,14 @@ const HomePage = () => {
             {/* YouTube Embed */}
             <YtEmbed />
 
+            {/* Feedback */}
+            <Feedback />
+
             {/* FAQ */}
             <Faq />
+
+            {/* Newsletter */}
+            <Newsletter />
 
             {/* Footer */}
             <Footer />

@@ -120,7 +120,6 @@ const Product = () => {
             {/* Landing Announcement */}
             <Announcement />
 
-
             {/* Product Details */}
 
             <section className="py-[50px]">
@@ -152,7 +151,8 @@ const Product = () => {
                                 </div>
                             </li>
                         </ol>
-                    </nav>                    <div className="grid grid-cols-1 lg:grid-cols-2">
+                    </nav>                    
+                    <div className="grid grid-cols-1 lg:grid-cols-2">
                         <div className="slider-box w-full h-full max-lg:mx-auto mx-0">
                             <div className="main-slide-carousel">
                                 {/* Check if images array has items before rendering */}
@@ -164,8 +164,8 @@ const Product = () => {
                                     />
                                 )}
                             </div>
-                            <div className="nav-for-slider mt-4">
-                                <div className="flex ">
+                            <div className=" nav-for-slider mt-4">
+                                <div className={`grid grid-cols-${images.length} gap-4 max-lg:mx-auto mx-0`}>
                                     {images.map((image, index) => (
                                         <div
                                             key={index}

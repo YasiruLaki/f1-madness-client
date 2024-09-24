@@ -8,12 +8,9 @@ const Footer = () => {
                 <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div>
                         <div className="flex items-center">
-                            <span className="!text-[20px] nav-bar-txt-1">F1MADNESS</span>
-                            <span className="!text-[15px] !-translate-y-[2px] nav-bar-txt-2 px-1">Store</span>
+                            <span className="nav-bar-txt-1 text-[11px] mm:text-[15px]">PITLANE PERFORMANCE</span>
+                            <span className="nav-bar-txt-2 px-1 mm:block hidden">Store</span>
                         </div>
-                        <p class="max-w-xs mt-4 text-sm text-gray-600">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, accusantium.
-                        </p>
                         <div class="flex mt-8 space-x-6 text-gray-600">
                             <a class="hover:opacity-75" href target="_blank" rel="noreferrer">
                                 <span class="sr-only"> Facebook </span>
@@ -28,47 +25,30 @@ const Footer = () => {
                                 </svg>
                             </a>
                             <a class="hover:opacity-75" href target="_blank" rel="noreferrer">
+                                <span class="sr-only"> Youtube </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-youtube w-6 h-6" viewBox="0 0 16 16">
+                                    <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z" />
+                                </svg>
+                            </a>
+                            <a class="hover:opacity-75" href target="_blank" rel="noreferrer">
                                 <span class="sr-only"> Twitter </span>
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                                 </svg>
                             </a>
-                            <a class="hover:opacity-75" href target="_blank" rel="noreferrer">
-                                <span class="sr-only"> GitHub </span>
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                                </svg>
-                            </a>
-                            <a class="hover:opacity-75" href target="_blank" rel="noreferrer">
-                                <span class="sr-only"> Dribbble </span>
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path fillRule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z" clipRule="evenodd" />
-                                </svg>
-                            </a>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 gap-8 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4">
+                    <div class="grid grid-cols-1 gap-8 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-3">
                         <div>
                             <p class="font-medium">
-                                Company
+                                Products
                             </p>
                             <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                                <a class="hover:opacity-75" href> About </a>
-                                <a class="hover:opacity-75" href> Meet the Team </a>
-                                <a class="hover:opacity-75" href> History </a>
-                                <a class="hover:opacity-75" href> Careers </a>
-                            </nav>
-                        </div>
-                        <div>
-                            <p class="font-medium">
-                                Services
-                            </p>
-                            <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                                <a class="hover:opacity-75" href> 1on1 Coaching </a>
-                                <a class="hover:opacity-75" href> Company Review </a>
-                                <a class="hover:opacity-75" href> Accounts Review </a>
-                                <a class="hover:opacity-75" href> HR Consulting </a>
-                                <a class="hover:opacity-75" href> SEO Optimisation </a>
+                                <a class="hover:opacity-75" href='/collections?collection=Hoodies'> Hoodies </a>
+                                <a class="hover:opacity-75" href='/collections?collection=Hoodies'> Hoodies</a>
+                                <a class="hover:opacity-75" href='/collections?collection=Caps'> Caps </a>
+                                <a class="hover:opacity-75" href='/collections?collection=Posters'> Posters</a>
+                                <a class="hover:opacity-75" href='/collections?collection=Phone%20Cases'> Phone Cases </a>
                             </nav>
                         </div>
                         <div>
@@ -76,9 +56,8 @@ const Footer = () => {
                                 Helpful Links
                             </p>
                             <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                                <a class="hover:opacity-75" href> Contact </a>
-                                <a class="hover:opacity-75" href> FAQs </a>
-                                <a class="hover:opacity-75" href> Live Chat </a>
+                                <a class="hover:opacity-75" href='/contact'> Contact </a>
+                                <a class="hover:opacity-75" href='/faq'> FAQs </a>
                             </nav>
                         </div>
                         <div>
@@ -96,7 +75,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="px-5 bg-red min-h-[34px] text-white flex items-center justify-center text-center">
-                <span className="lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] ms:text-[10px] font-['RfDewi-Expanded'] font-[700]">©2024 F1MADNESS.COM</span>
+                <span className="lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] ms:text-[10px] font-['RfDewi-Expanded'] font-[700]">©2024 PITLANEPERFORMANCE.COM</span>
             </div>
         </footer>
     );

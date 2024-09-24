@@ -24,8 +24,13 @@ const Search = () => {
                 });
                 const data = await response.json();
                 const flattened = Object.values(data).flat();
-                const filtered = flattened.filter(product => product.name.toLowerCase().includes(searchedQuery.toLowerCase()));
+                const searchWords = searchedQuery.toLowerCase().split(' ').filter(word => word);
+                const filtered = flattened.filter(product => 
+                    searchWords.every(word => product.name.toLowerCase().includes(word))
+                );
+    
                 setSearchResults(filtered);
+
                 setTimeout(() => {
                     setLoading(false);
                 }, 500);
@@ -34,9 +39,8 @@ const Search = () => {
                 setLoading(false);
             }
         };
-
+    
         fetchProducts();
-
     }, [searchedQuery]);
 
     return (

@@ -15,6 +15,8 @@ module.exports = {
     "./src/components/loadingScreen.js",
     "./src/components/Alert.js",
     "./src/components/YtEmbed.js",
+    "./src/components/Newsletter.js",
+    "./src/components/Feedback.js",
     
 
   ],
@@ -35,7 +37,9 @@ module.exports = {
     },
   },
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('@tailwindcss/forms'),
+
   ]
 }
 

@@ -7,17 +7,19 @@
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@heroicons/react": "^2.1.5",
     "@stripe/stripe-js": "^4.4.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap-icons": "^1.11.3",
     "flowbite": "^2.5.1",
+    "heroicons": "^2.1.5",
     "lodash": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
-    "swiper": "^11.1.12",
+    "swiper": "^11.1.14",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -46,6 +48,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@tailwindcss/forms": "^0.5.9",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.41",
     "react-router-dom": "^6.26.1",
