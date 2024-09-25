@@ -7,6 +7,7 @@ import CollectionPage from './pages/Collections';
 import CartPage from './pages/Cart';
 import OrderSuccess from './pages/OrderSuccess';
 import SearchPage from './pages/Search';
+import ContactPage from './pages/Contact';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/order-success" element={<OrderSuccess />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </BrowserRouter>
   );

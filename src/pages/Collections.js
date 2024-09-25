@@ -181,15 +181,15 @@ function Collections() {
                                 </li>
                             </ol>
                         </nav>
-                        <h1 className="text-white text-[30px] font-[800] dark:text-white sm:text-[40px] font-['RfDewi-Expanded']">
+                        <h1 className="text-white text-[30px] font-[800] sm:text-[40px] font-['RfDewi-Expanded']">
                             {collection}
                         </h1>
-                        <p className="text-white text-[14px] font-['RfDewi-Expanded'] dark:text-white mx-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                        <p className="text-white text-[14px] font-['RfDewi-Expanded'] mx-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
                     </div>
                 </div>
             </div>
 
-            <section className="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12 min-h-[calc(100vh-360px)]">
+            <section className="bg-gray-50 py-8 antialiased md:py-12 min-h-[calc(100vh-360px)]">
                 <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
                     <div className="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
                         <div>
@@ -199,7 +199,7 @@ function Collections() {
                                 id="sortDropdownButton1"
                                 onClick={toggleDropdown}
                                 type="button"
-                                className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto"
+                                className="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-auto"
                             >
                                 <svg className="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M7 4l3 3M7 4 4 7" />
@@ -207,12 +207,12 @@ function Collections() {
                                 Sort
                             </button>
                             {isDropdownOpen && (
-                                <div className="absolute right-0 top-10 z-10 mt-2 sm:w-56 w-[100%] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-gray-900/5 dark:bg-gray-800 dark:ring-white/10">
-                                    <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="sortDropdownButton1">
+                                <div className="absolute right-0 top-10 z-10 mt-2 sm:w-56 w-[100%] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-gray-900/5">
+                                    <ul className="py-1 text-sm text-gray-700" aria-labelledby="sortDropdownButton1">
                                         <li>
                                             <button
                                                 onClick={() => handleSortChange('best-selling')}
-                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                                                className="block px-4 py-2 hover:bg-gray-100"
                                             >
                                                 Best Selling
                                             </button>
@@ -220,7 +220,7 @@ function Collections() {
                                         <li>
                                             <button
                                                 onClick={() => handleSortChange('price-low-high')}
-                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                                                className="block px-4 py-2 hover:bg-gray-100"
                                             >
                                                 Price: Low to High
                                             </button>
@@ -228,7 +228,7 @@ function Collections() {
                                         <li>
                                             <button
                                                 onClick={() => handleSortChange('price-high-low')}
-                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                                                className="block px-4 py-2 hover:bg-gray-100"
                                             >
                                                 Price: High to Low
                                             </button>

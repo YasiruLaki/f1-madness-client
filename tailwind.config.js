@@ -8,6 +8,7 @@ module.exports = {
     "./src/pages/Cart.js",
     "./src/pages/OrderSuccess.js",
     "./src/pages/Search.js",
+    "./src/pages/Contact.js",
     "./src/components/Navbar.js",
     "./src/components/Faq.js",
     "./src/components/Footer.js",
@@ -17,7 +18,7 @@ module.exports = {
     "./src/components/YtEmbed.js",
     "./src/components/Newsletter.js",
     "./src/components/Feedback.js",
-    
+    "./src/components/Contact.js",
 
   ],
   theme: {

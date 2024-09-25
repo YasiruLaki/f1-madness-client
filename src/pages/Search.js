@@ -49,7 +49,7 @@ const Search = () => {
             
             <Navbar />
             <Announcement />
-            <section className="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12 min-h-[calc(100vh-360px)]">
+            <section className="bg-gray-50 py-8 antialiased  md:py-12 min-h-[calc(100vh-360px)]">
                 <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
                     <div className="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
                         <h2 className="mt-3 text-xl font-[800] dark:text-white sm:text-[27px] font-['RfDewi-Expanded'] mt-[20px]">Search Results For "<i>{searchedQuery}</i> "</h2>

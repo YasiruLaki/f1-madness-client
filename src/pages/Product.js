@@ -151,7 +151,7 @@ const Product = () => {
                                 </div>
                             </li>
                         </ol>
-                    </nav>                    
+                    </nav>
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                         <div className="slider-box w-full h-full max-lg:mx-auto mx-0">
                             <div className="main-slide-carousel">
@@ -164,17 +164,19 @@ const Product = () => {
                                     />
                                 )}
                             </div>
-                            <div className=" nav-for-slider mt-4">
-                                <div className={`grid grid-cols-${images.length} gap-4 max-lg:mx-auto mx-0`}>
+
+                            <div className="flex mt-4">
+                                {/* Dynamically calculate the width of each thumbnail based on the number of images */}
+                                <div className="flex gap-4 w-full max-lg:mx-auto">
                                     {images.map((image, index) => (
                                         <div
                                             key={index}
-                                            className={`swiper-slide thumbs-slide ${activeIndex === index ? 'active' : ''}`}
+                                            className={`thumb-container swiper-slide thumbs-slide flex-1 ${activeIndex === index ? 'active' : ''}`}
                                             onClick={() => handleThumbnailClick(index)}
                                         >
                                             <img
                                                 alt={`Thumbnail ${index + 1}`}
-                                                className={`cursor-pointer rounded-xl transition-all duration-500 ${activeIndex === index ? 'border-2 border-black' : ''}`}
+                                                className={`cursor-pointer w-full h-auto rounded-xl transition-all duration-500 ${activeIndex === index ? 'border-2 border-black' : ''}`}
                                                 src={image}
                                             />
                                         </div>

@@ -80,36 +80,36 @@ const OrderSuccess = () => {
                 <>
                     <Navbar />
                     <Announcement />
-                    <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16 font-['RfDewi-Extended']">
+                    <section className="bg-white py-8 antialiased md:py-16 font-['RfDewi-Extended']">
                         <div className="mx-auto max-w-2xl px-4 2xl:px-0">
-                            <h2 className="text-xl font-[700] text-gray-900 dark:text-white sm:text-2xl mb-2">Thanks for your order!</h2>
-                            <p className="text-gray-500 dark:text-gray-400 mb-6 md:mb-8">
-                                Your order <span className="font-[600] text-gray-900 dark:text-white hover:underline">{orderID}</span> will be processed within 24 hours during working days. We will notify you by email once your order has been shipped.
+                            <h2 className="text-xl font-[700] text-gray-900 sm:text-2xl mb-2">Thanks for your order!</h2>
+                            <p className="text-gray-500 mb-6 md:mb-8">
+                                Your order <span className="font-[600] text-gray-900 hover:underline">{orderID}</span> will be processed within 24 hours during working days. We will notify you by email once your order has been shipped.
                             </p>
                             {orderDetails && (
                                 <div>
-                                    <div className="space-y-4 sm:space-y-2 rounded-lg border border-gray-100 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800 mb-6 md:mb-8">
+                                    <div className="space-y-4 sm:space-y-2 rounded-lg border border-gray-100 bg-gray-50 p-6  mb-6 md:mb-8">
                                         <dl className="sm:flex items-center justify-between gap-4">
-                                            <dt className="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Date</dt>
-                                            <dd className="font-medium text-gray-900 dark:text-white sm:text-end">{new Date(orderDetails.created * 1000).toLocaleDateString()}</dd>
+                                            <dt className="font-normal mb-1 sm:mb-0 text-gray-500">Date</dt>
+                                            <dd className="font-medium text-gray-900 sm:text-end">{new Date(orderDetails.created * 1000).toLocaleDateString()}</dd>
                                         </dl>
                                         <dl className="sm:flex items-center justify-between gap-4">
-                                            <dt className="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Payment Method</dt>
-                                            <dd className="font-medium text-gray-900 dark:text-white sm:text-end">{orderDetails.payment_method_types.join(', ')}</dd>
+                                            <dt className="font-normal mb-1 sm:mb-0 text-gray-500">Payment Method</dt>
+                                            <dd className="font-medium text-gray-900 sm:text-end">{orderDetails.payment_method_types.join(', ')}</dd>
                                         </dl>
                                         <dl className="sm:flex items-center justify-between gap-4">
-                                            <dt className="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Name</dt>
-                                            <dd className="font-medium text-gray-900 dark:text-white sm:text-end">{orderDetails.customer_details.name}</dd>
+                                            <dt className="font-normal mb-1 sm:mb-0 text-gray-500">Name</dt>
+                                            <dd className="font-medium text-gray-900 sm:text-end">{orderDetails.customer_details.name}</dd>
                                         </dl>
                                         <dl className="sm:flex items-center justify-between gap-4">
-                                            <dt className="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Address</dt>
-                                            <dd className="font-medium text-gray-900 dark:text-white sm:text-end">
+                                            <dt className="font-normal mb-1 sm:mb-0 text-gray-500">Address</dt>
+                                            <dd className="font-medium text-gray-900 sm:text-end">
                                                 {orderDetails.customer_details.address.line1}, {orderDetails.customer_details.address.city}, {orderDetails.customer_details.address.state}, {orderDetails.customer_details.address.country}
                                             </dd>
                                         </dl>
                                         <dl className="sm:flex items-center justify-between gap-4">
-                                            <dt className="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Phone</dt>
-                                            <dd className="font-medium text-gray-900 dark:text-white sm:text-end">{orderDetails.customer_details.phone}</dd>
+                                            <dt className="font-normal mb-1 sm:mb-0 text-gray-500">Phone</dt>
+                                            <dd className="font-medium text-gray-900 sm:text-end">{orderDetails.customer_details.phone}</dd>
                                         </dl>
                                     </div>
 
@@ -119,14 +119,14 @@ const OrderSuccess = () => {
                                                 href={orderDetails.receipt_url}
                                                 target='_blank'
                                                 rel='noreferrer'
-                                                className="text-white bg-[#111111] hover:bg-[#111111f2] focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+                                                className="text-white bg-[#111111] hover:bg-[#111111f2] focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5"
                                             >
                                                 Download Invoice
                                             </a>
                                         )}
                                         <button
                                             onClick={() => window.location.href = '/'}
-                                            className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                                            className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
                                         >
                                             Return to shopping
                                         </button>

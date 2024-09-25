@@ -9,6 +9,7 @@ import LoadingScreen from "../components/loadingScreen";
 import YtEmbed from "../components/YtEmbed";
 import Newsletter from "../components/Newsletter";
 import Feedback from "../components/Feedback";
+import Contact from "../components/Contact";
 
 const images = [
     '../images/image-1.png',
@@ -307,6 +308,9 @@ const HomePage = () => {
 
             {/* FAQ */}
             <Faq />
+
+            {/* Contact */}
+            <Contact />
 
             {/* Newsletter */}
             <Newsletter />
