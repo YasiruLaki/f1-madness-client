@@ -50,8 +50,8 @@ const CharitableInitiatives = () => {
                 </div>
 
                 <div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>
-                    <h1 className="text-[25px] font-[700] sm:text-[30px] font-['RfDewi-Expanded'] mt-10"></h1>
-                    <p className="text-[15px] font-[400] sm:text-[18px] font-['RfDewi-Extended'] mt-3"></p>
+                    <h1 className="text-[25px] font-[700] sm:text-[30px] font-['RfDewi-Expanded'] mt-10">.</h1>
+                    <p className="text-[15px] font-[400] sm:text-[18px] font-['RfDewi-Extended'] mt-3">.</p>
                 </div>
 
             </section>
