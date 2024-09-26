@@ -8,6 +8,14 @@ import CartPage from './pages/Cart';
 import OrderSuccess from './pages/OrderSuccess';
 import SearchPage from './pages/Search';
 import ContactPage from './pages/Contact';
+import TermsAndConditions from './pages/Terms&Conditions';
+import Shipping from './pages/Shipping';
+import Returns from './pages/Returns';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import GiftCards from './pages/GiftCards';
+import CharitableInitiatives from './pages/CharitableInitiatives';
+import Faqs from './pages/FAQs';
+import About from './pages/About';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
@@ -22,6 +30,14 @@ function App() {
         <Route path="/order-success" element={<OrderSuccess />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/shipping" element={<Shipping />} />
+        <Route path="/returns" element={<Returns />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/gift-cards" element={<GiftCards />} />
+        <Route path="/charitable-initiatives" element={<CharitableInitiatives />} />
+        <Route path="/faqs" element={<Faqs />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
   );

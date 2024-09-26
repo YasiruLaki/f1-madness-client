@@ -56,8 +56,9 @@ const Footer = () => {
                                 Helpful Links
                             </p>
                             <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
+                                <a class="hover:opacity-75" href='/about'> About </a>
                                 <a class="hover:opacity-75" href='/contact'> Contact </a>
-                                <a class="hover:opacity-75" href='/faq'> FAQs </a>
+                                <a class="hover:opacity-75" href='/FAQs'> FAQs </a>
                             </nav>
                         </div>
                         <div>
@@ -65,10 +66,12 @@ const Footer = () => {
                                 Legal
                             </p>
                             <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                                <a class="hover:opacity-75" href> Privacy Policy </a>
-                                <a class="hover:opacity-75" href> Terms &amp; Conditions </a>
-                                <a class="hover:opacity-75" href> Returns Policy </a>
-                                <a class="hover:opacity-75" href> Accessibility </a>
+                                <a class="hover:opacity-75" href='/privacy-policy'> Privacy Policy </a>
+                                <a class="hover:opacity-75" href='/terms-and-conditions'> Terms &amp; Conditions </a>
+                                <a class="hover:opacity-75" href='/returns'> Returns Policy </a>
+                                <a class="hover:opacity-75" href='/shipping'> Shipping </a>
+                                <a class="hover:opacity-75" href='/gift-cards'> Gift Cards </a>
+                                <a class="hover:opacity-75" href='/charitable-initiatives'> Charitable Initiatives </a>
                             </nav>
                         </div>
                     </div>
