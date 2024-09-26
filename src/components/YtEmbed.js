@@ -8,23 +8,56 @@ const YtEmbed = () => {
     const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
     const CHANNEL_ID = process.env.REACT_APP_YOUTUBE_CHANNEL_ID;
 
-    // Fetch latest 3 videos from YouTube channel
     useEffect(() => {
         const fetchVideos = async () => {
-            const response = await fetch(
-                `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=3`
-            );
-            const data = await response.json();
-            setVideos(data.items);
+            try {
+                // Check if videos are cached in localStorage
+                const cachedVideos = localStorage.getItem('youtube_videos');
+                if (cachedVideos) {
+                    setVideos(JSON.parse(cachedVideos));
+                } else {
+                    const response = await fetch(
+                        `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=3`
+                    );
+                    const data = await response.json();
+
+                    // Validate if items exist
+                    if (data.items && data.items.length > 0) {
+                        setVideos(data.items);
+                        localStorage.setItem('youtube_videos', JSON.stringify(data.items)); // Cache videos
+                    } else {
+                        console.error("No videos found in the response");
+                        setVideos([]);
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching videos:", error);
+            }
         };
 
-        // Fetch channel info (e.g., logo, name)
         const fetchChannelInfo = async () => {
-            const response = await fetch(
-                `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${CHANNEL_ID}&key=${YOUTUBE_API_KEY}`
-            );
-            const data = await response.json();
-            setChannelInfo(data.items[0].snippet);
+            try {
+                // Check if channel info is cached in localStorage
+                const cachedChannelInfo = localStorage.getItem('youtube_channel_info');
+                if (cachedChannelInfo) {
+                    setChannelInfo(JSON.parse(cachedChannelInfo));
+                } else {
+                    const response = await fetch(
+                        `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${CHANNEL_ID}&key=${YOUTUBE_API_KEY}`
+                    );
+                    const data = await response.json();
+
+                    // Validate if items exist and fetch channel info
+                    if (data.items && data.items.length > 0) {
+                        setChannelInfo(data.items[0].snippet);
+                        localStorage.setItem('youtube_channel_info', JSON.stringify(data.items[0].snippet)); // Cache channel info
+                    } else {
+                        setChannelInfo(null);
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching channel info:", error);
+            }
         };
 
         fetchVideos();
@@ -63,7 +96,6 @@ const YtEmbed = () => {
                             height="100%"
                             src={`https://www.youtube.com/embed/${video.id.videoId}`}
                             title={video.snippet.title}
-                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             className='rounded-md'
