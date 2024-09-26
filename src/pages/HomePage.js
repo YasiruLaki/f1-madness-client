@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import Faq from "../components/Faq";
 import Footer from "../components/Footer";
 import Announcement from "../components/Announcement";
-import LoadingScreen from "../components/loadingScreen";
+// import LoadingScreen from "../components/loadingScreen";
 import YtEmbed from "../components/YtEmbed";
 import Newsletter from "../components/Newsletter";
 import Feedback from "../components/Feedback";
@@ -126,13 +126,11 @@ const HomePage = () => {
 
     return (
         <div className="HomePage">
-            {loading && <LoadingScreen />}
-
             {/* Navbar */}
             <Navbar />
 
             {/* Landing Announcement */}
-            <Announcement/>
+            <Announcement />
 
             {/* Hero Section */}
             <div className="relative md:h-[calc(100vh-90px)] sm:h-[600px] h-[450px] max-h-[800px] overflow-hidden">
@@ -232,32 +230,49 @@ const HomePage = () => {
             <div className="best-sellers-section text-center mt-[20px]">
                 <h2 className="font-['RfDewi-Expanded'] text-[36px] font-[800]">Best Sellers</h2>
                 <div className="flex grid ms:grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-14 mt-[30px] mx-auto max-w-screen-xl sm:px-14 px-4 text-left text-white">
-                    {[bestSellingProducts.product1, bestSellingProducts.product2, bestSellingProducts.product3].map((product, index) => (
-                        product && (
-                            <a key={index} href={`/product?productID=${encodeURIComponent(product.productID)}`}>
-                                <div className="best-seller-item relative">
+                    {loading
+                        ? // Loading skeleton placeholders
+                        [1, 2, 3].map((_, index) => (
+                            <div key={index} className="best-seller-item relative animate-pulse">
+                                <div className="w-full h-auto bg-gray-400">
                                     <img
-                                        src={product.image}
-                                        alt={`Best Seller ${index + 1}`}
+                                        src="../images/loaderBg.webp"
+                                        alt="Best Seller"
                                         className="best-seller-image w-full h-auto"
-                                    />
-                                    <div className="my-[5px] mx-[19px] pb-[5px]">
-                                        <h3 className="font-['RfDewi-Expanded'] text-[16px] font-[700] line-clamp-2">{product.name}</h3>
-                                        <span className="font-['RfDewi-Expanded'] text-[18px] font-[700] text-white mt-[-5px]">
-                                            ${product.salePrice > 0 ? product.salePrice : product.price}
-                                        </span>
-                                        {product.salePrice > 0 && (
-                                            <span className="line-through text-red ml-[5px] opacity-80 text-[14px] font-[800]">
-                                                <span className="font-['RfDewi-Expanded'] text-[14px] font-[700] mt-[-5px] text-white">
-                                                    ${product.price}
-                                                </span>
-                                            </span>
-                                        )}
-                                    </div>
+                                    /></div>
+                                <div className="my-[5px] mx-[19px] pb-[5px]">
+                                    <div className="h-[20px] bg-gray-400 mb-[10px]"></div>
+                                    <div className="h-[20px] bg-gray-400 w-[60%]"></div>
                                 </div>
-                            </a>
-                        )
-                    ))}
+                            </div>
+                        ))
+                        : // Actual product display
+                        [bestSellingProducts.product1, bestSellingProducts.product2, bestSellingProducts.product3].map((product, index) => (
+                            product && (
+                                <a key={index} href={`/product?productID=${encodeURIComponent(product.productID)}`}>
+                                    <div className="best-seller-item relative bg-[#222222]">
+                                        <img
+                                            src={product.image}
+                                            alt={`Best Seller ${index + 1}`}
+                                            className="best-seller-image w-full h-auto"
+                                        />
+                                        <div className="my-[5px] mx-[19px] pb-[5px]">
+                                            <h3 className="font-['RfDewi-Expanded'] text-[16px] font-[700] line-clamp-2">{product.name}</h3>
+                                            <span className="font-['RfDewi-Expanded'] text-[18px] font-[700] text-white mt-[-5px]">
+                                                ${product.salePrice > 0 ? product.salePrice : product.price}
+                                            </span>
+                                            {product.salePrice > 0 && (
+                                                <span className="line-through text-red ml-[5px] opacity-80 text-[14px] font-[800]">
+                                                    <span className="font-['RfDewi-Expanded'] text-[14px] font-[700] mt-[-5px] text-white">
+                                                        ${product.price}
+                                                    </span>
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                </a>
+                            )
+                        ))}
                 </div>
             </div>
 
