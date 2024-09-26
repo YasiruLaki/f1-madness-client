@@ -182,12 +182,12 @@ const HomePage = () => {
                         <p className="font-['RfDewi-Expanded'] text-[15px] mm:text-[18px] font-[800]">
                             Shop exclusive merchandise and collectibles.
                         </p>
-                        <a
-                            href="https://google.com"
+                        <button
+                            onClick={scrollToCollections}
                             className="inline-block bg-red text-white py-1 px-4 rounded-[7px] font-['RfDewi-Expanded'] text-[15px] font-[800] transition duration-300 hover:bg-red-700 my-[10px]"
                         >
-                            Visit Store
-                        </a>
+                            SHOP NOW
+                        </button>
                     </div>
                 </div>
 
@@ -239,7 +239,8 @@ const HomePage = () => {
                                         src="../images/loaderBg.webp"
                                         alt="Best Seller"
                                         className="best-seller-image w-full h-auto"
-                                    /></div>
+                                    />
+                                </div>
                                 <div className="my-[5px] mx-[19px] pb-[5px]">
                                     <div className="h-[20px] bg-gray-400 mb-[10px]"></div>
                                     <div className="h-[20px] bg-gray-400 w-[60%]"></div>
@@ -250,11 +251,11 @@ const HomePage = () => {
                         [bestSellingProducts.product1, bestSellingProducts.product2, bestSellingProducts.product3].map((product, index) => (
                             product && (
                                 <a key={index} href={`/product?productID=${encodeURIComponent(product.productID)}`}>
-                                    <div className="best-seller-item relative bg-[#222222]">
+                                    <div className="best-seller-item relative bg-[#222222] transition-opacity duration-300 ease-in-out">
                                         <img
                                             src={product.image}
                                             alt={`Best Seller ${index + 1}`}
-                                            className="best-seller-image w-full h-auto"
+                                            className="best-seller-image w-full h-auto opacity-100"
                                         />
                                         <div className="my-[5px] mx-[19px] pb-[5px]">
                                             <h3 className="font-['RfDewi-Expanded'] text-[16px] font-[700] line-clamp-2">{product.name}</h3>

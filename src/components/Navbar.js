@@ -66,25 +66,35 @@ const Navbar = () => {
                     <button onClick={() => { toggleMobileMenu(); setOpenSearch(false) }} className="focus:outline-none">
                         <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
                     </button>
+
+                    <div className="fixed bottom-6 right-6 z-50">
+                        <a href="/cart" className="bg-red p-2 px-4 rounded-full text-white shadow-lg hover:bg-red-700 transition flex items-center">
+                            <FontAwesomeIcon icon={faShoppingCart} />
+                            <span className="nav-bar-txt-1 text-white rounded-full px-1">{cart.length}</span>
+                        </a>
+                    </div>
                 </div>
 
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
-                    <div className="z-50 absolute top-14 left-0 w-full bg-black text-white flex flex-col items-center space-y-4 py-4 950:hidden">
-                        <a href="/" className="hover:text-red-600" onClick={toggleMobileMenu}>HOME</a>
-                        <a href="/hoodies" className="hover:text-red-600" onClick={toggleMobileMenu}>HOODIES</a>
-                        <a href="/tshirts" className="hover:text-red-600" onClick={toggleMobileMenu}>TSHIRTS</a>
-                        <div className="flex space-x-6 items-center">
-                            <button className="hover:text-red-600" onClick={() => { openSearchBar(); setIsMobileMenuOpen(!isMobileMenuOpen) }}>
-                                <FontAwesomeIcon icon={faSearch} />
-                            </button>
-                            <button className="hover:text-red-600">
-                                <FontAwesomeIcon icon={faHeart} />
-                            </button>
-                            <a href="/cart" className="hover:text-red-600 relative">
-                                <FontAwesomeIcon icon={faShoppingCart} />
-                                <span className="nav-bar-txt-1 text-black bg-white rounded-full px-1">{cart.length}</span>
-                            </a>
+                    <div>
+                        <div className="z-50 absolute top-14 left-0 w-full bg-black text-white flex flex-col items-center space-y-4 py-4 950:hidden">
+                            <a href="/collections?collection=Hoodies" className="nav-bar-txt-1 hover:text-red" onClick={toggleMobileMenu}>HOODIES</a>
+                            <a href="/collections?collection=Tshirts" className="nav-bar-txt-1 hover:text-red" onClick={toggleMobileMenu}>TSHIRTS</a>
+                            <a href="/collections?collection=Caps" className="nav-bar-txt-1 hover:text-red" onClick={toggleMobileMenu}>CAPS</a>
+                            <a href="/collections?collection=Posters" className="nav-bar-txt-1 hover:text-red" onClick={toggleMobileMenu}>POSTERS</a>
+                            <div className="flex space-x-6 items-center">
+                                <button className="hover:text-red-600" onClick={() => { openSearchBar(); setIsMobileMenuOpen(!isMobileMenuOpen) }}>
+                                    <FontAwesomeIcon icon={faSearch} />
+                                </button>
+                                <button className="hover:text-red-600">
+                                    <FontAwesomeIcon icon={faHeart} />
+                                </button>
+                                <a href="/cart" className="hover:text-red-600 relative">
+                                    <FontAwesomeIcon icon={faShoppingCart} />
+                                    <span className="nav-bar-txt-1 text-black bg-white rounded-full px-1">{cart.length}</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 )}
