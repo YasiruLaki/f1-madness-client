@@ -108,7 +108,7 @@ const HomePage = () => {
 
             setTimeout(() => {
                 setLoading(false);
-            }, 1000);
+            }, 2000);
         });
     }, [fetchProducts, fetchSiteSettings]);
 

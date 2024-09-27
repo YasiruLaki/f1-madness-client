@@ -4,7 +4,6 @@ import './Collections.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Announcement from '../components/Announcement';
-import LoadingScreen from '../components/loadingScreen';
 import { debounce } from 'lodash';
 
 const createDebouncedFetchProducts = () => {
@@ -47,7 +46,7 @@ const ProductGrid = React.memo(({ productsByCategory, collection, sortType }) =>
             switch (sortType) {
                 case 'best-selling':
                     // Sort by `orderCount` in descending order
-                    products = products.sort((a, b) => b.orderCount - a.orderCount);
+                    products = products.sort((a, b) => b.orders - a.s);
                     break;
                 case 'price-low-high':
                     // Sort by price (consider salePrice and price)
@@ -87,7 +86,7 @@ const ProductGrid = React.memo(({ productsByCategory, collection, sortType }) =>
                                 <a href={`/product?collection=${collection}&productID=${encodeURIComponent(product.productID)}`}>
                                     <div className="h-70 w-full">
                                         {salePrice > 0 && (
-                                            <span className="best-seller-badge absolute font-['RfDewi-Expanded'] font-[700] text-[16px] bg-red px-[8px] pt-[15px] rounded-[4px] rounded-t-none items-center ml-[10px] text-white">Sale</span>
+                                            <span className="best-seller-badge absolute font-bai-jamjuree font-700 text-[14px] text-white bg-red ml-2 mt-2 p-1 px-2">{(((product.price - product.salePrice) / product.price) * 100).toFixed(0)}% Off</span>
                                         )}
                                         <img
                                             src={product.images[0] || "../images/mercedesF1Tee.png"}
@@ -138,7 +137,6 @@ function Collections() {
 
     return (
         <div>
-            {loading && <LoadingScreen />}
             <Navbar />
             <Announcement />
 
@@ -189,7 +187,7 @@ function Collections() {
                 </div>
             </div>
 
-            <section className="bg-gray-50 py-8 antialiased md:py-12 min-h-[calc(100vh-360px)]">
+            <section className="py-8 antialiased md:py-12 min-h-[calc(100vh-360px)]">
                 <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
                     <div className="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
                         <div>
@@ -212,7 +210,7 @@ function Collections() {
                                         <li>
                                             <button
                                                 onClick={() => handleSortChange('best-selling')}
-                                                className="block px-4 py-2 hover:bg-gray-100"
+                                                className="block px-4 py-2 hover:bg-gray-100 w-full text-left"
                                             >
                                                 Best Selling
                                             </button>
@@ -220,7 +218,7 @@ function Collections() {
                                         <li>
                                             <button
                                                 onClick={() => handleSortChange('price-low-high')}
-                                                className="block px-4 py-2 hover:bg-gray-100"
+                                                className="block px-4 py-2 hover:bg-gray-100 w-full text-left"
                                             >
                                                 Price: Low to High
                                             </button>
@@ -228,7 +226,7 @@ function Collections() {
                                         <li>
                                             <button
                                                 onClick={() => handleSortChange('price-high-low')}
-                                                className="block px-4 py-2 hover:bg-gray-100"
+                                                className="block px-4 py-2 hover:bg-gray-100 w-full text-left"
                                             >
                                                 Price: High to Low
                                             </button>
@@ -238,7 +236,29 @@ function Collections() {
                             )}
                         </div>
                     </div>
-                    <ProductGrid productsByCategory={productsByCategory} collection={collection} sortType={sortType} />
+                    {/* skeleton placeholder */}
+                    {loading ? (
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+                            {[...Array(8)].map((_, index) => (
+                                <div key={index} className="best-seller-item h-full w-full">
+                                    <div className="h-70 w-full bg-gray-200 animate-pulse"></div>
+                                    <div className="w-full h-auto bg-white">
+                                        <img
+                                            src="../images/loaderBg.webp"
+                                            alt="Best Seller"
+                                            className="best-seller-image w-full h-auto"
+                                        />
+                                    </div>
+                                    <div className="my-[5px] mx-[19px] pb-[5px]">
+                                        <div className="h-[20px] bg-white mb-[10px]"></div>
+                                        <div className="h-[20px] bg-white w-[60%]"></div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <ProductGrid productsByCategory={productsByCategory} collection={collection} sortType={sortType} />
+                    )}
                 </div>
             </section>
             <Footer />

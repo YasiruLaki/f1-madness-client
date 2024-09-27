@@ -45,7 +45,7 @@ const Footer = () => {
                             </p>
                             <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
                                 <a class="hover:opacity-75" href='/collections?collection=Hoodies'> Hoodies </a>
-                                <a class="hover:opacity-75" href='/collections?collection=Hoodies'> Hoodies</a>
+                                <a class="hover:opacity-75" href='/collections?collection=Tshirts'> Tshirts</a>
                                 <a class="hover:opacity-75" href='/collections?collection=Caps'> Caps </a>
                                 <a class="hover:opacity-75" href='/collections?collection=Posters'> Posters</a>
                                 <a class="hover:opacity-75" href='/collections?collection=Phone%20Cases'> Phone Cases </a>
@@ -77,6 +77,14 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+            <div className='payment-icons mr-8 pb-5 flex justify-end h-11'>
+                    <img src="https://img.icons8.com/?size=100&id=5L3mKKshbyOf&format=png&color=000000" className='w-8' alt="Visa" />
+                    <img src="https://img.icons8.com/?size=100&id=13610&format=png&color=000000" className='w-8' alt="Mastercard" />
+                    <img src="https://img.icons8.com/?size=100&id=ikzPviNiCGWG&format=png&color=000000" className='w-8' alt="American Express" />
+                    <img src="https://img.icons8.com/?size=100&id=13611&format=png&color=000000" className='w-7' alt="Paypal" />
+                    <img src="https://img.icons8.com/?size=100&id=23671&format=png&color=000000" className='w-7 invert' alt="Stripe" />
+                    <img src="https://img.icons8.com/?size=100&id=Z4vrAJWLiI4D&format=png&color=000000" className='ml-1 w-7 invert' alt="Apple Pay" />
+                </div>
         </footer>
     );
 };
