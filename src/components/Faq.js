@@ -5,18 +5,18 @@ import './Faq.css';
 const AccordionItem = ({ index, title, content, isOpen, onClick }) => {
   return (
     <div
-      className={`accordion sm:py-6 py-3 sm:px-6 px-2 border-b border-solid border-[#1111113a] transition-in duration-50 ${isOpen ? 'bg-[#111111]' : 'hover:bg-[#111111] hover:text-white ease-in'
+      className={`accordion sm:py-6 py-3 sm:px-6 px-2 border-b border-solid border-[#ffffff4a] transition-in duration-50 text-white ${isOpen ? 'bg-[#111111]' : 'hover:text-white ease-in'
         }`}
       onClick={() => onClick(index)}
       aria-expanded={isOpen}
     >
       <button
-        className={`accordion-toggle group inline-flex items-center justify-between leading-8 w-full text-left hover:text-white font-['RfDewi-Expanded'] sm:text-[20px] text-[15px] font-[700] text-left ${isOpen ? 'text-white' : ''}`}
+        className={`accordion-toggle !text-white group inline-flex items-center justify-between leading-8 w-full text-left hover:text-white font-['RfDewi-Expanded'] sm:text-[20px] text-[15px] font-[700] text-left ${isOpen ? 'text-white' : ''}`}
         aria-expanded={isOpen}
       >
         <h5>{title}</h5>
         <svg
-          className={`text-[#111111] transition duration-500 group-hover:text-white ${isOpen ? 'rotate-180 text-white' : ''
+          className={`text-white transition duration-500 group-hover:text-white ${isOpen ? 'rotate-180 text-white' : ''
             }`}
           width="22"
           height="22"
@@ -109,10 +109,10 @@ const Faq = () => {
     <section className="py-[50px]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h6 className="font-['RfDewi-Expanded'] text-[18px] font-[800] text-center text-red text-center">
+          <h6 className="font-bai-jamjuree text-[18px] font-[800] text-center text-red text-center">
             FAQs
           </h6>
-          <h2 className="font-['RfDewi-Expanded'] sm:text-[36px] text-[25px] font-[800] text-center">
+          <h2 className="font-bai-jamjuree font-700 text-white  text-[38px] sm:text-[36px]  text-center">
             Frequently Asked Questions
           </h2>
         </div>

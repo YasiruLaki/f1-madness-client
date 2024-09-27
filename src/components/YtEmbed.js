@@ -66,16 +66,16 @@ const YtEmbed = () => {
 
     return (
         <div className="yt-embed p-6 my-4">
-            <h6 className="font-['RfDewi-Expanded'] text-[18px] font-[800] text-center text-red text-center">
+            <h6 className="font-bai-jamjuree font-700  text-[18px] font-[800] text-center text-red text-center">
                 YouTube
             </h6>
-            <h2 className="font-['RfDewi-Expanded'] sm:text-4xl text-2xl font-extrabold text-center">
+            <h2 className="font-bai-jamjuree font-700 text-white  text-[38px] sm:text-4xl text-2xl font-extrabold text-center">
                 Pitlane Performance
             </h2>
 
             {/* Subscribe box */}
             {channelInfo && (
-                <div className="subscribe-box flex items-center justify-center space-x-4 bg-white p-4 rounded-md">
+                <div className="subscribe-box flex items-center justify-center space-x-4 mb-2 p-4 rounded-md">
                     <a
                         href={`https://www.youtube.com/channel/${CHANNEL_ID}?sub_confirmation=1`}
                         target="_blank"
@@ -88,7 +88,7 @@ const YtEmbed = () => {
             )}
 
             {/* Grid to display videos */}
-            <div className="grid grid-cols-1 md:grid-cols-3 md:gap-6 gap-16 mb-8 md:min-h-[280px]">
+            <div className="grid grid-cols-1 md:grid-cols-3 md:gap-6 gap-16 mb-2 md:min-h-[280px]">
                 {videos.map((video) => (
                     <div key={video.id.videoId} className="yt-video">
                         <iframe
@@ -100,7 +100,7 @@ const YtEmbed = () => {
                             allowFullScreen
                             className='rounded-md'
                         ></iframe>
-                        <p className="mt-2 font-bold line-clamp-2">{video.snippet.title}</p>
+                        <p className="mt-2 text-white font-bold line-clamp-2">{video.snippet.title}</p>
                     </div>
                 ))}
             </div>

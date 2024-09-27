@@ -32,7 +32,7 @@ const Announcement = ({ loading }) => {
     // Toggle showRatings every 5 seconds
     const interval = setInterval(() => {
       setShowRatings((prev) => !prev);
-    }, 6000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
@@ -40,7 +40,7 @@ const Announcement = ({ loading }) => {
   return (
     <div className={`announcement-container ${loading ? 'loading' : 'slide-down'}`}>
       <div className={`announcement-content ${showRatings ? 'hide' : 'show'}`}>
-        <span className="lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-['RfDewi-Expanded'] font-[700]">
+        <span className="lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-bai-jamjuree font-600">
           {siteAnnouncement}
         </span>
       </div>
@@ -69,10 +69,10 @@ const Announcement = ({ loading }) => {
               </defs>
               <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" fill="url(#half-yellow)" />
             </svg>
-            <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-['RfDewi-Expanded'] font-[700] text-white">4.95</p>
-            <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-['RfDewi-Expanded'] font-[700] text-white">out of</p>
-            <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-['RfDewi-Expanded'] font-[700] text-white">5</p>
-            <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-['RfDewi-Expanded'] font-[700] hidden ms:block text-white">Based on 157 Reviews</p>
+            <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-bai-jamjuree font-600 text-white">4.95</p>
+            <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-bai-jamjuree font-600 text-white">out of</p>
+            <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-bai-jamjuree font-600 text-white">5</p>
+            <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-bai-jamjuree font-600 hidden ms:block text-white">Based on 157 Reviews</p>
           </div>
         </a>
 

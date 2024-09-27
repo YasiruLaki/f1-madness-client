@@ -31,6 +31,17 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'bai-jamjuree': ['"Bai Jamjuree"', 'sans-serif'],
+      },
+      fontWeight: {
+        '200': 200,
+        '300': 300,
+        '400': 400,
+        '500': 500,
+        '600': 600,
+        '700': 700,
+      },
       screens: {
         '950': '950px',
         'ml': '425px',

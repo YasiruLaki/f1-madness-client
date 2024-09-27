@@ -159,15 +159,15 @@ const HomePage = () => {
 
                 <div className="absolute inset-0 items-end justify-start p-6 hidden ml:flex bottom-16">
                     <div className="text-left text-white">
-                        <h1 className="font-['RfDewi-Expanded'] text-[50px] md:text-[64px] font-[800]">
+                        <h1 className="font-bai-jamjuree font-700 text-[50px] md:text-[64px]">
                             Gear Up For <span className="font-['F1'] text-[50px] md:text-[64px]">F1</span>.
                         </h1>
-                        <p className="font-['RfDewi-Expanded'] text-[22px] md:text-[32px] font-[800] mt-[-10px]">
+                        <p className="font-bai-jamjuree font-600 text-[22px] md:text-[32px] mt-[-10px]">
                             Shop exclusive merchandise and collectibles.
                         </p>
                         <button
                             onClick={scrollToCollections}
-                            className="inline-block bg-red text-white py-2 px-3 rounded-[10px] md:py-3 md:px-6 md:rounded-[15px] font-['RfDewi-Expanded'] text-[17px] md:text-[24px] font-[800] transition duration-300 hover:bg-red-700 mt-[15px] md:mt-[20px]"
+                            className="inline-block bg-red text-white py-2 px-3 rounded-[10px] md:py-2 md:px-5 md:rounded-[15px] font-bai-jamjuree font-700 text-[17px] md:text-[24px] transition duration-300 hover:bg-red-700 mt-[15px] md:mt-[20px]"
                         >
                             SHOP NOW
                         </button>
@@ -176,15 +176,15 @@ const HomePage = () => {
 
                 <div className="absolute inset-0 flex items-end justify-start p-6 ml:hidden">
                     <div className="text-left text-white">
-                        <h1 className="font-['RfDewi-Expanded'] text-[40px] mm:text-[50px] font-[800] leading-[3rem]">
-                            Gear Up <br /> For <span className="font-['F1'] text-[40px] mm:text-[50px]">F1</span>.
+                        <h1 className="font-bai-jamjuree font-700 text-[40px] mm:text-[50px] leading-[3rem]">
+                            Gear Up <br /> For <span className="font-['F1'] text-[40px] mm:text-[46px]">F1</span>.
                         </h1>
-                        <p className="font-['RfDewi-Expanded'] text-[15px] mm:text-[18px] font-[800]">
+                        <p className="font-bai-jamjuree font-600 text-[15px] mm:text-[18px]">
                             Shop exclusive merchandise and collectibles.
                         </p>
                         <button
                             onClick={scrollToCollections}
-                            className="inline-block bg-red text-white py-1 px-4 rounded-[7px] font-['RfDewi-Expanded'] text-[15px] font-[800] transition duration-300 hover:bg-red-700 my-[10px]"
+                            className="inline-block bg-red text-white py-1 px-4 rounded-[7px] font-bai-jamjuree font-600 text-[15px] transition duration-300 hover:bg-red-700 my-[10px]"
                         >
                             SHOP NOW
                         </button>
@@ -203,38 +203,38 @@ const HomePage = () => {
             </div>
 
             {/* About */}
-            <div className="hero-section-about 950:max-h-[170px] bg-gray-100 flex flex-wrap justify-center justify-between text-center 2xl:px-[142px] xl:px-[80px] lg:px-[20px] px-[10px] lg:py-[30px] md:py-[20px] py-[10px] md:flex-nowrap text-white">
+            <div className="hero-section-about 950:max-h-[170px] flex flex-wrap justify-center justify-between text-center 2xl:px-[142px] xl:px-[80px] lg:px-[20px] px-[10px] lg:py-[30px] md:py-[20px] py-[10px] md:flex-nowrap text-white">
                 <div className="md:mx-5 md:px-[0px] px-[5px] mm:w-6/12">
                     <i className="bi bi-award lg:text-[34px] text-[25px] "></i>
-                    <p className="font-['RfDewi-Expanded'] xl:text-[16px] text-[14px] font-[800]">Official Products</p>
-                    <p className="font-['RfDewi-Extended'] xl:text-[13px] text-[11px] font-[500] text-[#A5A5A5]">The Official Destination for Silver Arrows Merchandise</p>
+                    <p className="font-bai-jamjuree font-700 xl:text-[16px] text-[14px]">Official Products</p>
+                    <p className="font-bai-jamjuree font-600 xl:text-[13px] text-[11px] text-[#A5A5A5]">The Official Destination for Silver Arrows Merchandise</p>
                 </div>
                 <div className="md:mx-5 md:px-[0px] px-[5px] mm:w-6/12 mm:mt-[0px] mt-[7px]">
                     <i className="bi bi-globe lg:text-[34px] text-[25px]"></i>
-                    <p className="font-['RfDewi-Expanded'] xl:text-[16px] text-[14px] font-[800]">Worldwide Delivery</p>
-                    <p className="font-['RfDewi-Extended'] xl:text-[13px] text-[11px] font-[500] text-[#A5A5A5]">Racing to your door with DPD express worldwide delivery</p>
+                    <p className="font-bai-jamjuree font-700 xl:text-[16px] text-[14px]">Worldwide Delivery</p>
+                    <p className="font-bai-jamjuree font-600 xl:text-[13px] text-[11px] text-[#A5A5A5]">Racing to your door with DPD express worldwide delivery</p>
                 </div>
                 <div className="md:mx-5 md:px-[0px] px-[5px] mm:w-6/12 mm:mt-[0px] mt-[7px]">
                     <i className="bi bi-star lg:text-[34px] text-[25px]"></i>
-                    <p className="font-['RfDewi-Expanded'] xl:text-[16px] text-[14px] font-[800]">Exclusive Products</p>
-                    <p className="font-['RfDewi-Extended'] xl:text-[13px] text-[11px] font-[500] text-[#A5A5A5]">Shop with the Team to get access to all Official Limited Edition merchandise</p>
+                    <p className="font-bai-jamjuree font-700 xl:text-[16px] text-[14px]">Exclusive Products</p>
+                    <p className="font-bai-jamjuree font-600 xl:text-[13px] text-[11px] text-[#A5A5A5]">Shop with the Team to get access to all Official Limited Edition merchandise</p>
                 </div>
                 <div className="md:mx-5 md:px-[0px] px-[5px] mm:w-6/12 mm:mt-[0px] mt-[7px]">
                     <i className="bi bi-geo-alt lg:text-[34px] text-[25px]"></i>
-                    <p className="font-['RfDewi-Expanded'] xl:text-[16px] text-[14px] font-[800]">Tracked Delivery</p>
-                    <p className="font-['RfDewi-Extended'] xl:text-[13px] text-[11px] font-[500] text-[#A5A5A5]">Fast, tracked and secure DPD delivery straight to your door</p>
+                    <p className="font-bai-jamjuree font-700 xl:text-[16px] text-[14px]">Tracked Delivery</p>
+                    <p className="font-bai-jamjuree font-600 xl:text-[13px] text-[11px] text-[#A5A5A5]">Fast, tracked and secure DPD delivery straight to your door</p>
                 </div>
             </div>
 
             {/* Best Sellers */}
             <div className="best-sellers-section text-center mt-[20px]">
-                <h2 className="font-['RfDewi-Expanded'] text-[36px] font-[800]">Best Sellers</h2>
+                <h2 className="font-bai-jamjuree font-700 text-[38px] text-white">Best Sellers</h2>
                 <div className="flex grid ms:grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-14 mt-[30px] mx-auto max-w-screen-xl sm:px-14 px-4 text-left text-white">
                     {loading
                         ? // Loading skeleton placeholders
                         [1, 2, 3].map((_, index) => (
                             <div key={index} className="best-seller-item relative animate-pulse">
-                                <div className="w-full h-auto bg-gray-400">
+                                <div className="w-full h-auto bg-white">
                                     <img
                                         src="../images/loaderBg.webp"
                                         alt="Best Seller"
@@ -242,8 +242,8 @@ const HomePage = () => {
                                     />
                                 </div>
                                 <div className="my-[5px] mx-[19px] pb-[5px]">
-                                    <div className="h-[20px] bg-gray-400 mb-[10px]"></div>
-                                    <div className="h-[20px] bg-gray-400 w-[60%]"></div>
+                                    <div className="h-[20px] bg-white mb-[10px]"></div>
+                                    <div className="h-[20px] bg-white w-[60%]"></div>
                                 </div>
                             </div>
                         ))
@@ -252,19 +252,22 @@ const HomePage = () => {
                             product && (
                                 <a key={index} href={`/product?productID=${encodeURIComponent(product.productID)}`}>
                                     <div className="best-seller-item relative bg-[#222222] transition-opacity duration-300 ease-in-out">
+                                        {product.salePrice > 0 && (
+                                            <span className="sale-badge font-bai-jamjuree font-700 text-[14px] text-white bg-red absolute top-2 left-2 p-1 px-2">{(((product.price - product.salePrice) / product.price) * 100).toFixed(0)}% Off</span>
+                                        )}
                                         <img
                                             src={product.image}
                                             alt={`Best Seller ${index + 1}`}
                                             className="best-seller-image w-full h-auto opacity-100"
                                         />
                                         <div className="my-[5px] mx-[19px] pb-[5px]">
-                                            <h3 className="font-['RfDewi-Expanded'] text-[16px] font-[700] line-clamp-2">{product.name}</h3>
-                                            <span className="font-['RfDewi-Expanded'] text-[18px] font-[700] text-white mt-[-5px]">
+                                            <h3 className="font-bai-jamjuree font-600 text-[18px] font-[700] line-clamp-2">{product.name}</h3>
+                                            <span className="font-bai-jamjuree font-700 text-[20px] font-[700] text-white">
                                                 ${product.salePrice > 0 ? product.salePrice : product.price}
                                             </span>
                                             {product.salePrice > 0 && (
-                                                <span className="line-through text-red ml-[5px] opacity-80 text-[14px] font-[800]">
-                                                    <span className="font-['RfDewi-Expanded'] text-[14px] font-[700] mt-[-5px] text-white">
+                                                <span className="line-through text-red ml-[7px] opacity-80 text-[16px] font-[800]">
+                                                    <span className="font-bai-jamjuree font-600 text-[16px] font-[700] text-white">
                                                         ${product.price}
                                                     </span>
                                                 </span>
@@ -278,7 +281,7 @@ const HomePage = () => {
             </div>
 
             <div ref={collectionsRef} className="p-4 md:mx-10">
-                <h2 className="font-['RfDewi-Expanded'] text-[36px] font-[800] mt-[30px] mb-[20px] text-center">Collections</h2>
+                <h2 className="font-bai-jamjuree font-700 text-white  text-[38px] font-[800] mt-[30px] mb-[20px] text-center">Collections</h2>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     {categoriesWithImages.map((category, index) => (
@@ -293,7 +296,7 @@ const HomePage = () => {
                                     alt={category.name}
                                     className="object-cover w-full h-full"
                                 />
-                                <div className="best-seller-item absolute bottom-0 left-0 right-0 bg-black p-2 text-white text-center flex justify-between items-center font-['RfDewi-Expanded'] text-[19px] font-[700]">
+                                <div className="best-seller-item absolute bottom-0 left-0 right-0 bg-black p-2 text-white text-center flex justify-between items-center font-bai-jamjuree font-600 text-[19px] font-[700]">
                                     <span>{category.name}</span>
                                     <i className="bi bi-arrow-right ml-2"></i>
                                 </div>
@@ -305,7 +308,7 @@ const HomePage = () => {
                     {categoriesWithoutImages.map((category, index) => (
                         <div
                             key={index}
-                            className="best-seller-item flex  justify-between items-center bg-black text-white font-bold text-xl p-4 shadow-lg font-['RfDewi-Expanded'] text-[19px] font-[700]"
+                            className="best-seller-item flex  justify-between items-center bg-black text-white font-bold text-xl p-4 shadow-lg font-bai-jamjuree font-600 text-[19px] font-[700]"
                         >
                             <a href={`/collections?collection=${encodeURIComponent(category.name)}`}>
                                 <span>{category.name}</span>
@@ -316,6 +319,11 @@ const HomePage = () => {
                 </div>
             </div>
 
+            {/*Banner-1*/}
+            <div className="banner-section mt-10">
+                <img src="../images/banner-1.png" alt="Banner" className="w-full h-auto" />
+            </div>
+
             {/* YouTube Embed */}
             <YtEmbed />
 
@@ -324,6 +332,11 @@ const HomePage = () => {
 
             {/* FAQ */}
             <Faq />
+
+            {/*Banner-2*/}
+            <div className="banner-section">
+                <img src="../images/banner-2.png" alt="Banner" className="w-full h-auto" />
+            </div>
 
             {/* Contact */}
             <Contact />
