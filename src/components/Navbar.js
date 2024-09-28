@@ -27,23 +27,26 @@ const Navbar = () => {
 
     return (
         <div>
-            <nav className="bg-black text-white flex justify-between items-center nav-bar">
+            <nav className="bg-black text-white flex items-center nav-bar justify-between w-full">
                 <a href="/">
                     <div className="flex items-center">
-                        <span className="nav-bar-txt-1 text-[11px] mm:text-[15px]">PITLANE PERFORMANCE</span>
+                        <span className="font-bai-jamjuree font-700 text-[12px] mm:text-[16px]">PITLANE PERFORMANCE</span>
                     </div>
                 </a>
 
                 <div>
-                    <div className="hidden md:flex space-x-6 ">
+                    <div className="hidden 950:flex space-x-5 950:justify-center">
                         <a href="/collections?collection=Hoodies" className="font-bai-jamjuree font-600 hover:text-red">HOODIES</a>
                         <a href="/collections?collection=Tshirts" className="font-bai-jamjuree font-600 hover:text-red">TSHIRTS</a>
                         <a href="/collections?collection=Caps" className="font-bai-jamjuree font-600 hover:text-red">CAPS</a>
                         <a href="/collections?collection=Posters" className="font-bai-jamjuree font-600 hover:text-red">POSTERS</a>
+                        <span>|</span>
+                        <a href="/about" className="font-bai-jamjuree font-600 hover:text-red">ABOUT</a>
+                        <a href="/contact" className="font-bai-jamjuree font-600 hover:text-red">CONTACT</a>
                     </div>
                 </div>
 
-                <div className="950:flex hidden space-x-20">
+                <div className="950:flex hidden space-x-20 950:justify-end">
 
                     {/* Icons Section */}
                     <div className="hidden md:flex space-x-8 items-center">
@@ -73,31 +76,33 @@ const Navbar = () => {
                         </a>
                     </div>
                 </div>
+            </nav>
 
-                {/* Mobile Menu */}
-                {isMobileMenuOpen && (
-                    <div>
-                        <div className="z-50 absolute top-14 left-0 w-full bg-black text-white flex flex-col items-center space-y-4 py-4 950:hidden">
-                            <a href="/collections?collection=Hoodies" className="font-bai-jamjuree font-600 hover:text-red" onClick={toggleMobileMenu}>HOODIES</a>
-                            <a href="/collections?collection=Tshirts" className="font-bai-jamjuree font-600 hover:text-red" onClick={toggleMobileMenu}>TSHIRTS</a>
-                            <a href="/collections?collection=Caps" className="font-bai-jamjuree font-600 hover:text-red" onClick={toggleMobileMenu}>CAPS</a>
-                            <a href="/collections?collection=Posters" className="font-bai-jamjuree font-600 hover:text-red" onClick={toggleMobileMenu}>POSTERS</a>
-                            <div className="flex space-x-6 items-center">
-                                <button className="hover:text-red-600" onClick={() => { openSearchBar(); setIsMobileMenuOpen(!isMobileMenuOpen) }}>
-                                    <FontAwesomeIcon icon={faSearch} />
-                                </button>
-                                <button className="hover:text-red-600">
-                                    <FontAwesomeIcon icon={faHeart} />
-                                </button>
-                                <a href="/cart" className="hover:text-red-600 relative">
-                                    <FontAwesomeIcon icon={faShoppingCart} />
-                                    <span className="nav-bar-txt-1 text-black bg-white rounded-full px-1">{cart.length}</span>
-                                </a>
-                            </div>
+            {/* Mobile Menu */}
+            {isMobileMenuOpen && (
+                <div>
+                    <div className="z-50 absolute top-[56px] left-0 w-full bg-black text-white flex flex-col items-center space-y-4 py-4 950:hidden">
+                        <a href="/collections?collection=Hoodies" className="font-bai-jamjuree font-600 hover:text-red" onClick={toggleMobileMenu}>HOODIES</a>
+                        <a href="/collections?collection=Tshirts" className="font-bai-jamjuree font-600 hover:text-red" onClick={toggleMobileMenu}>TSHIRTS</a>
+                        <a href="/collections?collection=Caps" className="font-bai-jamjuree font-600 hover:text-red" onClick={toggleMobileMenu}>CAPS</a>
+                        <a href="/collections?collection=Posters" className="font-bai-jamjuree font-600 hover:text-red" onClick={toggleMobileMenu}>POSTERS</a>
+                        <a href="/about" className="font-bai-jamjuree font-600 hover:text-red">ABOUT</a>
+                        <a href="/contact" className="font-bai-jamjuree font-600 hover:text-red">CONTACT</a>
+                        <div className="flex space-x-6 items-center">
+                            <button className="hover:text-red-600" onClick={() => { openSearchBar(); setIsMobileMenuOpen(!isMobileMenuOpen) }}>
+                                <FontAwesomeIcon icon={faSearch} />
+                            </button>
+                            <button className="hover:text-red-600">
+                                <FontAwesomeIcon icon={faHeart} />
+                            </button>
+                            <a href="/cart" className="hover:text-red-600 relative">
+                                <FontAwesomeIcon icon={faShoppingCart} />
+                                <span className="nav-bar-txt-1 text-white bg-red rounded-full px-1">{cart.length}</span>
+                            </a>
                         </div>
                     </div>
-                )}
-            </nav>
+                </div>
+            )}
 
             {/* Search Bar */}
             {openSearch && (

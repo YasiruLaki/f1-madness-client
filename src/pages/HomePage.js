@@ -108,7 +108,7 @@ const HomePage = () => {
 
             setTimeout(() => {
                 setLoading(false);
-            }, 2000);
+            }, 1000);
         });
     }, [fetchProducts, fetchSiteSettings]);
 
@@ -261,7 +261,7 @@ const HomePage = () => {
                                             className="best-seller-image w-full h-auto opacity-100"
                                         />
                                         <div className="my-[5px] mx-[19px] pb-[5px]">
-                                            <h3 className="font-bai-jamjuree font-600 text-[18px] font-[700] line-clamp-2">{product.name}</h3>
+                                            <h3 className="font-bai-jamjuree font-600 text-[18px] font-[700] line-clamp-2">{product.name || '' }</h3>
                                             <span className="font-bai-jamjuree font-700 text-[20px] font-[700] text-white">
                                                 ${product.salePrice > 0 ? product.salePrice : product.price}
                                             </span>

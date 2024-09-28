@@ -13,6 +13,10 @@
     padding-right: 35px;
 }
 
+.nav-bar-mobile{
+    background: linear-gradient(-90deg, #111111 0%, #222222 100%);
+}
+
 .nav-bar-txt-1{
     font-family: RfDewi-Expanded;
     font-weight: bold;
