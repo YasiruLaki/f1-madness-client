@@ -40,9 +40,6 @@ const Navbar = () => {
                         <a href="/collections?collection=Tshirts" className="font-bai-jamjuree font-600 hover:text-red">TSHIRTS</a>
                         <a href="/collections?collection=Caps" className="font-bai-jamjuree font-600 hover:text-red">CAPS</a>
                         <a href="/collections?collection=Posters" className="font-bai-jamjuree font-600 hover:text-red">POSTERS</a>
-                        <span>|</span>
-                        <a href="/about" className="font-bai-jamjuree font-600 hover:text-red">ABOUT</a>
-                        <a href="/contact" className="font-bai-jamjuree font-600 hover:text-red">CONTACT</a>
                     </div>
                 </div>
 
@@ -86,8 +83,6 @@ const Navbar = () => {
                         <a href="/collections?collection=Tshirts" className="font-bai-jamjuree font-600 hover:text-red" onClick={toggleMobileMenu}>TSHIRTS</a>
                         <a href="/collections?collection=Caps" className="font-bai-jamjuree font-600 hover:text-red" onClick={toggleMobileMenu}>CAPS</a>
                         <a href="/collections?collection=Posters" className="font-bai-jamjuree font-600 hover:text-red" onClick={toggleMobileMenu}>POSTERS</a>
-                        <a href="/about" className="font-bai-jamjuree font-600 hover:text-red">ABOUT</a>
-                        <a href="/contact" className="font-bai-jamjuree font-600 hover:text-red">CONTACT</a>
                         <div className="flex space-x-6 items-center">
                             <button className="hover:text-red-600" onClick={() => { openSearchBar(); setIsMobileMenuOpen(!isMobileMenuOpen) }}>
                                 <FontAwesomeIcon icon={faSearch} />

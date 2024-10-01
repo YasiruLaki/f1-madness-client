@@ -36,9 +36,9 @@ const Feedback = () => {
                                     </defs>
                                 </svg>
                                 <p class="h-2 w-full sm:min-w-[278px] rounded-3xl bg-amber-50 ml-5 mr-3">
-                                    <span class="h-full w-[70%] rounded-3xl bg-amber-400 flex"></span>
+                                    <span class="h-full w-[93%] rounded-3xl bg-amber-400 flex"></span>
                                 </p>
-                                <p class=" text-lg font-[600] text-white mr-0.5">97</p>
+                                <p class=" text-lg font-[600] text-white mr-0.5">150</p>
                             </div>
                             <div class="flex items-center w-full">
                                 <p class="font-[600] text-lg text-white mr-0.5">4</p>
@@ -56,9 +56,9 @@ const Feedback = () => {
                                     </defs>
                                 </svg>
                                 <p class="h-2 w-full xl:min-w-[278px] rounded-3xl bg-amber-50 ml-5 mr-3">
-                                    <span class="h-full w-[40%] rounded-3xl bg-amber-400 flex"></span>
+                                    <span class="h-full w-[5%] rounded-3xl bg-amber-400 flex"></span>
                                 </p>
-                                <p class="font-[600] text-lg text-white mr-0.5">45</p>
+                                <p class="font-[600] text-lg text-white mr-0.5">15</p>
                             </div>
                             <div class="flex items-center">
                                 <p class="font-[600] text-lg text-white mr-0.5">3</p>
@@ -76,9 +76,9 @@ const Feedback = () => {
                                     </defs>
                                 </svg>
                                 <p class="h-2 w-full xl:min-w-[278px] rounded-3xl bg-amber-50 ml-5 mr-3">
-                                    <span class="h-full w-[8%] rounded-3xl bg-amber-400 flex"></span>
+                                    <span class="h-full w-[2%] rounded-3xl bg-amber-400 flex"></span>
                                 </p>
-                                <p class="font-[600] text-lg text-white mr-0.5">9</p>
+                                <p class="font-[600] text-lg text-white mr-0.5">2</p>
                             </div>
                             <div class="flex items-center">
                                 <p class="font-[600] text-lg text-white mr-0.5">2</p>
@@ -96,9 +96,9 @@ const Feedback = () => {
                                     </defs>
                                 </svg>
                                 <p class="h-2 w-full xl:min-w-[278px] rounded-3xl bg-amber-50 ml-5 mr-3">
-                                    <span class="h-full w-[4%] rounded-3xl bg-amber-400 flex"></span>
+                                    <span class="h-full w-[1%] rounded-3xl bg-amber-400 flex"></span>
                                 </p>
-                                <p class="font-[600] text-lg text-white mr-0.5">5</p>
+                                <p class="font-[600] text-lg text-white mr-0.5">1</p>
                             </div>
                             <div class="flex items-center">
                                 <p class="font-[600] text-lg text-white mr-0.5">1</p>
