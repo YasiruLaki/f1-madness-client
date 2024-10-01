@@ -283,7 +283,7 @@ const HomePage = () => {
             <div ref={collectionsRef} className="p-4 md:mx-10">
                 <h2 className="font-bai-jamjuree font-700 text-white  text-[38px] font-[800] mt-[30px] mb-[20px] text-center">Collections</h2>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
                     {categoriesWithImages.map((category, index) => (
                         <div
                             key={index}
@@ -337,9 +337,6 @@ const HomePage = () => {
             <div className="banner-section">
                 <img src="../images/banner-2.png" alt="Banner" className="w-full h-auto" />
             </div>
-
-            {/* Contact */}
-            <Contact />
 
             {/* Newsletter */}
             <Newsletter />
