@@ -8,10 +8,6 @@ const Announcement = ({ loading }) => {
   useEffect(() => {
     const fetchAnnouncement = async () => {
       try {
-        const cachedAnnouncement = localStorage.getItem('siteAnnouncement');
-        if (cachedAnnouncement) {
-          setSiteAnnouncement(cachedAnnouncement);
-        } else {
           const response = await fetch('https://f1-store-backend.netlify.app/.netlify/functions/fetchSiteSettings', {
             method: 'GET',
             headers: {
@@ -20,8 +16,6 @@ const Announcement = ({ loading }) => {
           });
           const data = await response.json();
           setSiteAnnouncement(data.siteAnnouncement);
-          localStorage.setItem('siteAnnouncement', data.siteAnnouncement);
-        }
       } catch (error) {
         console.error('Error fetching announcement:', error);
       }
@@ -32,7 +26,7 @@ const Announcement = ({ loading }) => {
     // Toggle showRatings every 5 seconds
     const interval = setInterval(() => {
       setShowRatings((prev) => !prev);
-    }, 4000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
