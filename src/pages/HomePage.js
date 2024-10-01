@@ -9,7 +9,6 @@ import Announcement from "../components/Announcement";
 import YtEmbed from "../components/YtEmbed";
 import Newsletter from "../components/Newsletter";
 import Feedback from "../components/Feedback";
-import Contact from "../components/Contact";
 
 const images = [
     '../images/image-1.png',
