@@ -191,7 +191,7 @@ const Feedback = () => {
                                     </defs>
                                 </svg>
                             </div>
-                            <p class="font-[600] text-xl leading-8 text-white text-center">157 Ratings</p>
+                            <p class="font-[600] text-xl leading-8 text-white text-center">169 Ratings</p>
                         </div>
                     </div>
                 </div>

@@ -66,7 +66,7 @@ const Announcement = ({ loading }) => {
             <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-bai-jamjuree font-600 text-white">4.95</p>
             <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-bai-jamjuree font-600 text-white">out of</p>
             <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-bai-jamjuree font-600 text-white">5</p>
-            <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-bai-jamjuree font-600 hidden ms:block text-white">Based on 157 Reviews</p>
+            <p className="ms-1 lg:text-[15px] md:text-[14px] sm:text-[13px] ml:text-[12px] mm:text-[11px] text-[10px] font-bai-jamjuree font-600 hidden ms:block text-white">Based on 169 Reviews</p>
           </div>
         </a>
 
