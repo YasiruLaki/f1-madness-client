@@ -79,7 +79,6 @@ const ProductGrid = React.memo(({ productsByCategory, collection, sortType }) =>
                 <div key={category} className="mb-4 grid gap-4 grid-cols-2 md:mb-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
                     {products.map((product) => {
                         const salePrice = parseFloat(product.salePrice) || 0;
-                        const originalPrice = parseFloat(product.price) || 0;
 
                         return (
                             <div key={product.productID} className="best-seller-item h-full w-full">
@@ -95,16 +94,16 @@ const ProductGrid = React.memo(({ productsByCategory, collection, sortType }) =>
                                         />
                                     </div>
                                     <div className="my-[5px] mx-[19px] text-white">
-                                        <h3 className="font-['RfDewi-Expanded'] text-[16px] font-[700]">{product.name || "Product Name"}</h3>
-                                        {salePrice > 0 ? (
-                                            <>
-                                                <span className="font-['RfDewi-Expanded'] text-[18px] font-[700] mt-[-5px] text-white">${salePrice}</span>
-                                                <span className="line-through text-red ml-[5px] opacity-80 text-[14px] font-[800]">
-                                                    <span className="font-['RfDewi-Expanded'] text-[14px] font-[700] mt-[-5px] text-white">${originalPrice}</span>
+                                        <h3 className="font-bai-jamjuree font-600 text-[18px] font-[700] line-clamp-2">{product.name || "Product Name"}</h3>
+                                        <span className="font-bai-jamjuree font-700 text-[20px] font-[700] text-white">
+                                            ${product.salePrice > 0 ? product.salePrice : product.price}
+                                        </span>
+                                        {product.salePrice > 0 && (
+                                            <span className="line-through text-red ml-[7px] opacity-80 text-[16px] font-[800]">
+                                                <span className="font-bai-jamjuree font-600 text-[16px] font-[700] text-white">
+                                                    ${product.price}
                                                 </span>
-                                            </>
-                                        ) : (
-                                            <span className="font-['RfDewi-Expanded'] text-[16px] font-[700] mt-[-5px]">${originalPrice}</span>
+                                            </span>
                                         )}
                                     </div>
                                 </a>
@@ -192,7 +191,7 @@ function Collections() {
                     <div className="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
                         <div>
                         </div>
-                        <div className="relative flex items-center font-['RfDewi-Extended']">
+                        <div className="relative flex items-center font-bai-jamjuree font-600">
                             <button
                                 id="sortDropdownButton1"
                                 onClick={toggleDropdown}

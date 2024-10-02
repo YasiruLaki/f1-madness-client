@@ -101,9 +101,9 @@ function Cart() {
             <Navbar />
             <Announcement />
 
-            <section className="bg-white py-8 antialiased md:py-16 min-h-[calc(100vh-360px)] font-['RfDewi-Extended']">
+            <section className="py-8 antialiased md:py-16 min-h-[calc(100vh-360px)] font-bai-jamjuree">
                 <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-                    <h2 className="text-[xl] font-[800] text-gray-900 sm:text-[30px] font-['RfDewi-Expanded']">Shopping Cart</h2>
+                    <h2 className="text-[xl] font-[800] text-gray-900 sm:text-[30px] font-bai-jamjuree text-white">Shopping Cart</h2>
 
                     <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8 ">
                         <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
