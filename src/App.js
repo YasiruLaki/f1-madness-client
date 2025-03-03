@@ -16,6 +16,7 @@ import GiftCards from './pages/GiftCards';
 import CharitableInitiatives from './pages/CharitableInitiatives';
 import Faqs from './pages/FAQs';
 import About from './pages/About';
+import OrderPlacementPage from './pages/OrderPlacing'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/collections" element={<CollectionPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/order-success" element={<OrderSuccess />} />
+        <Route path="/order-place" element={<OrderPlacementPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />

@@ -36,11 +36,7 @@ const categoriesWithoutImages = [
 const HomePage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [bestSellingProducts, setBestSellingProducts] = useState({
-        product1: null,
-        product2: null,
-        product3: null
-    });
+    const [bestSellingProducts, setBestSellingProducts] = useState({});
     const collectionsRef = useRef(null);
 
     const scrollToCollections = () => {
@@ -51,65 +47,49 @@ const HomePage = () => {
 
     const fetchProducts = useCallback(async () => {
         try {
-            const response = await fetch('https://f1-store-backend.netlify.app/.netlify/functions/fetchAdminProducts', {
+            const response = await fetch('https://f1-printful-backend.vercel.app/api/categories?filteredCategory=', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
+
             const data = await response.json();
             const flattened = Object.values(data).flat();
-            return flattened;
+
+            // Sort by orderCount in descending order
+            const sortedProducts = flattened.sort((a, b) => b.orders - a.orders);
+
+            // Get the top 3 best-selling products
+            setBestSellingProducts({
+                product1: sortedProducts[0] || null,
+                product2: sortedProducts[1] || null,
+                product3: sortedProducts[2] || null,
+            });
+
         } catch (error) {
             console.error('Error fetching products:', error);
         }
     }, []);
 
-    const fetchSiteSettings = useCallback(async (products) => {
-        try {
-            const response = await fetch('https://f1-store-backend.netlify.app/.netlify/functions/fetchSiteSettings', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            const data = await response.json();
-
-            const mapProductIdToOption = (id) => {
-                const product = products.find(p => p.productID === id);
-                return product ? {
-                    productID: product.productID,
-                    name: product.name,
-                    shortName: product.shortName,
-                    image: product.images[0],
-                    price: product.price,
-                    salePrice: product.salePrice
-                } : null;
-            };
-
-            setBestSellingProducts({
-                product1: mapProductIdToOption(data.bestSellingProducts.product1),
-                product2: mapProductIdToOption(data.bestSellingProducts.product2),
-                product3: mapProductIdToOption(data.bestSellingProducts.product3),
-            });
-
-        } catch (error) {
-            console.error('Error fetching site settings:', error);
-        }
-    }, []);
-
     useEffect(() => {
         setLoading(true);
-        fetchProducts().then((flattenedProducts) => {
-            if (flattenedProducts) {
-                fetchSiteSettings(flattenedProducts);
-            }
-
-            setTimeout(() => {
-                setLoading(false);
-            }, 1000);
-        });
-    }, [fetchProducts, fetchSiteSettings]);
+        fetchProducts()
+            .then((products) => {
+                if (products) {
+                    // Do something with the fetched products (e.g., store in state)
+                    setBestSellingProducts(products); // Assuming you have a state to store them
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching products:', error);
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    setLoading(false);
+                }, 1000);
+            });
+    }, [fetchProducts]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -249,22 +229,24 @@ const HomePage = () => {
                         : // Actual product display
                         [bestSellingProducts.product1, bestSellingProducts.product2, bestSellingProducts.product3].map((product, index) => (
                             product && (
-                                <a key={index} href={`/product?productID=${encodeURIComponent(product.productID)}`}>
+                                <a key={index} href={`/product?productid=${encodeURIComponent(product.productid)}&collection=${product.category}`}>
                                     <div className="best-seller-item relative bg-[#222222] transition-opacity duration-300 ease-in-out">
-                                        {product.salePrice > 0 && (
-                                            <span className="sale-badge font-bai-jamjuree font-700 text-[14px] text-white bg-red absolute top-2 left-2 p-1 px-2">{(((product.price - product.salePrice) / product.price) * 100).toFixed(0)}% Off</span>
+                                        {product.saleprice > 0 && (
+                                            <span className="sale-badge font-bai-jamjuree font-700 text-[14px] text-white bg-red absolute top-2 left-2 p-1 px-2">
+                                                {(((product.price - product.saleprice) / product.price) * 100).toFixed(0)}% Off
+                                            </span>
                                         )}
                                         <img
-                                            src={product.image}
+                                            src={product.image || product.thumbnail_url} // Use thumbnail_url if image is missing
                                             alt={`Best Seller ${index + 1}`}
                                             className="best-seller-image w-full h-auto opacity-100"
                                         />
                                         <div className="my-[5px] mx-[19px] pb-[5px]">
-                                            <h3 className="font-bai-jamjuree font-600 text-[18px] font-[700] line-clamp-2">{product.name || '' }</h3>
+                                            <h3 className="font-bai-jamjuree font-600 text-[18px] font-[700]">{product.name || ''}</h3>
                                             <span className="font-bai-jamjuree font-700 text-[20px] font-[700] text-white">
-                                                ${product.salePrice > 0 ? product.salePrice : product.price}
+                                                ${product.saleprice > 0 ? product.saleprice : product.price}
                                             </span>
-                                            {product.salePrice > 0 && (
+                                            {product.saleprice > 0 && (
                                                 <span className="line-through text-red ml-[7px] opacity-80 text-[16px] font-[800]">
                                                     <span className="font-bai-jamjuree font-600 text-[16px] font-[700] text-white">
                                                         ${product.price}

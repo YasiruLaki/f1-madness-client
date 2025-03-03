@@ -14,7 +14,9 @@ export const CartProvider = ({ children }) => {
 
     // Function to add a product to the cart
     const addToCart = (product) => {
-        const existingProductIndex = cart.findIndex(item => item.productID === product.productID && item.size === product.size);
+        const existingProductIndex = cart.findIndex(
+            item => item.productid === product.productid && item.size?.size === product.size?.size
+        );
 
         if (existingProductIndex !== -1) {
             // If product exists, update quantity
@@ -35,16 +37,18 @@ export const CartProvider = ({ children }) => {
     };
 
     // Function to remove a product from the cart
-    const removeFromCart = (productID, size) => {
-        const updatedCart = cart.filter(item => !(item.productID === productID && item.size === size));
+    const removeFromCart = (productid, size) => {
+        const updatedCart = cart.filter(
+            item => !(item.productid === productid && item.size?.size === size)
+        );
         setCart(updatedCart);
         updateLocalStorage(updatedCart);
     };
 
     // Function to increment product quantity
-    const incrementQuantity = (productID, size) => {
+    const incrementQuantity = (productid, size) => {
         const updatedCart = cart.map(item => {
-            if (item.productID === productID && item.size === size) {
+            if (item.productid === productid && item.size?.size === size) {
                 return { ...item, quantity: item.quantity + 1 };
             }
             return item;
@@ -54,10 +58,11 @@ export const CartProvider = ({ children }) => {
     };
 
     // Function to decrement product quantity
-    const decrementQuantity = (productID, size) => {
+    const decrementQuantity = (productid, size) => {
         const updatedCart = cart.map(item => {
-            if (item.productID === productID && item.size === size && item.quantity > 1) {
-                return { ...item, quantity: item.quantity - 1 };
+            if (item.productid === productid && item.size?.size === size) {
+                // Ensure quantity does not go below 1
+                return item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item;
             }
             return item;
         });

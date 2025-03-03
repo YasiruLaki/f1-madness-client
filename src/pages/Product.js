@@ -12,9 +12,10 @@ const Product = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const { search } = useLocation();
     const quaryParams = new URLSearchParams(search);
-    const productID = quaryParams.get('productID');
-    const [product, setProduct] = useState([]);
-    const [selectedSize, setSelectedSize] = useState('');
+    const productID = quaryParams.get('productid');
+    const category = quaryParams.get('collection')
+    const [product, setProduct] = useState({});
+    const [selectedSize, setSelectedSize] = useState({});
     const [selectedQuantity, setSelectedQuantity] = useState(1);
     const [loading, setLoading] = useState(true);
     const [alert, setAlert] = useState({ type: '', message: '' });
@@ -48,25 +49,47 @@ const Product = () => {
     useEffect(() => {
         setLoading(true);
         const fetchProduct = async () => {
-            const formattedProductID = productID.split('#').join('%23');
-            try {
-                const res = await fetch(`https://f1-store-backend.netlify.app/.netlify/functions/fetchSingleProduct?productID=${formattedProductID}`);
-                const data = await res.json();
-                setProduct(data);
-            } catch (error) {
-                console.log(error);
+            setLoading(true);
+            if (!productID || !category) {
+                console.error('Missing productID or category');
+                setLoading(false);
+                return;
             }
-            finally {
-                setTimeout(() => {
-                    setLoading(false);
-                }, 500);
+
+            const formattedProductID = productID.split('#').join('%23');
+            const apiUrl = `https://f1-printful-backend.vercel.app/api/singleProduct?productid=${formattedProductID}&category=${category}`;
+
+            try {
+                console.log('Fetching product from:', apiUrl);
+                const res = await fetch(apiUrl);
+                if (!res.ok) {
+                    throw new Error(`API error: ${res.status} ${res.statusText}`);
+                }
+
+                const data = await res.json();
+                console.log('Fetched Product:', data);
+
+                if (!data.product) {
+                    console.warn('Empty product data received');
+                    return;
+                }
+
+                setProduct(data.product); // ✅ Fix applied
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchProduct();
-    }, [productID]);
+    }, [productID, category]);
 
-    const handleSizeSelect = (size) => {
-        setSelectedSize(size); // Update selected size in state
+    const handleSizeSelect = (sizeObj) => {
+        setSelectedSize({
+            size: sizeObj.size,
+            sizeid: sizeObj.sizeid,
+            files:sizeObj.files
+        });
     };
 
     const images = product?.images || [];
@@ -76,31 +99,42 @@ const Product = () => {
             showAlert('info', 'Please select a size before adding to the cart.');
             return;
         }
-
+    
         // Retrieve cart from local storage
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+    
         // Check if the product is already in the cart
-        const existingProductIndex = cart.findIndex(item => item.productID === productID && item.size === selectedSize);
-
+        const existingProductIndex = cart.findIndex(item =>
+            item.productid === productID && 
+            item.size?.size === selectedSize?.size && 
+            item.size?.sizeid === selectedSize?.sizeid // Ensure sizeid is being compared
+        );
+    
         if (existingProductIndex !== -1) {
             showAlert('info', 'Product in this size already exists in the cart.');
         } else {
             setLoading(true);
+    
+            // Ensure selectedSize has both size and sizeid properties
             const productToAdd = {
-                productID: productID,
+                productid: productID,
+                category: category,
                 quantity: selectedQuantity,
-                size: selectedSize,
+                size: {
+                    size: selectedSize?.size,        // Ensure size is being added
+                    sizeid: selectedSize?.sizeid,     // Ensure sizeid is being added
+                    files: selectedSize?.files
+                },
             };
+    
             cart.push(productToAdd);
             addToCart(productToAdd);
             setAlert({ type: 'success', message: 'Product added to cart!' });
-
+    
             setLoading(false);
-
         }
-
-        // Save the updated cart back to local storage
+    
+        // Save the updated cart back to local storage, including both size and sizeid
         localStorage.setItem('cart', JSON.stringify(cart));
     };
 
@@ -164,23 +198,35 @@ const Product = () => {
                                     />
                                 )}
                             </div>
-
                             <div className="flex mt-4">
                                 {/* Dynamically calculate the width of each thumbnail based on the number of images */}
                                 <div className="flex gap-4 w-full max-lg:mx-auto">
-                                    {images.map((image, index) => (
+                                    {images.length > 0 ? (
+                                        images.map((image, index) => (
+                                            <div
+                                                key={index}
+                                                className={`thumb-container swiper-slide thumbs-slide flex-1 ${activeIndex === index ? 'active' : ''}`}
+                                                onClick={() => handleThumbnailClick(index)}
+                                            >
+                                                <img
+                                                    alt={`Thumbnail ${index + 1}`}
+                                                    className={`cursor-pointer w-full h-auto rounded-xl transition-all duration-500 ${activeIndex === index ? 'border-2 border-black' : ''}`}
+                                                    src={image}
+                                                />
+                                            </div>
+                                        ))
+                                    ) : (
                                         <div
-                                            key={index}
-                                            className={`thumb-container swiper-slide thumbs-slide flex-1 ${activeIndex === index ? 'active' : ''}`}
-                                            onClick={() => handleThumbnailClick(index)}
+                                            className={`thumb-container swiper-slide thumbs-slide flex-1 ${activeIndex === 0 ? 'active' : ''}`}
+                                            onClick={() => handleThumbnailClick(0)}
                                         >
                                             <img
-                                                alt={`Thumbnail ${index + 1}`}
-                                                className={`cursor-pointer w-full h-auto rounded-xl transition-all duration-500 ${activeIndex === index ? 'border-2 border-black' : ''}`}
-                                                src={image}
+                                                alt="Thumbnail"
+                                                className={`cursor-pointer w-full h-auto rounded-xl transition-all duration-500 ${activeIndex === 0 ? 'border-2 border-black' : ''}`}
+                                                src={product.thumbnail_url}  // Display the product's thumbnail when no images are available
                                             />
                                         </div>
-                                    ))}
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -214,20 +260,21 @@ const Product = () => {
                                     </span>
                                 </p>
                                 <div className="grid grid-cols-2 min-[400px]:grid-cols-4 gap-3 mb-6">
-                                    {product.sizes?.map((size, index) => (
+                                    {product.sizes?.map((sizeObj, index) => (
                                         <div key={index} className="flex items-center">
                                             <input
                                                 type="checkbox"
-                                                id={`size-${size}`} // Unique ID for each input
+                                                id={`size-${sizeObj.size}`}
                                                 className="hidden peer"
-                                                checked={selectedSize === size} // Make input controlled by state
-                                                onChange={() => handleSizeSelect(size)} // Handle size selection
+                                                checked={selectedSize?.size === sizeObj.size} // Compare selectedSize.size
+                                                onChange={() => handleSizeSelect(sizeObj)} // Pass the entire sizeObj
                                             />
                                             <label
-                                                htmlFor={`size-${size}`} // Corresponding 'htmlFor' to link label and input
-                                                className={`cursor-pointer flex items-center justify-center w-full h-10 rounded-lg border bg-white font-bai-jamjuree font-700 border-gray-300 text-base leading-6 text-gray-900 hover:border-gray-900 ${selectedSize === size ? 'bg-[red] text-white' : ''}`}
+                                                htmlFor={`size-${sizeObj.size}`}
+                                                className={`cursor-pointer flex items-center justify-center w-full h-10 rounded-lg border font-bai-jamjuree font-700 border-gray-300 text-base leading-6 text-white hover:border-white ${selectedSize?.size === sizeObj.size ? 'bg-[red] text-white' : ''
+                                                    }`}
                                             >
-                                                {size}
+                                                {sizeObj.size} {/* Display the size */}
                                             </label>
                                         </div>
                                     ))}
@@ -260,21 +307,21 @@ const Product = () => {
                     </div>
                 </div>
                 <div aria-hidden="true" className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6">
-                <div
-                    style={{
-                        clipPath:
-                            'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                    }}
-                    className="aspect-[1155/150] w-[80.1875rem] bg-gradient-to-tr from-[#ffffff] to-[#ffffff4a] opacity-40"
-                />
-                <div
-                    style={{
-                        clipPath:
-                            'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                    }}
-                    className="aspect-[1155/600] w-[80.1875rem] bg-gradient-to-tr from-[#ffffff8a] to-[#ffffff2a] opacity-30"
-                />
-            </div>
+                    <div
+                        style={{
+                            clipPath:
+                                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                        }}
+                        className="aspect-[1155/150] w-[80.1875rem] bg-gradient-to-tr from-[#ffffff] to-[#ffffff4a] opacity-40"
+                    />
+                    <div
+                        style={{
+                            clipPath:
+                                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                        }}
+                        className="aspect-[1155/600] w-[80.1875rem] bg-gradient-to-tr from-[#ffffff8a] to-[#ffffff2a] opacity-30"
+                    />
+                </div>
             </section>
 
             {/* Footer */}

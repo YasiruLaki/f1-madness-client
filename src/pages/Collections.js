@@ -10,8 +10,9 @@ const createDebouncedFetchProducts = () => {
     return debounce(async (collection, setProductsByCategory, setLoading) => {
         setLoading(true);
         try {
-            const response = await fetch(`https://f1-store-backend.netlify.app/.netlify/functions/fetchAdminProducts?filteredCategory=${collection}`);
+            const response = await fetch(`https://f1-printful-backend.vercel.app/api/categories?filteredCategory=${collection}`);
             const data = await response.json();
+            console.log(data)
             setProductsByCategory(data);
         } catch (error) {
             console.error('Error fetching products:', error);
@@ -28,6 +29,8 @@ const useDebouncedFetchProducts = (collection) => {
 
     // Create debounced function once
     const debouncedFetchProducts = useMemo(() => createDebouncedFetchProducts(), []);
+
+    console.log(productsByCategory)
 
     useEffect(() => {
         debouncedFetchProducts(collection, setProductsByCategory, setLoading);
@@ -82,13 +85,13 @@ const ProductGrid = React.memo(({ productsByCategory, collection, sortType }) =>
 
                         return (
                             <div key={product.productID} className="best-seller-item h-full w-full">
-                                <a href={`/product?collection=${collection}&productID=${encodeURIComponent(product.productID)}`}>
+                                <a href={`/product?collection=${collection}&productid=${encodeURIComponent(product.productid)}`}>
                                     <div className="h-70 w-full">
                                         {salePrice > 0 && (
                                             <span className="best-seller-badge absolute font-bai-jamjuree font-700 text-[14px] text-white bg-red ml-2 mt-2 p-1 px-2">{(((product.price - product.salePrice) / product.price) * 100).toFixed(0)}% Off</span>
                                         )}
                                         <img
-                                            src={product.images[0] || "../images/mercedesF1Tee.png"}
+                                            src={product.images ? product.images.split(',')[0] : product.thumbnail_url}
                                             alt={product.name || "Best Seller"}
                                             className="best-seller-image w-full h-full object-cover"
                                         />
@@ -181,8 +184,7 @@ function Collections() {
                         <h1 className="text-white text-[30px] font-[800] sm:text-[40px] font-['RfDewi-Expanded']">
                             {collection}
                         </h1>
-                        <p className="text-white text-[14px] font-['RfDewi-Expanded'] mx-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                    </div>
+                                            </div>
                 </div>
             </div>
 
