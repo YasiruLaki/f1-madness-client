@@ -114,15 +114,15 @@ const Search = () => {
                     ) : (
                         <div className="mb-4 grid gap-4 grid-cols-2 md:mb-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
                             {searchResults.map((product) => {
-                                const salePrice = parseFloat(product.salePrice) || 0;
+                                const saleprice = parseFloat(product.saleprice) || 0;
 
                                 return (
                                     <div key={product.productID} className="best-seller-item h-full w-full">
                                         <a href={`/product?productID=${encodeURIComponent(product.productID)}`}>
 
                                             <div className="h-70 w-full">
-                                                {salePrice > 0 && (
-                                                    <span className="best-seller-badge absolute font-bai-jamjuree font-700 text-[14px] text-white bg-red ml-2 mt-2 p-1 px-2">{(((product.price - product.salePrice) / product.price) * 100).toFixed(0)}% Off</span>
+                                                {saleprice > 0 && (
+                                                    <span className="best-seller-badge absolute font-bai-jamjuree font-700 text-[14px] text-white bg-red ml-2 mt-2 p-1 px-2">{(((product.price - product.saleprice) / product.price) * 100).toFixed(0)}% Off</span>
                                                 )}
                                                 <img
                                                     src={product.images[0] || "../images/mercedesF1Tee.png"}
@@ -133,9 +133,9 @@ const Search = () => {
                                             <div className="my-[5px] mx-[19px] text-white">
                                                 <h3 className="font-bai-jamjuree font-600 text-[18px] font-[700] line-clamp-2">{product.name || "Product Name"}</h3>
                                                 <span className="font-bai-jamjuree font-700 text-[20px] font-[700] text-white">
-                                                    ${product.salePrice > 0 ? product.salePrice : product.price}
+                                                    ${product.saleprice > 0 ? product.saleprice : product.price}
                                                 </span>
-                                                {product.salePrice > 0 && (
+                                                {product.saleprice > 0 && (
                                                     <span className="line-through text-red ml-[7px] opacity-80 text-[16px] font-[800]">
                                                         <span className="font-bai-jamjuree font-600 text-[16px] font-[700] text-white">
                                                             ${product.price}

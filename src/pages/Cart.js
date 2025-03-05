@@ -74,19 +74,20 @@ const fetchProductDetails = async (productid, category) => {
         try {
             const productsWithDetails = await Promise.all(
                 cart.map(async (item) => {
-                    const productDetails = await fetchProductDetails(item.productid);
+                    // Pass category to fetchProductDetails
+                    const productDetails = await fetchProductDetails(item.productid, item.category);
                     return { ...item, ...productDetails };
                 })
             );
-
+    
             const response = await fetch('https://f1-printful-backend.vercel.app/api/createCheckoutSession', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ cart: productsWithDetails }),
             });
-
+    
             const { sessionId } = await response.json();
-
+    
             if (sessionId) {
                 const stripe = await stripePromise;
                 const { error } = await stripe.redirectToCheckout({ sessionId });
@@ -100,6 +101,7 @@ const fetchProductDetails = async (productid, category) => {
             setLoading(false);
         }
     };
+    
 
     return (
         <div className="cart">
