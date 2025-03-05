@@ -88,33 +88,39 @@ const Product = () => {
         setSelectedSize({
             size: sizeObj.size,
             sizeid: sizeObj.sizeid,
-            files:sizeObj.files
+            files: sizeObj.files
         });
     };
 
-    const images = product?.images || [];
+    const images = product?.images
+        ? product.images
+            .replace(/{|}/g, "") // Remove curly braces
+            .split(",") // Split by comma (no space)
+            .map(url => url.trim()) // Trim extra spaces from URLs
+        : []; // Default to an empty array if product.images is undefined
 
+    console.log(images);
     const handleAddToCart = () => {
         if (product.sizes && product.sizes.length > 0 && !selectedSize) {
             showAlert('info', 'Please select a size before adding to the cart.');
             return;
         }
-    
+
         // Retrieve cart from local storage
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
+
         // Check if the product is already in the cart
         const existingProductIndex = cart.findIndex(item =>
-            item.productid === productID && 
-            item.size?.size === selectedSize?.size && 
+            item.productid === productID &&
+            item.size?.size === selectedSize?.size &&
             item.size?.sizeid === selectedSize?.sizeid // Ensure sizeid is being compared
         );
-    
+
         if (existingProductIndex !== -1) {
             showAlert('info', 'Product in this size already exists in the cart.');
         } else {
             setLoading(true);
-    
+
             // Ensure selectedSize has both size and sizeid properties
             const productToAdd = {
                 productid: productID,
@@ -126,14 +132,14 @@ const Product = () => {
                     files: selectedSize?.files
                 },
             };
-    
+
             cart.push(productToAdd);
             addToCart(productToAdd);
             setAlert({ type: 'success', message: 'Product added to cart!' });
-    
+
             setLoading(false);
         }
-    
+
         // Save the updated cart back to local storage, including both size and sizeid
         localStorage.setItem('cart', JSON.stringify(cart));
     };
@@ -201,7 +207,7 @@ const Product = () => {
                             <div className="flex mt-4">
                                 {/* Dynamically calculate the width of each thumbnail based on the number of images */}
                                 <div className="flex gap-4 w-full max-lg:mx-auto">
-                                    {images.length > 0 ? (
+                                    {images && Array.isArray(images) && images.length > 0 ? (
                                         images.map((image, index) => (
                                             <div
                                                 key={index}

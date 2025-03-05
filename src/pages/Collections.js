@@ -88,10 +88,16 @@ const ProductGrid = React.memo(({ productsByCategory, collection, sortType }) =>
                                 <a href={`/product?collection=${collection}&productid=${encodeURIComponent(product.productid)}`}>
                                     <div className="h-70 w-full">
                                         {salePrice > 0 && (
-                                            <span className="best-seller-badge absolute font-bai-jamjuree font-700 text-[14px] text-white bg-red ml-2 mt-2 p-1 px-2">{(((product.price - product.salePrice) / product.price) * 100).toFixed(0)}% Off</span>
+                                            <span className="best-seller-badge absolute font-bai-jamjuree font-700 text-[14px] text-white bg-red ml-2 mt-2 p-1 px-2">
+                                                {(((product.price - product.salePrice) / product.price) * 100).toFixed(0)}% Off
+                                            </span>
                                         )}
                                         <img
-                                            src={product.images ? product.images.split(',')[0] : product.thumbnail_url}
+                                            src={
+                                                product.images && product.images !== "{}" // Check if images exists and is not empty
+                                                    ? product.images.replace(/{|}/g, "").split(",")[0] // Clean and get the first image
+                                                    : product.thumbnail_url // Fall back to thumbnail_url if images is empty or "{}"
+                                            }
                                             alt={product.name || "Best Seller"}
                                             className="best-seller-image w-full h-full object-cover"
                                         />
@@ -184,7 +190,7 @@ function Collections() {
                         <h1 className="text-white text-[30px] font-[800] sm:text-[40px] font-['RfDewi-Expanded']">
                             {collection}
                         </h1>
-                                            </div>
+                    </div>
                 </div>
             </div>
 
