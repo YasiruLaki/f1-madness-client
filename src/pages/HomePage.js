@@ -17,8 +17,8 @@ const images = [
 ];
 
 const categoriesWithImages = [
-    { name: 'Hoodies', image: '../images/collection-tee.webp'},
-    { name: 'Tshirts', image: '../images/collection-tee.webp' },
+    { name: 'Hoodies', image: '../images/hoodies-cover.jpg'},
+    { name: 'Tshirts', image: '../images/tshirts-cover.jpg' },
     // { name: 'Caps', image: '../images/collection-tee.webp' },
     // { name: 'Posters', image: '../images/collection-tee.webp' },
     // { name: 'Boxers', image: '../images/collection-tee.webp' }
