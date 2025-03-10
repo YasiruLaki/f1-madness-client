@@ -13,27 +13,27 @@ function Cart() {
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(true);
 
-// Fetch product details from the backend
-const fetchProductDetails = async (productid, category) => {
-    try {
-        const response = await fetch(`https://f1-printful-backend.vercel.app/api/singleProduct?productid=${productid}&category=${category}`);
-        if (!response.ok) throw new Error('Failed to fetch product details');
-        
-        const data = await response.json();
+    // Fetch product details from the backend
+    const fetchProductDetails = async (productid, category) => {
+        try {
+            const response = await fetch(`https://f1-printful-backend.vercel.app/api/singleProduct?productid=${productid}&category=${category}`);
+            if (!response.ok) throw new Error('Failed to fetch product details');
 
-        console.log(data)
-        
-        // Ensure data.product exists before returning
-        if (data && data.product) {
-            return data.product;
-        } else {
-            throw new Error('Product data is missing');
+            const data = await response.json();
+
+            console.log(data)
+
+            // Ensure data.product exists before returning
+            if (data && data.product) {
+                return data.product;
+            } else {
+                throw new Error('Product data is missing');
+            }
+        } catch (error) {
+            console.error('Error fetching product details:', error);
+            return null;
         }
-    } catch (error) {
-        console.error('Error fetching product details:', error);
-        return null;
-    }
-};
+    };
 
     // Fetch all cart data with product details
     const fetchCartData = useCallback(async () => {
@@ -79,15 +79,15 @@ const fetchProductDetails = async (productid, category) => {
                     return { ...item, ...productDetails };
                 })
             );
-    
+
             const response = await fetch('https://f1-printful-backend.vercel.app/api/createCheckoutSession', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ cart: productsWithDetails }),
             });
-    
+
             const { sessionId } = await response.json();
-    
+
             if (sessionId) {
                 const stripe = await stripePromise;
                 const { error } = await stripe.redirectToCheckout({ sessionId });
@@ -101,7 +101,7 @@ const fetchProductDetails = async (productid, category) => {
             setLoading(false);
         }
     };
-    
+
 
     return (
         <div className="cart">
@@ -125,7 +125,11 @@ const fetchProductDetails = async (productid, category) => {
                                                 <a href={`/product?productid=${encodeURIComponent(item.productid)}`} className="shrink-0 md:order-1">
                                                     <img
                                                         className="h-20 w-20"
-                                                        src={item.images && item.images.length > 0 ? item.images[0] : item.thumbnail_url}
+                                                        src={
+                                                            item.images && item.images !== "{}" // Check if images exists and is not empty
+                                                                ? item.images.replace(/{|}/g, "").split(",")[0] // Clean and get the first image
+                                                                : item.thumbnail_url // Fall back to thumbnail_url if images is empty or "{}"
+                                                        }
                                                         alt={item.name}
                                                     />
                                                 </a>

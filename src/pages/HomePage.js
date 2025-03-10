@@ -17,20 +17,20 @@ const images = [
 ];
 
 const categoriesWithImages = [
-    { name: 'Hoodies', image: '../images/collection-tee.webp', span: 2 },
+    { name: 'Hoodies', image: '../images/collection-tee.webp'},
     { name: 'Tshirts', image: '../images/collection-tee.webp' },
-    { name: 'Caps', image: '../images/collection-tee.webp' },
-    { name: 'Posters', image: '../images/collection-tee.webp' },
-    { name: 'Boxers', image: '../images/collection-tee.webp' }
+    // { name: 'Caps', image: '../images/collection-tee.webp' },
+    // { name: 'Posters', image: '../images/collection-tee.webp' },
+    // { name: 'Boxers', image: '../images/collection-tee.webp' }
 ];
 
 const categoriesWithoutImages = [
-    { name: 'Socks' },
-    { name: 'Phone Cases' },
-    { name: 'Lanyard & Keyrings' },
-    { name: 'Blankets' },
-    { name: 'Bedroom Sets' },
-    { name: 'Gift Cards' }
+    // { name: 'Socks' },
+    // { name: 'Phone Cases' },
+    // { name: 'Lanyard & Keyrings' },
+    // { name: 'Blankets' },
+    // { name: 'Bedroom Sets' },
+    // { name: 'Gift Cards' }
 ];
 
 const HomePage = () => {
@@ -56,16 +56,32 @@ const HomePage = () => {
 
             const data = await response.json();
             const flattened = Object.values(data).flat();
+            // Function to shuffle an array
+            const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
 
-            // Sort by orderCount in descending order
+            // Sort by order count in descending order
             const sortedProducts = flattened.sort((a, b) => b.orders - a.orders);
+
+            // Group products by their order count
+            const groupedByOrders = sortedProducts.reduce((acc, product) => {
+                acc[product.orders] = acc[product.orders] || [];
+                acc[product.orders].push(product);
+                return acc;
+            }, {});
+
+            // Flatten the grouped object back into a randomized sorted array
+            const randomizedSortedProducts = Object.values(groupedByOrders)
+                .map(shuffleArray) // Shuffle each group
+                .flat(); // Flatten back into an array
 
             // Get the top 3 best-selling products
             setBestSellingProducts({
-                product1: sortedProducts[0] || null,
-                product2: sortedProducts[1] || null,
-                product3: sortedProducts[2] || null,
+                product1: randomizedSortedProducts[0] || null,
+                product2: randomizedSortedProducts[1] || null,
+                product3: randomizedSortedProducts[2] || null,
             });
+
+
 
         } catch (error) {
             console.error('Error fetching products:', error);
@@ -237,7 +253,11 @@ const HomePage = () => {
                                             </span>
                                         )}
                                         <img
-                                            src={product.image || product.thumbnail_url} // Use thumbnail_url if image is missing
+                                            src={
+                                                Array.isArray(product.images) && product.images.length > 0
+                                                    ? product.images[0] // Get the first image from the array
+                                                    : product.thumbnail_url
+                                            }
                                             alt={`Best Seller ${index + 1}`}
                                             className="best-seller-image w-full h-auto opacity-100"
                                         />
