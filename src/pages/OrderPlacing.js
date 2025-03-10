@@ -18,30 +18,35 @@ const OrderPlacementPage = () => {
     console.log("Cart:", cart); // Debugging cart
 
     const placeOrder = useCallback(async (sessionId) => {
+        setLoading(true);
+        setError(null);
+
         try {
+            console.log("🔹 Sending order request...");
+
             const response = await fetch('https://f1-printful-backend.vercel.app/api/placeOrder', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    session_id: sessionId,
-                    cart: cart,
-                }),
+                body: JSON.stringify({ session_id: sessionId, cart }),
             });
 
             const data = await response.json();
-            if (data.success) {
-                // Redirect to the order success page
-                window.location.replace(`/order-success?session_id=${stripeSessionID}&orderID=${data.orderID}`); // Use window.location.replace for clarity
+            console.log("✅ Response from backend:", data);
+
+            if (response.ok && data.success) {
+                // Redirect to order success page
+                window.location.replace(`/order-success?session_id=${sessionId}&orderID=${data.orderID}`);
             } else {
-                setError('There was an issue placing your order. Please try again.');
+                console.error("❌ Order failed:", data.error);
+                setError(data.error || 'There was an issue placing your order. Please try again.');
             }
         } catch (error) {
-            console.error('Error placing order:', error);
+            console.error("❌ Network error:", error);
             setError('Error placing the order. Please try again.');
         } finally {
             setLoading(false);
         }
-    }, [cart, stripeSessionID]); // Add 'cart' as dependency to avoid stale closure
+    }, [cart]);
 
     useEffect(() => {
         if (stripeSessionID && stripeSessionID.trim() !== '') {
