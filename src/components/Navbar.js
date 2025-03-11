@@ -38,8 +38,7 @@ const Navbar = () => {
                     <div className="hidden 950:flex space-x-5 950:justify-center">
                         <a href="/collections?collection=Hoodies" className="font-bai-jamjuree font-600 hover:text-red">HOODIES</a>
                         <a href="/collections?collection=Tshirts" className="font-bai-jamjuree font-600 hover:text-red">TSHIRTS</a>
-                        <a href="/collections?collection=Caps" className="font-bai-jamjuree font-600 hover:text-red">CAPS</a>
-                        <a href="/collections?collection=Posters" className="font-bai-jamjuree font-600 hover:text-red">POSTERS</a>
+                        <a href="/contact" className="font-bai-jamjuree font-600 hover:text-red">CONTACT</a>
                     </div>
                 </div>
 
