@@ -6,12 +6,27 @@ import Footer from '../components/Footer';
 import Announcement from '../components/Announcement';
 import { loadStripe } from '@stripe/stripe-js';
 import LoadingScreen from '../components/loadingScreen';
+import CountryList from 'react-select-country-list';
+import Alert from '../components/Alert';
 
 function Cart() {
     const { cart, removeFromCart, incrementQuantity, decrementQuantity } = useCart();
     const [products, setProducts] = useState([]); // Changed from {} to []
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [selectedCountry, setSelectedCountry] = useState('');
+    const [countryOptions, setCountryOptions] = useState(CountryList().getData());
+    const [alert, setAlert] = useState({ type: '', message: '' });
+
+    // Function to show alert
+    const showAlert = (type, message) => {
+        setAlert({ type, message });
+    };
+
+    // Function to hide alert
+    const hideAlert = () => {
+        setAlert({ type: '', message: '' });
+    };
 
     // Fetch product details from the backend
     const fetchProductDetails = async (productid, category) => {
@@ -33,6 +48,10 @@ function Cart() {
             console.error('Error fetching product details:', error);
             return null;
         }
+    };
+
+    const handleCountryChange = (e) => {
+        setSelectedCountry(e.target.value);
     };
 
     // Fetch all cart data with product details
@@ -72,6 +91,13 @@ function Cart() {
     const handleCheckout = async () => {
         setLoading(true);
         try {
+            // Assume 'selectedCountry' holds the country selected by the user
+            if (!selectedCountry) {
+                showAlert('warning','Please select a country before proceeding');
+                return;
+            }
+
+            // Fetch product details for the cart items
             const productsWithDetails = await Promise.all(
                 cart.map(async (item) => {
                     // Pass category to fetchProductDetails
@@ -80,14 +106,19 @@ function Cart() {
                 })
             );
 
+            // Send data to your backend to create the checkout session
             const response = await fetch('https://f1-printful-backend.vercel.app/api/createCheckoutSession', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ cart: productsWithDetails }),
+                body: JSON.stringify({
+                    cart: productsWithDetails,
+                    country: selectedCountry, // Pass the selected country here
+                }),
             });
 
             const { sessionId } = await response.json();
 
+            // If a sessionId is returned, redirect to Stripe Checkout
             if (sessionId) {
                 const stripe = await stripePromise;
                 const { error } = await stripe.redirectToCheckout({ sessionId });
@@ -106,6 +137,14 @@ function Cart() {
     return (
         <div className="cart">
             {loading && <LoadingScreen />}
+            {/* Render the Alert component */}
+            {alert.message && (
+                <Alert
+                    type={alert.type}
+                    message={alert.message}
+                    onClose={hideAlert}
+                />
+            )}
             <Navbar />
             <Announcement />
 
@@ -206,7 +245,31 @@ function Cart() {
                                 </div>
 
                                 <div className="flex items-center justify-between">
-                                    <p className="text-sm font-medium text-gray-900"><i>(Shipping will be calculated in the next step)</i></p>
+                                    <p className="text-sm font-medium text-gray-900">
+                                        <i>(Shipping will be calculated based on your selected country)</i>
+                                    </p>
+                                </div>
+
+                                {/* Dropdown for country selection */}
+                                <div className=" items-center justify-between mt-4">
+                                    <label htmlFor="country" className="text-sm font-medium text-gray-900 pt-4">
+                                        <b>Select Shipping Country:</b>
+                                    </label>
+                                    <select
+                                        id="country"
+                                        name="country"
+                                        value={selectedCountry}
+                                        onChange={handleCountryChange}
+                                        className="w-full rounded-md border-gray-300 shadow-sm"
+                                        required
+                                    >
+                                        <option value="">-- Select Country --</option>
+                                        {countryOptions.map((country) => (
+                                            <option key={country.value} value={country.value}>
+                                                {country.label}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
 
                                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
