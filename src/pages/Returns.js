@@ -36,22 +36,58 @@ const Returns = () => {
                                             <svg className="!text-white h-5 w-5 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7" />
                                             </svg>
-                                            <span className="!text-white ms-1 text-sm font-medium text-gray-500 md:ms-2">Contact</span>
+                                            <span className="!text-white ms-1 text-sm font-medium text-gray-500 md:ms-2">Returns</span>
                                         </div>
                                     </li>
                                 </ol>
                             </nav>
                             <h1 className="text-white text-[30px] font-[800] sm:text-[40px] font-['RfDewi-Expanded']">
-                                Contact Us
+                                Return Policy
                             </h1>
-                            <p className="text-white text-[14px] font-['RfDewi-Expanded']mx-4">Please fill out the form with your email, and we’ll get back to you soon.</p>
                         </div>
                     </div>
                 </div>
 
                 <div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>
-                    <h1 className="text-[25px] font-[700] sm:text-[30px] font-['RfDewi-Expanded'] mt-10">.</h1>
-                    <p className="text-[15px] font-[400] sm:text-[18px] font-['RfDewi-Extended'] mt-3">.</p>
+                    <p className="text-[15px] font-[400] sm:text-[18px] font-['RfDewi-Extended'] mt-3">At Pitlane Performances, we want you to be completely satisfied with your purchase. If you’re not happy with your order, we’re here to help.</p>
+
+                    <ul className="list-inside text-[15px] font-[700] sm:text-[18px] font-['RfDewi-Extended'] mt-3">
+                        <li>1. Return Eligibility</li>
+                        <p className="text-[15px] font-[400] sm:text-[18px] font-['RfDewi-Extended'] mt-3">You can return items within 30 days of receiving your order if they meet the following conditions:
+                        </p>
+                        <ul>
+                            <li>• Item must be unused, unworn, and unwashed</li>
+                            <li>• Item must be in its original packaging with tags attached</li>
+                            <li>• Proof of purchase (order confirmation or receipt) is required</li>
+                        </ul>
+                        <br></br>
+                        <li>Non-returnable items:</li>
+                        <p className="text-[15px] font-[400] sm:text-[18px] font-['RfDewi-Extended'] mt-3">We never sell or share your personal information with third parties, except when necessary for shipping and payment processing.
+                        </p>
+                        <ul>
+                            <li>• Personalized or custom-made items</li>
+                            <li>• Final sale or clearance items</li>
+                            <li>• Gift cards</li>
+                        </ul>
+                        <br></br>
+                        <li>2. How to Initiate a Return</li>
+                        <p className="text-[15px] font-[400] sm:text-[18px] font-['RfDewi-Extended'] mt-3">Once we receive and inspect the returned item, we will process your refund:
+                        </p>
+                        <ul>
+                            <li>• Refunds will be credited to the original payment method within 7-10 business days.</li>
+                            <li>• Shipping fees are non-refundable (unless the return is due to our error).</li>
+                        </ul>
+                        <br></br>
+                        <li>4. Exchanges</li>
+                        <p className="text-[15px] font-[400] sm:text-[18px] font-['RfDewi-Extended'] mt-3">If you need a different size or product, please place a new order and return the original item for a refund.
+                        </p><br></br>
+                        <li>5. Damaged or Incorrect Items</li>
+                        <p className="text-[15px] font-[400] sm:text-[18px] font-['RfDewi-Extended'] mt-3">Received a wrong or defective item? We’re sorry! Contact us at contact@pitlanceperformances.com within 7 days of delivery, and we’ll make it right at no extra cost.
+                        </p><br></br>
+                    </ul>
+
+                    <p className="text-[15px] font-[400] sm:text-[18px] font-['RfDewi-Extended'] mt-3 pb-10">For any questions regarding returns, feel free to reach out to contact@pitlanceperformances.com or visit our Contact Us page.</p>
+
                 </div>
 
             </section>

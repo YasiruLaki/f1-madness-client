@@ -46,9 +46,9 @@ const Footer = () => {
                             <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
                                 <a class="hover:opacity-75" href='/collections?collection=Hoodies'> Hoodies </a>
                                 <a class="hover:opacity-75" href='/collections?collection=Tshirts'> Tshirts</a>
-                                <a class="hover:opacity-75" href='/collections?collection=Caps'> Caps </a>
+                                {/* <a class="hover:opacity-75" href='/collections?collection=Caps'> Caps </a>
                                 <a class="hover:opacity-75" href='/collections?collection=Posters'> Posters</a>
-                                <a class="hover:opacity-75" href='/collections?collection=Phone%20Cases'> Phone Cases </a>
+                                <a class="hover:opacity-75" href='/collections?collection=Phone%20Cases'> Phone Cases </a> */}
                             </nav>
                         </div>
                         <div>
@@ -69,9 +69,9 @@ const Footer = () => {
                                 <a class="hover:opacity-75" href='/privacy-policy'> Privacy Policy </a>
                                 <a class="hover:opacity-75" href='/terms-and-conditions'> Terms &amp; Conditions </a>
                                 <a class="hover:opacity-75" href='/returns'> Returns Policy </a>
-                                <a class="hover:opacity-75" href='/shipping'> Shipping </a>
-                                <a class="hover:opacity-75" href='/gift-cards'> Gift Cards </a>
-                                <a class="hover:opacity-75" href='/charitable-initiatives'> Charitable Initiatives </a>
+                                {/* <a class="hover:opacity-75" href='/shipping'> Shipping </a> */}
+                                {/* <a class="hover:opacity-75" href='/gift-cards'> Gift Cards </a>
+                                <a class="hover:opacity-75" href='/charitable-initiatives'> Charitable Initiatives </a> */}
                             </nav>
                         </div>
                     </div>
