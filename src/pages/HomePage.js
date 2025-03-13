@@ -11,9 +11,10 @@ import Newsletter from "../components/Newsletter";
 import Feedback from "../components/Feedback";
 
 const images = [
-    '../images/image-1.png',
-    '../images/image-2.png',
-    '../images/image-3.png',
+    '../images/banner-3.jpg',
+    '../images/banner-4.jpg',
+    '../images/banner-5.jpg',
+    '../images/banner-6.jpg',
 ];
 
 const categoriesWithImages = [
