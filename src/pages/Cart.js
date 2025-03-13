@@ -15,7 +15,7 @@ function Cart() {
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(true);
     const [selectedCountry, setSelectedCountry] = useState('');
-    const [countryOptions, setCountryOptions] = useState(CountryList().getData());
+    const [countryOptions] = useState(CountryList().getData());
     const [alert, setAlert] = useState({ type: '', message: '' });
 
     // Function to show alert
