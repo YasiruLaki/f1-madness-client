@@ -52,18 +52,18 @@ const ProductGrid = React.memo(({ productsByCategory, collection, sortType }) =>
                     products = products.sort((a, b) => b.orders - a.s);
                     break;
                 case 'price-low-high':
-                    // Sort by price (consider salePrice and price)
+                    // Sort by price (consider saleprice and price)
                     products = products.sort((a, b) => {
-                        const priceA = a.salePrice > 0 ? a.salePrice : a.price;
-                        const priceB = b.salePrice > 0 ? b.salePrice : b.price;
+                        const priceA = a.saleprice > 0 ? a.saleprice : a.price;
+                        const priceB = b.saleprice > 0 ? b.saleprice : b.price;
                         return priceA - priceB;
                     });
                     break;
                 case 'price-high-low':
-                    // Sort by price (consider salePrice and price) in descending order
+                    // Sort by price (consider saleprice and price) in descending order
                     products = products.sort((a, b) => {
-                        const priceA = a.salePrice > 0 ? a.salePrice : a.price;
-                        const priceB = b.salePrice > 0 ? b.salePrice : b.price;
+                        const priceA = a.saleprice > 0 ? a.saleprice : a.price;
+                        const priceB = b.saleprice > 0 ? b.saleprice : b.price;
                         return priceB - priceA;
                     });
                     break;
@@ -81,15 +81,15 @@ const ProductGrid = React.memo(({ productsByCategory, collection, sortType }) =>
             {Object.entries(sortedProductsByCategory).map(([category, products]) => (
                 <div key={category} className="mb-4 grid gap-4 grid-cols-2 md:mb-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
                     {products.map((product) => {
-                        const salePrice = parseFloat(product.salePrice) || 0;
+                        const saleprice = parseFloat(product.saleprice) || 0;
 
                         return (
                             <div key={product.productID} className="best-seller-item h-full w-full">
                                 <a href={`/product?collection=${collection}&productid=${encodeURIComponent(product.productid)}`}>
                                     <div className="h-70 w-full">
-                                        {salePrice > 0 && (
+                                        {saleprice > 0 && (
                                             <span className="best-seller-badge absolute font-bai-jamjuree font-700 text-[14px] text-white bg-red ml-2 mt-2 p-1 px-2">
-                                                {(((product.price - product.salePrice) / product.price) * 100).toFixed(0)}% Off
+                                                {(((product.price - product.saleprice) / product.price) * 100).toFixed(0)}% Off
                                             </span>
                                         )}
                                         <img
@@ -105,9 +105,9 @@ const ProductGrid = React.memo(({ productsByCategory, collection, sortType }) =>
                                     <div className="my-[5px] mx-[19px] text-white">
                                         <h3 className="font-bai-jamjuree font-600 text-[18px] font-[700] line-clamp-2">{product.name || "Product Name"}</h3>
                                         <span className="font-bai-jamjuree font-700 text-[20px] font-[700] text-white">
-                                            ${product.salePrice > 0 ? product.salePrice : product.price}
+                                            ${product.saleprice > 0 ? product.saleprice : product.price}
                                         </span>
-                                        {product.salePrice > 0 && (
+                                        {product.saleprice > 0 && (
                                             <span className="line-through text-red ml-[7px] opacity-80 text-[16px] font-[800]">
                                                 <span className="font-bai-jamjuree font-600 text-[16px] font-[700] text-white">
                                                     ${product.price}

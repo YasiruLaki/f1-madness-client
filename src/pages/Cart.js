@@ -161,7 +161,7 @@ function Cart() {
                                     products.map((item) => (
                                         <div key={item.productid} className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:p-6">
                                             <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-                                                <a href={`/product?productid=${encodeURIComponent(item.productid)}`} className="shrink-0 md:order-1">
+                                                <a href={`/product?collection=${item.collection}&productid=${item.productid}`} className="shrink-0 md:order-1">
                                                     <img
                                                         className="h-20 w-20"
                                                         src={
@@ -204,7 +204,7 @@ function Cart() {
                                                     </div>
                                                     <div className="text-end md:order-4 md:w-32">
                                                         <p className="text-base font-bold text-gray-900 bg-white p-1">
-                                                            {item.salePrice > 0
+                                                            {item.saleprice > 0
                                                                 ? `$${(item.saleprice * item.quantity).toFixed(2)}`
                                                                 : `$${(item.price * item.quantity).toFixed(2)}`}
                                                         </p>

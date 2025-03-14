@@ -247,14 +247,14 @@ const Product = () => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col min-[400px]:flex-row min-[400px]:items-center mb-8 gap-y-3">
-                                    {product.salePrice > 0 ? (
+                                    {product.saleprice > 0 ? (
                                         <div className="flex items-center">
-                                            <span className="font-bai-jamjuree font-700 text-[30px] font-[700] mt-[-5px] text-white">${product.salePrice}</span>
+                                            <span className="font-bai-jamjuree font-700 text-[30px] font-[700] mt-[-5px] text-white">${product.saleprice}</span>
 
                                             <span className="line-through text-red  ml-[10px] opacity-80 text-[18px]">
                                                 <span className="font-bai-jamjuree font-700 text-[18px] font-[700] mt-[-5px] text-white">${product.price}</span>
                                             </span>
-                                            <span className="best-seller-badge font-bai-jamjuree font-700 text-[14px] text-white bg-red ml-2 p-1 px-2">{(((product.price - product.salePrice) / product.price) * 100).toFixed(0)}% Off</span>
+                                            <span className="best-seller-badge font-bai-jamjuree font-700 text-[14px] text-white bg-red ml-2 p-1 px-2">{(((product.price - product.saleprice) / product.price) * 100).toFixed(0)}% Off</span>
                                         </div>
                                     ) : (
                                         <span className="font-bai-jamjuree font-700 text-[30px] font-[700] mt-[-5px] text-white">${product.price}</span>
