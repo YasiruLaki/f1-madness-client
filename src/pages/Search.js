@@ -81,7 +81,6 @@ const Search = () => {
                         <h1 className="text-white text-[30px] font-[800] sm:text-[40px] font-['RfDewi-Expanded']">
                             Search
                         </h1>
-                        <p className="text-white text-[14px] font-['RfDewi-Expanded'] mx-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
                     </div>
                 </div>
             </div>
@@ -89,7 +88,7 @@ const Search = () => {
             <section className="py-8 antialiased  md:py-12 min-h-[calc(100vh-360px)]">
                 <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
                     <div className="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
-                        <h2 className="mt-3 text-xl font-[800] dark:text-white sm:text-[27px] font-['RfDewi-Expanded'] mt-[20px]">Search Results For "<i>{searchedQuery}</i> "</h2>
+                        <h2 className="mt-3 text-xl font-[800] text-white dark:text-white sm:text-[27px] font-['RfDewi-Expanded'] mt-[20px]">Search Results For "<i>{searchedQuery}</i> "</h2>
                     </div>
 
                     {loading ? (
@@ -117,8 +116,8 @@ const Search = () => {
                                 const saleprice = parseFloat(product.saleprice) || 0;
 
                                 return (
-                                    <div key={product.productID} className="best-seller-item h-full w-full">
-                                        <a href={`/product?productID=${encodeURIComponent(product.productID)}`}>
+                                    <div key={product.productid} className="best-seller-item h-full w-full">
+                                        <a href={`/product?productid=${product.productid}&collection=${product.category}`}>
 
                                             <div className="h-70 w-full">
                                                 {saleprice > 0 && (
