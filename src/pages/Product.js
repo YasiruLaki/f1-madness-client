@@ -261,9 +261,11 @@ const Product = () => {
                                     )}
                                 </div>
                                 <p className="font-bai-jamjuree text-white font-[600] text-lg mb-2">Select Size:
-                                    <span className='text-[15px] underline ml-2 opacity-80 font-bai-jamjuree text-white'>
-                                        {product.category === 'Tshirt' || product.category === 'Hoodies' || product.category === 'Jackets' || product.category === 'Boxers' ? 'Size Chart' : ''}
-                                    </span>
+                                    <a href={product.category === 'Tshirts' ? '../images/tshirts-sizeguide.png' : product.category === 'Hoodies' ? '../images/hoodies-sizeguide.png' : ""}>
+                                        <span className='text-[15px] underline ml-2 opacity-80 font-bai-jamjuree text-white'>
+                                            {product.category === 'Tshirts' || product.category === 'Hoodies' || product.category === 'Jackets' || product.category === 'Boxers' ? 'Size Chart' : ''}
+                                        </span>
+                                    </a>
                                 </p>
                                 <div className="grid grid-cols-2 min-[400px]:grid-cols-4 gap-3 mb-6">
                                     {product.sizes?.map((sizeObj, index) => (
